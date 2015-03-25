@@ -5,6 +5,7 @@
 #include "Equation.h"
 #include "DisplayObject.h"
 #include "TextField.h"
+#include "Stage.h"
 
 using namespace std;
 
@@ -31,6 +32,7 @@ class TheMathGame :
 	//HUD *hud;
 	TextField *t;
 	//Timer *timer
+	Stage stage ;
 public:
 	virtual bool isLevelDone()const{return false;}
 	virtual bool hasNextLevel()const{return true;}

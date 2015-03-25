@@ -15,6 +15,7 @@ class Equation :
 	{
 		ADD,MULTIPLY,SUBTRACT,DIVIDE
 	};
+
 	EQUATION_TYPE type = ADD;
 	int difficulty = 0;
 	int solution = 0;
@@ -29,6 +30,8 @@ public:
 
 	void setLevel(int);
 	void levelUp();
+
+	void render();
 
 	int getLevel();
 	Equation();
