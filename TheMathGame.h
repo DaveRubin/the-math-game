@@ -2,8 +2,9 @@
 #include "ISpecificGame.h"
 #include "io_utils.h"
 #include <iostream>
-
 #include "Equation.h"
+#include "DisplayObject.h"
+#include "TextField.h"
 
 using namespace std;
 
@@ -28,6 +29,7 @@ class TheMathGame :
 	//Player *player1;
 	//Player *player2;
 	//HUD *hud;
+	TextField *t;
 	//Timer *timer
 public:
 	virtual bool isLevelDone()const{return false;}
