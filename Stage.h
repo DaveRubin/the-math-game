@@ -8,7 +8,6 @@ using namespace std;
 
 class Stage
 {
-
 	DisplayObject **renderList;
 	int numChildren = 0;
 	int renderListSize = 0;

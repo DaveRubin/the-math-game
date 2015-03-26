@@ -24,7 +24,9 @@ get random element for the equation according to its level
 */
 int Equation::getRandomElement()
 {
-	return (rand() % 10 + 1 + level) ;
+	srand(time(NULL));
+	int randomSeed = rand();
+	return (randomSeed % 10 + 1 + level);
 }
 
 /*

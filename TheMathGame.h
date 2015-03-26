@@ -6,6 +6,7 @@
 #include "DisplayObject.h"
 #include "TextField.h"
 #include "Stage.h"
+#include "Hud.h"
 
 using namespace std;
 
@@ -29,16 +30,16 @@ class TheMathGame :
 	int currentLevel = 0;
 	//Player *player1;
 	//Player *player2;
-	//HUD *hud;
-	TextField *t;
 	//Timer *timer
 	Stage stage ;
+	Hud hud;
 public:
 	virtual bool isLevelDone()const{return false;}
 	virtual bool hasNextLevel()const{return true;}
 	virtual void startLevel();
 	virtual void doIteration(const list<char>& keyHits);
 	virtual void doSubIteration();
+	void updateHud(){ hud.setTorender(); }
 	TheMathGame();
 	~TheMathGame();
 };
