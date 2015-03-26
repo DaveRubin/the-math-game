@@ -1,17 +1,5 @@
 #include "Stage.h"
 
-
-Stage::Stage()
-{
-}
-
-
-Stage::~Stage()
-{
-}
-
-
-
 void Stage::addChild(DisplayObject *child)
 {
 	//if child list is full, multiply size

@@ -91,8 +91,5 @@
     <ClCompile Include="Stage.cpp">
       <Filter>Source Files\TheMathGame</Filter>
     </ClCompile>
-    <ClCompile Include="TextField.cpp">
-      <Filter>Source Files\TheMathGame</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

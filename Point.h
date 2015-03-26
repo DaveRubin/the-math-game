@@ -10,15 +10,34 @@ class Point
 	int y;
 public:
 	Point() :x(0), y(0){};
-	Point(int x, int y);
-	~Point();
-	int getX();
-	int getY();
-	float distance(Point p);
-	void add(Point p);
-	void multiply(Point p);
-	void set(int x, int y);
-	void set(Point p);
+	Point(int inX, int inY){
+		x = inX;
+		y = inY;
+	}
+
+	int getX() { return x; }
+	int getY() { return y; }
+
+	void add(Point p){
+		x += p.x;
+		y += p.y;
+	}
+
+	void multiply(Point p){
+		x *= p.x;
+		y *= p.y;
+	}
+
+	void set(int inX, int inY){
+		x = inX;
+		y = inY;
+	}
+	void set(Point p){
+		x = p.x;
+		y = p.y;
+	}
+
 	void print();
+	float distance(Point p);
 };
 

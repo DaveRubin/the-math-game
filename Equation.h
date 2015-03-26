@@ -28,12 +28,16 @@ public:
 	void generateEquation();
 	void generateEquation(EQUATION_TYPE);
 
-	void setLevel(int);
-	void levelUp();
+	void setLevel(int input){ 
+		level = input;
+		generateEquation();
+	}
+	void levelUp(){ 
+		level++; 
+		generateEquation();
+	}
+	int getLevel(){ return level; };
 
-	void render();
-
-	int getLevel();
 	Equation();
 	~Equation();
 };

@@ -17,8 +17,5 @@ public:
 
 	void addChild(DisplayObject*);
 	void render();
-
-	Stage();
-	~Stage();
 };
 

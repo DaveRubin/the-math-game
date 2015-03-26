@@ -11,11 +11,10 @@ class DisplayObject
 	bool visible;
 public:
 	DisplayObject() :text(""){};;
-	~DisplayObject();
 	Point position;
-	void show();
-	void hide();
-	bool isVisible();
+	void show(){ visible = true; }
+	void hide(){ visible = false; }
+	bool isVisible(){ return visible; }
 	void render();
 	string text;
 };

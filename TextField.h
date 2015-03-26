@@ -14,7 +14,7 @@ class TextField :
 public:
 	//\x06\x05\x04\x03\x02\x01
 	TextField(){};
-	~TextField();
-	void render(); //renders at the current position 
+	TextField(string s){ text = s; };
+	void setText(string s){ text = s; };
 };
 

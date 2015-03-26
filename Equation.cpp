@@ -5,12 +5,6 @@ Equation::Equation()
 	generateEquation();
 }
 
-
-Equation::~Equation()
-{
-
-}
-
 /*
 empty generateEquation draws a random equation type
 and generate an equation suiting its current level
@@ -83,20 +77,4 @@ void Equation::generateEquation(Equation::EQUATION_TYPE eqType)
 
 	//print for debugging 
 	//cout << outputText << " (" << solution << ")" << endl;
-}
-
-
-void Equation::setLevel(int levelInput)
-{
-	level = levelInput;
-}
-
-void Equation::levelUp()
-{
-	level++;
-}
-
-int Equation::getLevel()
-{
-	return level;
 }
