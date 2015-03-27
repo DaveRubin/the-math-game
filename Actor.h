@@ -10,13 +10,20 @@ class Actor:
 
 	char view;
 	int lives;
-	int direction = Direction::RIGHT;
+	int direction = Direction::STAY;
 	
 	void checkBounds();
 public:
+
 	Actor();
 	Actor(char look, int lives);
 	Actor(const Actor &actor);
+
+	void setDirection(int dir){ direction = dir; }
+	int getDirection(){ return direction; }
+	void setView(char c){ view = c; }
+
+
 	void move(bool reverse = false);
 	void clear();
 	virtual void render();

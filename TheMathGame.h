@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Stage.h"
 #include "Hud.h"
-#include "Actor.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -26,9 +26,8 @@ class TheMathGame :
 {
 	//private members:
 	int currentLevel = 0;
-	Actor *actor = NULL;
-	//Player *player1;
-	//Player *player2;
+	Player *player1 = NULL;
+	Player *player2 = NULL;
 	//Timer *timer
 	Stage *stage  = NULL;
 	Hud *hud = NULL;;

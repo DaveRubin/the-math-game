@@ -37,7 +37,6 @@ void Hud::createNewObjects()
 
 void Hud::render()
 {
-
 	equation1->render();
 	equation2->render();
 	lives1->render();

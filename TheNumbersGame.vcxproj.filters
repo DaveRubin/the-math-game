@@ -70,11 +70,11 @@
     <ClInclude Include="Actor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files\Given</Filter>
     </ClCompile>
@@ -105,8 +105,14 @@
     <ClCompile Include="Textfield.cpp">
       <Filter>Source Files\TheMathGame</Filter>
     </ClCompile>
-    <ClCompile Include="Actor.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Source Files\TheMathGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\TheMathGame</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
