@@ -9,14 +9,17 @@ Hud::Hud()
 	equation1->position.set(0, 0);
 	lives1->position.set(0, 1);
 	score1->position.set(5, 1);
-	score1->text = "score1";
+	score1->setText("score1");
 	////set position of the player 1 equation,lives and score
 	equation2->position.set(SCREEN_WIDTH - rightPlayePos, 0);
 	lives2->position.set(SCREEN_WIDTH - rightPlayePos, 1);
 	score2->position.set(SCREEN_WIDTH - rightPlayePos + 5, 1);
-	score2->text = "score2";
+	score2->setText("score2");
 
-	seperator->text.append(SCREEN_WIDTH, '\xB2');
+	string lineString = "";
+	lineString.append(SCREEN_WIDTH, '\xB2');
+
+	seperator->setText(lineString);
 	seperator->position.set(0, 3);
 }
 
@@ -34,7 +37,6 @@ void Hud::createNewObjects()
 
 void Hud::render()
 {
-
 	if (!redraw) return;
 
 	equation1->render();

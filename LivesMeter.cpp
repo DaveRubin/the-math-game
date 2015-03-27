@@ -1,11 +1,13 @@
 #include "LivesMeter.h"
 
 void LivesMeter::setLives(int count){
-	text = "";
+	
 	//if right to left, then add spaces instead the missing lives
+	string s = "";
 	if (rtl){
-		text.append(INIT_LIVES - lives, ' ');
+		s.append(INIT_LIVES - lives, ' ');
 	}
 	//set hearts
-	text.append(lives, HEART);
+	s.append(lives, HEART);
+	setText(s);
 }

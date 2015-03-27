@@ -73,7 +73,7 @@ void Equation::generateEquation(Equation::EQUATION_TYPE eqType)
 	//parse the numbers into the output string
 	stringstream sstm;
 	sstm << num1 << sign << "__" << "=" << num3;
-	text = sstm.str();
+	setText(sstm.str());
 	//save solution
 	solution = num2;
 

@@ -94,10 +94,13 @@
       <Filter>Source Files\TheMathGame</Filter>
     </ClCompile>
     <ClCompile Include="Hud.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\TheMathGame</Filter>
     </ClCompile>
     <ClCompile Include="LivesMeter.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\TheMathGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Textfield.cpp">
+      <Filter>Source Files\TheMathGame</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

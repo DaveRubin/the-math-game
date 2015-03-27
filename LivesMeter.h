@@ -1,7 +1,7 @@
 #pragma once
-#include "DisplayObject.h"
+#include "TextField.h"
 class LivesMeter :
-	public DisplayObject
+	public TextField
 {
 	const char HEART = '\x03';
 	const int INIT_LIVES = 3;

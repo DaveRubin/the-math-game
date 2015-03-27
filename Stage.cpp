@@ -27,8 +27,6 @@ void Stage::render()
 {
 	for (int i = 0; i < numChildren; i++)
 	{
-		gotoxy(5, 5);
-		cout << numChildren << endl;
 		renderList[i]->render();
 	}
 }
