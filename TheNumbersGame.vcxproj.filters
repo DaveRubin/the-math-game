@@ -67,6 +67,9 @@
     <ClInclude Include="LivesMeter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -101,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="Textfield.cpp">
       <Filter>Source Files\TheMathGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

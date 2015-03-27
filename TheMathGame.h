@@ -2,11 +2,9 @@
 #include "ISpecificGame.h"
 #include "io_utils.h"
 #include <iostream>
-#include "Equation.h"
-#include "DisplayObject.h"
-#include "TextField.h"
 #include "Stage.h"
 #include "Hud.h"
+#include "Actor.h"
 
 using namespace std;
 
@@ -28,18 +26,19 @@ class TheMathGame :
 {
 	//private members:
 	int currentLevel = 0;
+	Actor *actor = NULL;
 	//Player *player1;
 	//Player *player2;
 	//Timer *timer
-	Stage stage ;
-	Hud hud;
+	Stage *stage  = NULL;
+	Hud *hud = NULL;;
 public:
 	virtual bool isLevelDone()const{return false;}
 	virtual bool hasNextLevel()const{return true;}
 	virtual void startLevel();
 	virtual void doIteration(const list<char>& keyHits);
 	virtual void doSubIteration();
-	void updateHud(){ hud.setRedraw(); }
+	void updateHud(){ hud->setRedraw(); }
 	TheMathGame();
 	~TheMathGame();
 };

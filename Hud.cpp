@@ -20,7 +20,7 @@ Hud::Hud()
 	lineString.append(SCREEN_WIDTH, '\xB2');
 
 	seperator->setText(lineString);
-	seperator->position.set(0, 3);
+	seperator->position.set(0, 2);
 }
 
 
@@ -37,7 +37,6 @@ void Hud::createNewObjects()
 
 void Hud::render()
 {
-	if (!redraw) return;
 
 	equation1->render();
 	equation2->render();

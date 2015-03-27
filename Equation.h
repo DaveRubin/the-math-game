@@ -22,7 +22,6 @@ class Equation :
 	int level = 0;
 
 	int getRandomElement();
-
 public:
 
 	void generateEquation();

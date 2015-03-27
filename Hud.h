@@ -15,6 +15,7 @@ class Hud
 	LivesMeter *lives1;
 	LivesMeter *lives2;
 	TextField *seperator;
+
 	bool redraw = true;
 	void createNewObjects();
 public:

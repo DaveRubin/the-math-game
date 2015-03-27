@@ -17,8 +17,9 @@ public:
 	TextField(string s) :text(s){};
 	TextField(TextField &tf) :text(tf.text){};
 
-	void setText(string s){ text = s; }
+	void setText(string s);
 	string getText(){ return text; }
 	virtual void render();
+	void clear();
 };
 
