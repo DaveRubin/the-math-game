@@ -17,14 +17,20 @@ TheMathGame::~TheMathGame()
 void TheMathGame::startLevel()
 {
 	//cout << "yo yo " << endl;
+	clear_screen();
 }
 
 
 void TheMathGame::doIteration(const list<char>& keyHits)
 {
-	clear_screen();
 	hud.render();
+
 	stage.render();
+	for (list<char>::const_iterator itr = keyHits.cbegin();
+		itr != keyHits.cend(); ++itr)
+	{
+		//cout << *itr;
+	}
 }
 void TheMathGame::doSubIteration()
 {

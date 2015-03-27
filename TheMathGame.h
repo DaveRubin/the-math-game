@@ -39,7 +39,7 @@ public:
 	virtual void startLevel();
 	virtual void doIteration(const list<char>& keyHits);
 	virtual void doSubIteration();
-	void updateHud(){ hud.setTorender(); }
+	void updateHud(){ hud.setRedraw(); }
 	TheMathGame();
 	~TheMathGame();
 };
