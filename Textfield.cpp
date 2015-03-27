@@ -1,5 +1,10 @@
 #include "TextField.h"
 
+TextField::TextField(int num)
+{
+	setText(num);
+}
+
 void TextField::render(){
 	gotoxy(position.getX(), position.getY());
 	cout << text;
@@ -21,6 +26,18 @@ void TextField::clear()
 void TextField::setText(string s)
 {
 	clear();
+	numeric = false;
 	text = s;
 	cout << text;
+}
+//when changing text, 
+//clear the current text
+//change the text , and redraw again
+void TextField::setText(int num)
+{
+	clear();
+	numeric = true;
+	stringstream sstm;
+	sstm << num;
+	text =  sstm.str();
 }

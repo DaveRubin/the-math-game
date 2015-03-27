@@ -1,24 +1,28 @@
 #pragma once
 #include "DisplayObject.h"
 #include "io_utils.h"
-#include <string>
+#include <string>  
+#include <sstream> 
 #include <iostream>
 
 class TextField :
 	public DisplayObject
 {
-
-	//enum TEXT_DIRECTION {HORIZONTAL , VERTICAL};
-	//TEXT_DIRECTION direction;
 	string text;
+	bool numeric;
 public:
-	//\x06\x05\x04\x03\x02\x01
-	TextField() :text(""){};
-	TextField(string s) :text(s){};
-	TextField(TextField &tf) :text(tf.text){};
+	//c'tors
+	TextField()					:text(""),		numeric(false){};
+	TextField(string s)			:text(s),		numeric(false){};
+	TextField(TextField &tf) :text(tf.text), numeric(tf.numeric){}
+	TextField(int num);
+	//simple getters
+	bool isNumeric(){ return numeric; }
+	string getText() { return text; };
 
+	//setters for both string and number
 	void setText(string s);
-	string getText(){ return text; }
+	void setText(int num);
 	virtual void render();
 	void clear();
 };

@@ -24,30 +24,30 @@ Actor::Actor(const Actor &actor)
 
 void Actor::move(bool reverse)
 {
-	switch (direction)
-	{
-	case Direction::STAY:
+	if (direction == Direction::STAY){
 		setRedraw(false);
 		return;
-		break;
-
+	}
+	clear();
+	int step = (reverse) ? -1 : 1;
+	switch (direction)
+	{
 	case Direction::LEFT :
-		position.add(Point(-1, 0));
+		position.add(Point(-step, 0));
 		break;
 	case Direction::RIGHT:
-		position.add(Point(1, 0));
+		position.add(Point(step, 0));
 		break;
 	case Direction::UP:
-		position.add(Point(0, -1));
+		position.add(Point(0, -step));
 		break;
 	case Direction::DOWN:
-		position.add(Point(0, 1));
+		position.add(Point(0, step));
 		break;
 	}
 
 	setRedraw(true);
 	checkBounds();
-
 }
 
 void Actor::checkBounds()
@@ -67,9 +67,14 @@ void Actor::checkBounds()
 		position.set(Point(currentX, SCREEN_HEIGHT));
 }
 
+void Actor::clear()
+{
+	gotoxy(position.getX(), position.getY());
+	cout << ' ';
+}
+
 void Actor::render()
 {
-	int xPos = position.getX();
 	gotoxy(position.getX(), position.getY());
 	cout << view;
 }

@@ -9,12 +9,12 @@ Hud::Hud()
 	equation1->position.set(0, 0);
 	lives1->position.set(0, 1);
 	score1->position.set(5, 1);
-	score1->setText("score1");
+	score1->setText(666);
 	////set position of the player 1 equation,lives and score
 	equation2->position.set(SCREEN_WIDTH - rightPlayePos, 0);
 	lives2->position.set(SCREEN_WIDTH - rightPlayePos, 1);
 	score2->position.set(SCREEN_WIDTH - rightPlayePos + 5, 1);
-	score2->setText("score2");
+	score2->setText(666);
 
 	string lineString = "";
 	lineString.append(SCREEN_WIDTH, '\xB2');
