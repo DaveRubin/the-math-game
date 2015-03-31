@@ -43,6 +43,7 @@ using namespace std;
 int main(){
 	clear_screen();
 	hideCursor();
+	srand((unsigned int)time(NULL));
 	GameManager(TheMathGame(), 200, 2).run();
 	return 0;
 }

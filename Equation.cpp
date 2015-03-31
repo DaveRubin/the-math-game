@@ -11,8 +11,6 @@ and generate an equation suiting its current level
 */
 void Equation::generateEquation()
 {
-	//generate identified seed for rand
-	srand(time(NULL));
 	//get random equation type (0-3)
 	EQUATION_TYPE  eqType = 
 		static_cast<EQUATION_TYPE>(rand() % 4);
@@ -24,7 +22,6 @@ get random element for the equation according to its level
 */
 int Equation::getRandomElement()
 {
-	srand(time(NULL));
 	int randomSeed = rand();
 	return (randomSeed % 10 + 1 + level);
 }
