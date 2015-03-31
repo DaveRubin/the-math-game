@@ -73,7 +73,4 @@ void Equation::generateEquation(Equation::EQUATION_TYPE eqType)
 	setText(sstm.str());
 	//save solution
 	solution = num2;
-
-	//print for debugging 
-	//cout << outputText << " (" << solution << ")" << endl;
 }

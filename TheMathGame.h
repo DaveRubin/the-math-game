@@ -31,14 +31,22 @@ class TheMathGame :
 	//Timer *timer
 	Stage *stage  = NULL;
 	Hud *hud = NULL;;
+	//move players, and check for collision
+	//if collided, stop them
+	void movePlayers();
+	//check if a player has collected a number
+	void checkNumbersHit();
+	//render objects needed to be rendered
+	void renderFrame();
 public:
 	virtual bool isLevelDone()const{return false;}
 	virtual bool hasNextLevel()const{return true;}
 	virtual void startLevel();
 	virtual void doIteration(const list<char>& keyHits);
 	virtual void doSubIteration();
-	void updateHud(){ hud->setRedraw(); }
 	TheMathGame();
 	~TheMathGame();
+
+	void updateHud(){ hud->setRedraw(); }
 };
 

@@ -16,6 +16,8 @@ class Player :
 
 	void setDefaultKeys();
 public:
+	string objectType = "Player";
+
 	Player();
 	Player(char);
 	Player(char,string);

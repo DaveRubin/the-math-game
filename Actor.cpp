@@ -21,6 +21,10 @@ Actor::Actor(const Actor &actor)
 	position.set(actor.position);
 }
 
+void Actor::stop()
+{
+	direction = Direction::STAY;
+}
 
 void Actor::move(bool reverse)
 {
@@ -69,12 +73,17 @@ void Actor::checkBounds()
 
 void Actor::clear()
 {
-	gotoxy(position.getX(), position.getY());
+	gotoxy( position.getX(), position.getY() );
 	cout << ' ';
 }
 
 void Actor::render()
 {
-	gotoxy(position.getX(), position.getY());
+	gotoxy( position.getX(), position.getY() );
 	cout << view;
+}
+
+bool Actor::collide(const Actor &target)
+{
+	return ( position.equels( target.position ));
 }

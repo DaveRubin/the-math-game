@@ -38,6 +38,9 @@ public:
 	}
 
 	void print();
+	bool equels(Point p){
+		return (p.x == x && p.y == y);
+	}
 	float distance(Point p);
 };
 

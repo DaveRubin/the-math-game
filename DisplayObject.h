@@ -11,8 +11,10 @@ class DisplayObject
 	bool visible;
 	bool redraw;
 public:
-	DisplayObject() :visible(true), redraw(true){};
 	Point position;
+
+	DisplayObject() :visible(true), redraw(true){};
+
 	void show(){ visible = true; }
 	void hide(){ visible = false; }
 	bool isVisible(){ return visible; }

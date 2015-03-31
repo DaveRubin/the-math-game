@@ -31,20 +31,50 @@ void TheMathGame::startLevel()
 
 void TheMathGame::doIteration(const list<char>& keyHits)
 {
+	//check if one of the keys matches the key set of one of the players
 	for (list<char>::const_iterator itr = keyHits.cbegin();
 		itr != keyHits.cend(); ++itr)
 	{
-		//cout << *itr;
 		player1->checkKey(*itr);
 		player2->checkKey(*itr);
 	}
-	if (hud->getRedraw()) hud->render();
-	stage->render();
+	//move player 1 and 2, if collided, stop
+	movePlayers();
+	//check if one of them have collected a number
+	checkNumbersHit();
+	//render all objects needed to be rendered
+	renderFrame();
+}
+
+void TheMathGame::movePlayers()
+{
 	player1->move();
+	if (player1->collide(*player2)) {
+		player1->move(true);
+		player1->stop();
+	}
 	player2->move();
+	if (player2->collide(*player1)) {
+		player2->move(true);
+		player2->stop();
+	}
+
+}
+
+void TheMathGame::checkNumbersHit()
+{
+
+}
+
+void TheMathGame::renderFrame()
+{
+	stage->render();
 	player1->render();
 	player2->render();
+	if (hud->getRedraw()) hud->render();
 }
+
+
 void TheMathGame::doSubIteration()
 {
 	//cout << "sub-Itareation " << endl;

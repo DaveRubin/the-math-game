@@ -14,6 +14,7 @@ class Actor:
 	
 	void checkBounds();
 public:
+	string objectType = "Actor";
 
 	Actor();
 	Actor(char look, int lives);
@@ -25,6 +26,8 @@ public:
 
 
 	void move(bool reverse = false);
+	bool collide(const Actor &actor);
+	void stop();
 	void clear();
 	virtual void render();
 };
