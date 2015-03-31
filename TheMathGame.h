@@ -30,6 +30,7 @@ class TheMathGame :
 	Player *player2 = NULL;
 	//Timer *timer
 	Stage *stage  = NULL;
+
 	Hud *hud = NULL;;
 	//move players, and check for collision
 	//if collided, stop them

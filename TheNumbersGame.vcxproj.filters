@@ -73,6 +73,12 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NumbersList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Number.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameManager.cpp">
@@ -113,6 +119,12 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\TheMathGame</Filter>
+    </ClCompile>
+    <ClCompile Include="NumbersList.cpp">
+      <Filter>Source Files\TheMathGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Number.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
