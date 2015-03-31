@@ -6,6 +6,7 @@ class Number :
 	int number = 10;
 public:
 	Number();
-	~Number();
+	Number(int x, int y);
+	virtual void render();
 };
 

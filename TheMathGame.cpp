@@ -9,7 +9,8 @@ TheMathGame::TheMathGame()
 	player1 = new Player('@', "wasd");
 	player1->position.set(Point(15, 15));
 	player2 = new Player('#', "ijkl");
-	player2->position.set(Point(15, 15));
+	player2->position.set(Point(30, 15));
+
 }
 
 
@@ -25,7 +26,9 @@ void TheMathGame::startLevel()
 	// init hud and stage objects if null
 	if (!hud) hud = new Hud();
 	if (!stage) stage = new Stage();
+	if (!numbers) numbers = new NumbersList();
 	clear_screen();
+	numbers->addNumber(new Number(20, 20));
 }
 
 

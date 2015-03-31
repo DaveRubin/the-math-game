@@ -124,7 +124,7 @@
       <Filter>Source Files\TheMathGame</Filter>
     </ClCompile>
     <ClCompile Include="Number.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\TheMathGame</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

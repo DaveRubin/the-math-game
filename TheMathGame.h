@@ -5,6 +5,7 @@
 #include "Stage.h"
 #include "Hud.h"
 #include "Player.h"
+#include "NumbersList.h"
 
 using namespace std;
 
@@ -30,7 +31,7 @@ class TheMathGame :
 	Player *player2 = NULL;
 	//Timer *timer
 	Stage *stage  = NULL;
-
+	NumbersList *numbers = NULL;
 	Hud *hud = NULL;;
 	//move players, and check for collision
 	//if collided, stop them
