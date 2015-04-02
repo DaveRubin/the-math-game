@@ -1,3 +1,7 @@
+
+#ifndef _ACTOR_H_
+#define _ACTOR_H_
+
 #pragma once
 #include "DisplayObject.h"
 #include "Direction.h"
@@ -32,3 +36,4 @@ public:
 	virtual void render();
 };
 
+#endif

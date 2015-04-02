@@ -3,13 +3,18 @@
 
 Number::Number()
 {
-	position.set(0, 0);
 	render();
 }
 
-
-Number::Number(int x, int y)
+Number::Number(int numInput)
 {
+	number = numInput;
+	render();
+}
+
+Number::Number(int numInput, int x, int y)
+{
+	number = numInput;
 	position.set(x, y);
 	render();
 }

@@ -1,3 +1,6 @@
+#ifndef _PLAYER_H_
+#define _PLAYER_H_
+
 #pragma once
 #include "Actor.h"
 
@@ -32,3 +35,5 @@ public:
 	int getScore(){ return score; }
 };
 
+
+#endif

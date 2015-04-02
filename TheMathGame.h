@@ -1,8 +1,12 @@
+#ifndef _THEMATHGAME_H_
+#define _THEMATHGAME_H_
+
 #pragma once
 #include "ISpecificGame.h"
 #include "io_utils.h"
 #include <iostream>
 #include "Stage.h"
+#include "DisplayObject.h"
 #include "Hud.h"
 #include "Player.h"
 #include "NumbersList.h"
@@ -52,3 +56,5 @@ public:
 	void updateHud(){ hud->setRedraw(); }
 };
 
+
+#endif

@@ -20,6 +20,7 @@ void Stage::addChild(DisplayObject *child)
 
 	//then add the child at the end of the list
 	renderList[numChildren] = child;
+	//child->setStage(this);
 	numChildren++;
 }
 

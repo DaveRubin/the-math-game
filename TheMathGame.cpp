@@ -28,7 +28,7 @@ void TheMathGame::startLevel()
 	if (!stage) stage = new Stage();
 	if (!numbers) numbers = new NumbersList();
 	clear_screen();
-	numbers->addNumber(new Number(20, 20));
+	numbers->addNumber(new Number(10,20, 20));
 }
 
 

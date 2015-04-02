@@ -1,3 +1,6 @@
+#ifndef _HUD_H_
+#define _HUD_H_
+
 #pragma once
 #include "io_utils.h"
 #include "Equation.h"
@@ -25,3 +28,5 @@ public:
 	bool getRedraw(){ return redraw; }
 };
 
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef _TEXTFIELD_H_
+#define _TEXTFIELD_H_
+
 #pragma once
 #include "DisplayObject.h"
 #include "io_utils.h"
@@ -27,3 +30,5 @@ public:
 	void clear();
 };
 
+
+#endif

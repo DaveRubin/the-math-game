@@ -5,16 +5,17 @@ Actor::Actor()
 {
 	lives = DEFAULT_LIVES;
 	view = DEFAULT_LOOK;
+	setStatic(false);
 }
 
 
-Actor::Actor(char lookInput, int livesInput)
+Actor::Actor(char lookInput, int livesInput )
 {
 	lives = livesInput;
 	view = lookInput;
 }
 
-Actor::Actor(const Actor &actor)
+Actor::Actor(const Actor &actor )
 {
 	lives = actor.lives;
 	view = actor.view;
@@ -26,7 +27,7 @@ void Actor::stop()
 	direction = Direction::STAY;
 }
 
-void Actor::move(bool reverse)
+void Actor::move( bool reverse )
 {
 	if (direction == Direction::STAY){
 		setRedraw(false);

@@ -1,3 +1,6 @@
+#ifndef _NUMBERSLIST_H_
+#define _NUMBERSLIST_H_
+
 #pragma once
 #include "io_utils.h"
 #include "Actor.h"
@@ -17,3 +20,5 @@ public:
 	void addNumber(Number*);
 };
 
+
+#endif

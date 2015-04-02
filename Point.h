@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _POINT_H_
+#define _POINT_H_
+
 #include <stdlib.h>  
 #include <iostream>
 
@@ -44,3 +46,5 @@ public:
 	float distance(Point p);
 };
 
+
+#endif

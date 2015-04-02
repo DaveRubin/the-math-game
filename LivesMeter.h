@@ -1,3 +1,6 @@
+#ifndef _LIVESMETER_H_
+#define _LIVESMETER_H_
+
 #pragma once
 #include "TextField.h"
 class LivesMeter :
@@ -16,3 +19,5 @@ public:
 	}
 };
 
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef _EQUATION_H_
+#define _EQUATION_H_
+
 #pragma once
 #include "io_utils.h"
 #include "TextField.h"
@@ -41,3 +44,5 @@ public:
 	~Equation();
 };
 
+
+#endif
