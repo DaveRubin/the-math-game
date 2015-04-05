@@ -6,11 +6,6 @@ TheMathGame::TheMathGame()
 {
 	//when game is constructed, 
 	//initialize players, equations, timer 
-	player1 = new Player('@', "wasd");
-	player1->position.set(Point(15, 15));
-	player2 = new Player('#', "ijkl");
-	player2->position.set(Point(30, 15));
-
 }
 
 
@@ -25,10 +20,19 @@ void TheMathGame::startLevel()
 {
 	// init hud and stage objects if null
 	if (!hud) hud = new Hud();
-	if (!stage) stage = new Stage();
+	if (!stage)
+	{
+		stage = new Stage();
+		player1 = new Player('@', "wasd");
+		player1->position.set(Point(15, 15));
+		player2 = new Player('#', "ijkl");
+		player2->position.set(Point(30, 15));
+		stage->addChild(player1);
+		stage->addChild(player2);
+	}
 	if (!numbers) numbers = new NumbersList();
 	clear_screen();
-	numbers->addNumber(new Number(10,20, 20));
+	stage->addChild(new Number(10, 20, 20));
 }
 
 
@@ -42,7 +46,8 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 		player2->checkKey(*itr);
 	}
 	//move player 1 and 2, if collided, stop
-	movePlayers();
+	stage->moveChildren();
+	//movePlayers();
 	//check if one of them have collected a number
 	checkNumbersHit();
 	//render all objects needed to be rendered
@@ -72,8 +77,6 @@ void TheMathGame::checkNumbersHit()
 void TheMathGame::renderFrame()
 {
 	stage->render();
-	player1->render();
-	player2->render();
 	if (hud->getRedraw()) hud->render();
 }
 

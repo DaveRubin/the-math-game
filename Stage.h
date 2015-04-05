@@ -4,7 +4,7 @@
 
 #pragma once
 #include "io_utils.h"
-#include "DisplayObject.h"
+#include "Actor.h"
 #include <stdlib.h>     
 #include <iostream>
 
@@ -21,6 +21,7 @@ public:
 
 	void addChild(DisplayObject*);
 	void render();
+	void moveChildren();
 };
 
 

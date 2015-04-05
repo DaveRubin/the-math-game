@@ -30,6 +30,7 @@ public:
 
 
 	void move(bool reverse = false);
+	virtual void checkCollision(){};
 	bool collide(const Actor &actor);
 	void stop();
 	void clear();

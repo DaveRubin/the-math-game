@@ -20,7 +20,7 @@ void Stage::addChild(DisplayObject *child)
 
 	//then add the child at the end of the list
 	renderList[numChildren] = child;
-	//child->setStage(this);
+	child->setStage(this);
 	numChildren++;
 }
 
@@ -29,5 +29,16 @@ void Stage::render()
 	for (int i = 0; i < numChildren; i++)
 	{
 		renderList[i]->render();
+	}
+}
+
+void Stage::moveChildren()
+{
+	for (int i = 0; i < numChildren; i++)
+	{
+		if (!renderList[i]->isStatic())
+		{
+			static_cast<Actor*>(renderList[i])->move();
+		}
 	}
 }
