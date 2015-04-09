@@ -32,6 +32,9 @@ public:
 
 	virtual void move(bool reverse = false);
 	virtual void checkCollision(){};
+	int getLives(){ return lives; }
+	void setLives(int count){ lives = count; }
+
 	bool collide(const Actor &actor);
 	void stop();
 	void clear();

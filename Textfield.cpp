@@ -18,6 +18,7 @@ void TextField::clear()
 	string s = "";
 	s.append(text.length(), ' ');
 	cout << s;
+	gotoxy(position.getX(), position.getY());
 }
 
 //when changing text, 

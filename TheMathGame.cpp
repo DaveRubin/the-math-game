@@ -72,7 +72,10 @@ void TheMathGame::showMenu()
 void TheMathGame::renderFrame()
 {
 	stage->render();
+	hud->updatePlayerStats(1, player1);
+	hud->updatePlayerStats(2, player2);
 	if (hud->getRedraw()) hud->render();
+
 }
 
 

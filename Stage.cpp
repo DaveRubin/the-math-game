@@ -53,7 +53,8 @@ void Stage::render()
 {
 	for (int i = 0; i < numChildren; i++)
 	{
-		renderList[i]->render();
+		if (renderList[i]->isVisible())
+			renderList[i]->render();
 	}
 }
 

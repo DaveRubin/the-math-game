@@ -9,12 +9,12 @@ Hud::Hud()
 	equation1->position.set(0, 0);
 	lives1->position.set(0, 1);
 	score1->position.set(5, 1);
-	score1->setText(666);
+	score1->setText(0);
 	////set position of the player 1 equation,lives and score
 	equation2->position.set(SCREEN_WIDTH - rightPlayePos, 0);
 	lives2->position.set(SCREEN_WIDTH - rightPlayePos, 1);
 	score2->position.set(SCREEN_WIDTH - rightPlayePos + 5, 1);
-	score2->setText(666);
+	score2->setText(0);
 
 	string lineString = "";
 	lineString.append(SCREEN_WIDTH, '\xB2');
@@ -48,3 +48,19 @@ void Hud::render()
 	redraw = false;
 }
 
+
+void  Hud::updatePlayerStats(int playerNum , Player *player)
+{
+	//TODO: add condinional change, and set redraw only when somthing has changed
+	if (playerNum == 1)
+	{
+		lives1->setLives(player->getLives());
+		score1->setText(player->getScore());
+	}
+	else
+	{
+		lives2->setLives(player->getLives());
+		score2->setText(player->getScore());
+	}
+	redraw = true;
+}

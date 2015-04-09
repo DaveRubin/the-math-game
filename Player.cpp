@@ -12,6 +12,7 @@ Player::Player()
 {
 	setType("Player");
 	score = 0;
+	setLives(PLAYER_INIT_LIVES);
 	setDefaultKeys();
 }
 
@@ -20,6 +21,7 @@ Player::Player(char look)
 {
 	setType("Player");
 	score = 0;
+	setLives(PLAYER_INIT_LIVES);
 	setView(look);
 	setDefaultKeys();
 }
@@ -29,6 +31,7 @@ Player::Player(char look, string tldr)
 {
 	setType("Player");
 	score = 0;
+	setLives(PLAYER_INIT_LIVES);
 	setView(look);
 	if (tldr.length() != 4)
 		setDefaultKeys();
@@ -74,8 +77,8 @@ void Player::checkCollision()
 	//if number then kill the number
 	if (targetType == "Number")
 	{
-		//targetType.kill();
+		targetObj->kill();
 		score += NUMBER_SCORE;
-		setDirection(Direction::STAY);
+		//setDirection(Direction::STAY);
 	}
 }

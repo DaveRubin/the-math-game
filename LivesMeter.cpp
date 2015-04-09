@@ -1,7 +1,8 @@
 #include "LivesMeter.h"
 
 void LivesMeter::setLives(int count){
-	
+	lives = count;
+	clear();
 	//if right to left, then add spaces instead the missing lives
 	string s = "";
 	if (rtl){

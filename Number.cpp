@@ -46,9 +46,13 @@ void Number::kill()
 {
 	if (getStage() != NULL)
 	{
-
+		getStage()->setChildAt(NULL, position.getX(), position.getY());
 	}
 	gotoxy(position.getX(), position.getY());
-	cout << number;
+	for (int i = 0; i < length; i++)
+	{
+		cout << ' ';
+	}
+	hide();
 }
 

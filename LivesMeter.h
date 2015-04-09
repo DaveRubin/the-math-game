@@ -6,6 +6,7 @@
 class LivesMeter :
 	public TextField
 {
+	const int MAX_LIVES = 5;
 	const char HEART = '\x03';
 	const int INIT_LIVES = 3;
 	int lives = INIT_LIVES;

@@ -6,6 +6,7 @@
 #include "Equation.h"
 #include "LivesMeter.h"
 #include "TextField.h"
+#include "Player.h"
 #include <stdlib.h>     
 #include <iostream>
 
@@ -26,6 +27,7 @@ public:
 	void render();
 	void setRedraw(){ redraw = true; }
 	bool getRedraw(){ return redraw; }
+	void updatePlayerStats(int playerNum, Player *player);
 };
 
 
