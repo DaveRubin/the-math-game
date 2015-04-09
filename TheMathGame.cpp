@@ -32,7 +32,7 @@ void TheMathGame::startLevel()
 	}
 	if (!numbers) numbers = new NumbersList();
 	clear_screen();
-	stage->addChild(new Number(10, 20, 20));
+	stage->addChild(new Number(500, 20, 20));
 }
 
 

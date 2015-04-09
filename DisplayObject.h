@@ -42,6 +42,7 @@ public:
 
 	virtual void render(){};
 	virtual void clear(){};
+	virtual void kill(){};
 };
 
 #endif

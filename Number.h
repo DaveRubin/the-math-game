@@ -6,12 +6,17 @@
 class Number :
 	public Actor
 {
-	int number = 10;
+	int number = 0;
+	int length = 1;
+	void getLength();
+
 public:
 	Number();
 	Number(int numInput);
 	Number(int numInput,int x, int y);
 	virtual void render();
+	virtual void kill();
+	int getNumDigits(){ return length; }
 };
 
 #endif
