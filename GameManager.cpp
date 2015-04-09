@@ -55,6 +55,15 @@ void GameManager::run()
 			init();
 			userWantsToPlay = playGame();
 			break;
+		case GameManager::MainMenuOptions::PLAY_FROM_SELECTED_SCREEN:
+			cout << "Select a level" << endl;
+			init();
+			currentLevel = 10;
+			userWantsToPlay = playGame();
+			break;
+		case GameManager::MainMenuOptions::PRESENT_INSTRUCTIONS:
+			cout << "instructions"<<endl;
+			break;
 		case GameManager::MainMenuOptions::EXIT_APPLICATION:
 			userWantsToPlay = false;
 			break;
@@ -114,6 +123,7 @@ char GameManager::playNextLevel()
 			actualGame.startLevel();
 			break;
 		case GameManager::LevelOptions::BACK_TO_MAIN_MENU:
+			break;
 		case GameManager::LevelOptions::EXIT_APPLICATION:
 			// get out from the loop
 			clear_screen();
@@ -159,6 +169,7 @@ char GameManager::doLevelIterations()
 	}
 	else if(escapePressed) {
 		action = 0;
+		actualGame.showMenu();
 		// TODO: print here the sub menu options to the proper place in screen
 		do {
 			action = _getch();
@@ -168,6 +179,7 @@ char GameManager::doLevelIterations()
 	// TODO: clear the sub menu options from screen
 	return action;
 }
+
 
 bool GameManager::doIteration()
 {

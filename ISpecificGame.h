@@ -46,6 +46,9 @@ public:
 	// get a list with keyHits and returns a list with the keys that were used
 	virtual void doIteration(const list<char>& keyHits)=0;
 	virtual void doSubIteration()=0;
+
+
+	virtual void showMenu() = 0;
 };
 
 #endif

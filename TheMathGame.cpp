@@ -42,38 +42,33 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 	for (list<char>::const_iterator itr = keyHits.cbegin();
 		itr != keyHits.cend(); ++itr)
 	{
-		player1->checkKey(*itr);
-		player2->checkKey(*itr);
+			player1->checkKey(*itr);
+			player2->checkKey(*itr);
 	}
+	
 	//move player 1 and 2, if collided, stop
 	stage->moveChildren();
-	//movePlayers();
-	//check if one of them have collected a number
-	checkNumbersHit();
 	//render all objects needed to be rendered
 	renderFrame();
 }
 
-void TheMathGame::movePlayers()
+void TheMathGame::showMenu()
 {
-	player1->move();
-	if (player1->collide(*player2)) {
-		player1->move(true);
-		player1->stop();
-	}
-	player2->move();
-	if (player2->collide(*player1)) {
-		player2->move(true);
-		player2->stop();
-	}
+	/*EXIT_APPLICATION = '1',
+		BACK_TO_MAIN_MENU = '2',
+		CONTINUE = '3',
+		REPLAY_LEVEL = '4',
+		NEXT_LEVEL = '5'*/
 
+	stage->clear();
+	gotoxy(0, 10);
+	cout << "-------------------------------" << endl;
+	cout << "1) EXIT_APPLICATION" << endl;
+	cout << "2) BACK_TO_MAIN_MENU" << endl;
+	cout << "3) CONTINUE" << endl;
+	cout << "4) REPLAY_LEVEL" << endl;
+	cout << "5) NEXT_LEVEL" << endl;
 }
-
-void TheMathGame::checkNumbersHit()
-{
-
-}
-
 void TheMathGame::renderFrame()
 {
 	stage->render();

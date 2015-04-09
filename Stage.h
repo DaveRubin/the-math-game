@@ -22,6 +22,7 @@ public:
 	void addChild(DisplayObject*);
 	void render();
 	void moveChildren();
+	void clear();
 };
 
 

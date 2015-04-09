@@ -37,6 +37,7 @@ public:
 	Stage *getStage(){ return stage; }
 
 	virtual void render(){};
+	virtual void clear(){};
 };
 
 #endif

@@ -30,18 +30,15 @@ class TheMathGame :
 	public ISpecificGame
 {
 	//private members:
+	const static char ESC = 27; // the ESC key
+	bool menuShown = false;
 	int currentLevel = 0;
 	Player *player1 = NULL;
 	Player *player2 = NULL;
 	//Timer *timer
 	Stage *stage  = NULL;
 	NumbersList *numbers = NULL;
-	Hud *hud = NULL;;
-	//move players, and check for collision
-	//if collided, stop them
-	void movePlayers();
-	//check if a player has collected a number
-	void checkNumbersHit();
+	Hud *hud = NULL;
 	//render objects needed to be rendered
 	void renderFrame();
 public:
@@ -50,6 +47,7 @@ public:
 	virtual void startLevel();
 	virtual void doIteration(const list<char>& keyHits);
 	virtual void doSubIteration();
+	virtual void showMenu();
 	TheMathGame();
 	~TheMathGame();
 

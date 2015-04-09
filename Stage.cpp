@@ -32,6 +32,14 @@ void Stage::render()
 	}
 }
 
+void Stage::clear()
+{
+	for (int i = 0; i < numChildren; i++)
+	{
+		renderList[i]->clear();
+	}
+}
+
 void Stage::moveChildren()
 {
 	for (int i = 0; i < numChildren; i++)
