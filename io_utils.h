@@ -1,10 +1,11 @@
 #ifndef _IO_UTILS_H_
 #define _IO_UTILS_H_
+
 #define SCREEN_WIDTH  80
 #define SCREEN_HEIGHT  24
 #define HUD_HEIGHT  3
-
 #define STAGE_HEIGHT  (SCREEN_HEIGHT-HUD_HEIGHT)
+#define NUMBER_SCORE 1500
 
 // you must have a config file, both for windows and for compiling on Linux (MAMA)
 // BUT, you need to change the content of the config!

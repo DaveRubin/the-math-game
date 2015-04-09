@@ -3,6 +3,7 @@
 
 Actor::Actor()
 {
+	setType("Actor");
 	lives = DEFAULT_LIVES;
 	view = DEFAULT_LOOK;
 	setStatic(false);
@@ -11,12 +12,14 @@ Actor::Actor()
 
 Actor::Actor(char lookInput, int livesInput )
 {
+	setType("Actor");
 	lives = livesInput;
 	view = lookInput;
 }
 
 Actor::Actor(const Actor &actor )
 {
+	setType("Actor");
 	lives = actor.lives;
 	view = actor.view;
 	position.set(actor.position);
@@ -29,6 +32,7 @@ void Actor::stop()
 
 void Actor::move( bool reverse )
 {
+	checkCollision();
 	if (direction == Direction::STAY){
 		setRedraw(false);
 		return;
@@ -53,6 +57,7 @@ void Actor::move( bool reverse )
 
 	setRedraw(true);
 	checkBounds();
+	getStage()->setChildAt(this, position.getX(), position.getY());
 }
 
 void Actor::checkBounds()
@@ -75,6 +80,7 @@ void Actor::checkBounds()
 void Actor::clear()
 {
 	gotoxy( position.getX(), position.getY() );
+	getStage()->setChildAt(NULL, position.getX(), position.getY());
 	cout << ' ';
 }
 

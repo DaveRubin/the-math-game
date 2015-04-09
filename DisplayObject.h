@@ -9,8 +9,8 @@
 #include <string>
 
 using namespace std;
-
 class Stage;
+
 
 class DisplayObject
 {
@@ -18,6 +18,7 @@ class DisplayObject
 	bool visible;
 	bool redraw;
 	bool staticObj;
+	string objectType = "DisplayObject";
 
 public:
 	Point position;
@@ -32,6 +33,9 @@ public:
 
 	bool isStatic(){ return staticObj; }
 	void setStatic(bool val){ staticObj = val; }
+
+	void setType(string s) { objectType = s; }
+	string getType(){ return objectType; }
 
 	void setStage(Stage *stageP){ stage = stageP; }
 	Stage *getStage(){ return stage; }

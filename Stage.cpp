@@ -1,5 +1,29 @@
 #include "Stage.h"
 
+
+Stage::Stage()
+{
+	resetMatrix();
+}
+
+void Stage::resetMatrix(){
+	for (int i = 0; i < SCREEN_WIDTH; i++)
+	{
+		for (int j = 0; j < SCREEN_HEIGHT; j++)
+		{
+			matrix[i][j] = NULL;
+		}
+	}
+}
+DisplayObject * Stage::getChildAt(int x, int y)
+{
+	return matrix[x][y];
+}
+
+void  Stage::setChildAt(DisplayObject *child, int x, int y)
+{
+	matrix[x][y] = child;
+}
 void Stage::addChild(DisplayObject *child)
 {
 	//if child list is full, multiply size
@@ -21,6 +45,7 @@ void Stage::addChild(DisplayObject *child)
 	//then add the child at the end of the list
 	renderList[numChildren] = child;
 	child->setStage(this);
+	matrix[child->position.getX()][child->position.getY()] = child;
 	numChildren++;
 }
 

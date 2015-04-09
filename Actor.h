@@ -5,6 +5,7 @@
 #pragma once
 #include "DisplayObject.h"
 #include "Direction.h"
+#include "Stage.h"
 
 class Actor:
 	public DisplayObject
@@ -29,7 +30,7 @@ public:
 	void setView(char c){ view = c; }
 
 
-	void move(bool reverse = false);
+	virtual void move(bool reverse = false);
 	virtual void checkCollision(){};
 	bool collide(const Actor &actor);
 	void stop();

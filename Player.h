@@ -3,6 +3,7 @@
 
 #pragma once
 #include "Actor.h"
+#include "Stage.h"
 
 
 
@@ -32,6 +33,7 @@ public:
 		if (option == keyDown) setDirection(Direction::DOWN);
 		if (option == keyRight) setDirection(Direction::RIGHT);
 	}
+	virtual void checkCollision();
 	int getScore(){ return score; }
 };
 
