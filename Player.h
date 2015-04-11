@@ -45,7 +45,7 @@ public:
 	virtual void checkCollision();
 	Equation *getEquation(){ return hudEquation; };
 	TextField *getScore(){ return hudScore; };
-	LivesMeter *getLives(){ return hudLives; };
+	LivesMeter *getLivesObj(){ return hudLives; };
 };
 
 

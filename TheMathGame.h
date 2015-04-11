@@ -9,7 +9,6 @@
 #include "DisplayObject.h"
 #include "Hud.h"
 #include "Player.h"
-#include "NumbersList.h"
 
 using namespace std;
 
@@ -37,9 +36,8 @@ class TheMathGame :
 	Player *player2 = NULL;
 	//Timer *timer
 	Stage *stage  = NULL;
-	NumbersList *numbers = NULL;
 	Hud *hud = NULL;
-	//render objects needed to be rendered
+	//move and render objects needed to be rendered
 	void renderFrame();
 public:
 	virtual bool isLevelDone()const{return false;}
@@ -48,6 +46,7 @@ public:
 	virtual void doIteration(const list<char>& keyHits);
 	virtual void doSubIteration();
 	virtual void showMenu();
+
 	TheMathGame();
 	~TheMathGame();
 

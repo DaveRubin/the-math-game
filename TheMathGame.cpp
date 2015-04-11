@@ -14,6 +14,8 @@ TheMathGame::~TheMathGame()
 	// delete all objects
 	delete hud;
 	delete stage;
+	delete player1;
+	delete player2;
 }
 
 void TheMathGame::startLevel()
@@ -26,25 +28,24 @@ void TheMathGame::startLevel()
 		player1 = new Player('@', "wasd");
 		player1->position.set(15, 15);
 		player1->getEquation()->position.set(5, 0);
-		player1->getLives()->position.set(5, 1);
+		player1->getLivesObj()->position.set(5, 1);
 		player1->getScore()->position.set(10, 1);
 
 		player2 = new Player('#', "ijkl");
 		player2->position.set(30, 15);
 		player2->getEquation()->position.set(SCREEN_WIDTH - 15, 0);
-		player2->getLives()->position.set(SCREEN_WIDTH - 15, 1);
+		player2->getLivesObj()->position.set(SCREEN_WIDTH - 15, 1);
 		player2->getScore()->position.set(SCREEN_WIDTH - 10, 1);
 
 		stage->addChild(player1);
 		stage->addChild(player1->getScore());
-		stage->addChild(player1->getLives());
+		stage->addChild(player1->getLivesObj());
 		stage->addChild(player1->getEquation());
 		stage->addChild(player2);
 		stage->addChild(player2->getScore());
-		stage->addChild(player2->getLives());
+		stage->addChild(player2->getLivesObj());
 		stage->addChild(player2->getEquation());
 	}
-	if (!numbers) numbers = new NumbersList();
 	clear_screen();
 	stage->addChild(new Number(500, 20, 20));
 }

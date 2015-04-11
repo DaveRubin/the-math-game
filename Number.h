@@ -16,6 +16,7 @@ public:
 	Number(int numInput,int x, int y);
 	virtual void render();
 	virtual void kill();
+	int getNumber(){ return number; }
 	int getNumDigits(){ return length; }
 };
 

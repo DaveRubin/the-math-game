@@ -81,9 +81,19 @@ void Player::checkCollision()
 	//if number then kill the number
 	if (targetType == "Number")
 	{
+		int hitNumber = static_cast<Number*>(targetObj)->getNumber();
 		targetObj->kill();
-		score += NUMBER_SCORE;
-		hudScore->setText(score);
-		//setDirection(Direction::STAY);
+
+		if (hitNumber == hudEquation->getSolution())
+		{
+			score += NUMBER_SCORE;
+			hudScore->setText(score);
+
+		}
+		else
+		{
+			setLives(getLives() - 1);
+			hudLives->setLives(getLives());
+		}
 	}
 }

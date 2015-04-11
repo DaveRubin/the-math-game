@@ -39,6 +39,7 @@ public:
 		generateEquation();
 	}
 	int getLevel(){ return level; };
+	int getSolution(){ return solution; }
 
 	Equation();
 	~Equation();
