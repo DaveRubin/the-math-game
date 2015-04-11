@@ -5,6 +5,9 @@
 #include "Actor.h"
 #include "Stage.h"
 #include "Number.h"
+#include "Equation.h"
+#include "LivesMeter.h"
+#include "TextField.h"
 
 
 
@@ -18,14 +21,19 @@ class Player :
 	char keyLeft;
 	char keyDown;
 	char keyRight;
+	Equation *hudEquation;
+	TextField *hudScore;
+	LivesMeter *hudLives;
 
 	void setDefaultKeys();
+	void initStats();
 public:
 	string objectType = "Player";
 
 	Player();
-	Player(char);
-	Player(char,string);
+	Player(char look);
+	Player(char look,string keys);
+
 	void checkKey(char option) {
 		//if key is valid movement key, then set direction
 		//we use normal char and not const to allow users to define their own keys
@@ -35,7 +43,9 @@ public:
 		if (option == keyRight) setDirection(Direction::RIGHT);
 	}
 	virtual void checkCollision();
-	int getScore(){ return score; }
+	Equation *getEquation(){ return hudEquation; };
+	TextField *getScore(){ return hudScore; };
+	LivesMeter *getLives(){ return hudLives; };
 };
 
 

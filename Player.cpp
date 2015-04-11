@@ -8,20 +8,26 @@ void Player::setDefaultKeys()
 	keyRight = 'd';
 }
 
-Player::Player()
+void Player::initStats()
 {
+	hudEquation = new Equation();
+	hudScore = new TextField(0);
+	hudLives = new LivesMeter();
 	setType("Player");
 	score = 0;
 	setLives(PLAYER_INIT_LIVES);
+}
+
+Player::Player()
+{
+	initStats();
 	setDefaultKeys();
 }
 
 
 Player::Player(char look)
 {
-	setType("Player");
-	score = 0;
-	setLives(PLAYER_INIT_LIVES);
+	initStats();
 	setView(look);
 	setDefaultKeys();
 }
@@ -29,9 +35,7 @@ Player::Player(char look)
 
 Player::Player(char look, string tldr)
 {
-	setType("Player");
-	score = 0;
-	setLives(PLAYER_INIT_LIVES);
+	initStats();
 	setView(look);
 	if (tldr.length() != 4)
 		setDefaultKeys();
@@ -79,6 +83,7 @@ void Player::checkCollision()
 	{
 		targetObj->kill();
 		score += NUMBER_SCORE;
+		hudScore->setText(score);
 		//setDirection(Direction::STAY);
 	}
 }

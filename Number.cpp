@@ -34,7 +34,6 @@ void Number::getLength()
 		length++;
 		tempInt /= 10;
 	}
-	cout << "yeah" << endl;
 }
 void Number::render()
 {
