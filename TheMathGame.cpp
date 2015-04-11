@@ -1,4 +1,4 @@
-#include "TheMathGame.h"
+﻿#include "TheMathGame.h"
 
 
 
@@ -73,26 +73,26 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 	
 	//move player 1 and 2, if collided, stop
 	stage->moveChildren();
+	addNumber();
 	//render all objects needed to be rendered
 	renderFrame();
 }
 
 void TheMathGame::showMenu()
 {
-	/*EXIT_APPLICATION = '1',
-		BACK_TO_MAIN_MENU = '2',
-		CONTINUE = '3',
-		REPLAY_LEVEL = '4',
-		NEXT_LEVEL = '5'*/
-
 	stage->clear();
 	gotoxy(0, 10);
-	cout << "-------------------------------" << endl;
-	cout << "1) EXIT_APPLICATION" << endl;
-	cout << "2) BACK_TO_MAIN_MENU" << endl;
-	cout << "3) CONTINUE" << endl;
-	cout << "4) REPLAY_LEVEL" << endl;
-	cout << "5) NEXT_LEVEL" << endl;
+
+	string lineString = "";
+	lineString.append(24, '\xB2');
+
+	cout << "			" << '\xB2' << lineString << endl;
+	cout << "			" << '\xB2' << " 1) EXIT_APPLICATION	" << '\xB2' << endl;
+	cout << "			" << '\xB2' << " 2) BACK_TO_MAIN_MENU	" << '\xB2' << endl;
+	cout << "			" << '\xB2' << " 3) CONTINUE		" << '\xB2' << endl;
+	cout << "			" << '\xB2' << " 4) REPLAY_LEVEL	" << '\xB2' << endl;
+	cout << "			" << '\xB2' << " 5) NEXT_LEVEL		" << '\xB2' << endl;
+	cout << "			" << '\xB2' << lineString << endl;
 }
 
 void TheMathGame::renderFrame()
@@ -106,7 +106,28 @@ void TheMathGame::renderFrame()
 void TheMathGame::addNumber()
 {
 	//find a place
-	//if found add a number ther
+	bool placeFound = false;
+	int number = rand() % currentLevel;
+	int tries = 10;
+	int xPos;
+	int yPos;
+	while (!placeFound && tries != 0)
+	{
+		yPos = rand() % (SCREEN_HEIGHT - HUD_HEIGHT);
+		xPos = rand() % (SCREEN_WIDTH);
+		//chek if all neighbors are null
+		placeFound = true;
+		if (stage->getChildAt(yPos + HUD_HEIGHT, xPos)) placeFound = false;
+		if (stage->getChildAt(yPos + HUD_HEIGHT, (xPos + 1) % SCREEN_WIDTH)) placeFound = false;
+		if (stage->getChildAt(yPos + HUD_HEIGHT, (xPos + SCREEN_WIDTH - 1) % SCREEN_WIDTH)) placeFound = false;
+		if (stage->getChildAt((yPos + 1) % HUD_HEIGHT + HUD_HEIGHT, xPos)) placeFound = false;
+		if (stage->getChildAt((yPos + (SCREEN_HEIGHT - HUD_HEIGHT) - 1) % HUD_HEIGHT + HUD_HEIGHT, xPos)) placeFound = false;
+		tries--;
+	}
+	//if found add a number there
+	if (placeFound){
+		stage->addChild(new Number(number, xPos, yPos));
+	}
 }
 
 

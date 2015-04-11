@@ -15,6 +15,7 @@ void Stage::resetMatrix(){
 		}
 	}
 }
+
 DisplayObject * Stage::getChildAt(int x, int y)
 {
 	return matrix[x][y];
