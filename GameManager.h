@@ -71,11 +71,12 @@ public:
 			EXIT_APPLICATION			=	'9'
 		};
 	};
+
 	class LevelOptions
 	{
 	public:
 		static bool isValidOption(char option) {
-			string validOptions = "1389";
+			string validOptions = "12345";
 			return (validOptions.find(option) != string::npos);
 		}
 		enum

@@ -76,3 +76,31 @@ void Stage::moveChildren()
 		}
 	}
 }
+
+void Stage::removeChildren(DisplayObject *child)
+{
+	bool removed = false;
+	for (int i = 0; i < numChildren; i++)
+	{
+		if (removed){
+			renderList[i] = renderList[i + 1];
+		}
+		if (renderList[i] == child){
+			renderList[i] == NULL;
+			numChildren--;
+			removed = true;
+		}
+
+	}
+
+}
+
+void Stage::init()
+{
+	for (int i = 0; i < numChildren; i++)
+	{
+		renderList[i] == NULL;
+	}
+	numChildren = 0;
+	resetMatrix();
+}

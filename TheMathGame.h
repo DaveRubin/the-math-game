@@ -31,7 +31,10 @@ class TheMathGame :
 	//private members:
 	const static char ESC = 27; // the ESC key
 	bool menuShown = false;
-	int currentLevel = 0;
+	int currentLevel = -1;
+	int turnsLeft = LEVEL_TURNS;
+	bool finishedLevel = false;
+
 	Player *player1 = NULL;
 	Player *player2 = NULL;
 	//Timer *timer
@@ -39,10 +42,11 @@ class TheMathGame :
 	Hud *hud = NULL;
 	//move and render objects needed to be rendered
 	void renderFrame();
+
 public:
-	virtual bool isLevelDone()const{return false;}
-	virtual bool hasNextLevel()const{return true;}
-	virtual void startLevel();
+	virtual bool isLevelDone()const{ return finishedLevel; }
+	virtual bool hasNextLevel()const{ return currentLevel < 20; }
+	virtual void startLevel(int level);
 	virtual void doIteration(const list<char>& keyHits);
 	virtual void doSubIteration();
 	virtual void showMenu();
@@ -51,6 +55,7 @@ public:
 	~TheMathGame();
 
 	void updateHud(){ hud->setRedraw(); }
+	void addNumber();
 };
 
 

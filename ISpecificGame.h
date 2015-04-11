@@ -41,7 +41,7 @@ public:
 	// abstract method must be implemented by non-abstract inherited class
 	virtual bool isLevelDone()const=0;
 	virtual bool hasNextLevel()const=0;
-	virtual void startLevel()=0;
+	virtual void startLevel(int)=0;
 
 	// get a list with keyHits and returns a list with the keys that were used
 	virtual void doIteration(const list<char>& keyHits)=0;

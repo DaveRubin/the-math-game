@@ -57,12 +57,20 @@ void GameManager::run()
 			break;
 		case GameManager::MainMenuOptions::PLAY_FROM_SELECTED_SCREEN:
 			cout << "Select a level" << endl;
+			int levelSelected ;
+			cin >> levelSelected;
 			init();
-			currentLevel = 10;
+			currentLevel = levelSelected;
 			userWantsToPlay = playGame();
 			break;
 		case GameManager::MainMenuOptions::PRESENT_INSTRUCTIONS:
-			cout << "instructions"<<endl;
+			clear_screen();
+			cout << "these are the instructions: \nplease play the game...\n\n\n\npress anything to return"<<endl;
+			/*char tmp;
+			cin >> tmp;
+			*/
+			getch();
+			clear_screen();
 			break;
 		case GameManager::MainMenuOptions::EXIT_APPLICATION:
 			userWantsToPlay = false;
@@ -83,6 +91,8 @@ bool GameManager::playGame()
 	char action = GameManager::LevelOptions::NEXT_LEVEL;
 	while(actualGame.hasNextLevel() 
 		&& action == GameManager::LevelOptions::NEXT_LEVEL) {
+
+		clear_screen();
 		action = playNextLevel();
 	}
 	//-------------------------------------------------------------
@@ -97,7 +107,7 @@ bool GameManager::playGame()
 char GameManager::playNextLevel()
 {
 	++currentLevel;
-	actualGame.startLevel();
+	actualGame.startLevel(currentLevel);
 	
 	//------------------------------------------------------------------------------
 	// here we control the ESC menu
@@ -116,13 +126,17 @@ char GameManager::playNextLevel()
 		case GameManager::LevelOptions::CONTINUE:
 			// keepRunning is true, so we only need to set thing right and then - keepRunning!
 			//--------------------------------------------------------------------------------
+			clear_screen();
 			break;
 		case GameManager::LevelOptions::REPLAY_LEVEL:
 			// keepRunning is true, so we only need to set thing right and then - keepRunning!
 			//--------------------------------------------------------------------------------
-			actualGame.startLevel();
+			actualGame.startLevel(currentLevel);
 			break;
 		case GameManager::LevelOptions::BACK_TO_MAIN_MENU:
+			clear_screen();
+			keepRunning = false;
+
 			break;
 		case GameManager::LevelOptions::EXIT_APPLICATION:
 			// get out from the loop

@@ -27,6 +27,8 @@ public:
 	void clear();
 	DisplayObject *getChildAt(int x, int y);
 	void setChildAt(DisplayObject *child,int x, int y);
+	void removeChildren(DisplayObject*);
+	void init();
 };
 
 
