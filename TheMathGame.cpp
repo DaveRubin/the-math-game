@@ -84,6 +84,15 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 	
 	//move player 1 and 2, if collided, stop
 	stage->moveChildren();
+	if (player1->answeredRight || player2->answeredRight)
+	{
+		clear_screen();
+		gotoxy(30, 15);
+		cout << "WAY TO GO ! ! ! ";
+		getch();
+		currentLevel++;
+		startLevel(currentLevel);
+	}
 	addNumber();
 	//render all objects needed to be rendered
 	renderFrame();

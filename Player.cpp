@@ -51,6 +51,7 @@ void Player::init()
 {
 	setLives(PLAYER_INIT_LIVES);
 	setDirection(Direction::STAY);
+	answeredRight = false;
 	show();
 }
 
@@ -96,6 +97,7 @@ void Player::checkCollision()
 			score += NUMBER_SCORE;
 			hudScore->setText(score);
 			hudEquation->generateEquation();
+			answeredRight = true;
 		}
 		else
 		{

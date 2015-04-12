@@ -21,6 +21,7 @@ class Player :
 	char keyLeft;
 	char keyDown;
 	char keyRight;
+
 	Equation *hudEquation;
 	TextField *hudScore;
 	LivesMeter *hudLives;
@@ -29,6 +30,7 @@ class Player :
 	void initStats();
 public:
 	string objectType = "Player";
+	bool answeredRight = false;
 
 	Player();
 	Player(char look);
