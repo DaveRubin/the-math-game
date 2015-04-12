@@ -50,8 +50,16 @@ void Stage::addChild(DisplayObject *child)
 
 	//then add the child at the end of the list
 	renderList[numChildren] = child;
+	//inject the stage to the child
 	child->setStage(this);
-	matrix[child->position.getX()][child->position.getY()] = child;
+	//now add the clid reference to the matrix
+	//if its a number longer then 1 digit, add mutiple 
+	for (int i = 0; i < child->getWidth(); i++)
+	{
+		int xPos = child->position.getX() + i;
+		if (xPos >= SCREEN_WIDTH) break;
+		matrix[xPos][child->position.getY()] = child;
+	}
 	numChildren++;
 }
 
@@ -92,7 +100,7 @@ void Stage::removeChildren(DisplayObject *child)
 			renderList[i] = renderList[i + 1];
 		}
 		if (renderList[i] == child){
-			renderList[i] == NULL;
+			renderList[i] = NULL;
 			numChildren--;
 			removed = true;
 		}
@@ -105,7 +113,7 @@ void Stage::init()
 {
 	for (int i = 0; i < numChildren; i++)
 	{
-		renderList[i] == NULL;
+		renderList[i] = NULL;
 	}
 	numChildren = 0;
 	resetMatrix();

@@ -109,6 +109,7 @@ void TheMathGame::addNumber()
 	bool placeFound = false;
 	int number = rand() % (currentLevel+10);
 	int tries = 10;
+	int digits = 1;
 	int xPos;
 	int yPos;
 	//stage->addChild(new Number(5, 20, 20));
@@ -116,27 +117,41 @@ void TheMathGame::addNumber()
 	{
 		yPos = rand() % (STAGE_HEIGHT);
 		xPos = rand() % (SCREEN_WIDTH);
-		//yPos = 17;
-		//xPos = 20;
+		//yPos = 15;
+		//xPos = 0;
+		//number = 99;
 		//chek if all neighbors are null
 		placeFound = true;
-		Point centerPoint = Point(xPos, yPos + HUD_HEIGHT);
-		Point rightPoint = Point((xPos + 1) % SCREEN_WIDTH, yPos + HUD_HEIGHT);
-		Point leftPoint = Point((xPos + SCREEN_WIDTH - 1) % SCREEN_WIDTH, yPos + HUD_HEIGHT);
-		Point topPoint = Point(xPos, (yPos + 1) % STAGE_HEIGHT + HUD_HEIGHT);
-		Point bottomPoint = Point(xPos, (yPos + (STAGE_HEIGHT)-1) % STAGE_HEIGHT + HUD_HEIGHT);
-
-		if (stage->getChildAt(centerPoint)) placeFound = false;
-		if (stage->getChildAt(rightPoint)) placeFound = false;
-		if (stage->getChildAt(leftPoint)) placeFound = false;
-		if (stage->getChildAt(topPoint)) placeFound = false;
-		if (stage->getChildAt(bottomPoint)) placeFound = false;
+		if (!checkFreeSpace(xPos, yPos)) placeFound = false;
+		if (number > 9){
+			digits = 2;
+			if (!checkFreeSpace((xPos + SCREEN_WIDTH - 1) % SCREEN_WIDTH, yPos)) placeFound = false;
+		}
 		tries--;
 	}
 	//if found add a number there
 	if (placeFound){
-		stage->addChild(new Number(number, xPos, yPos+HUD_HEIGHT));
+		stage->addChild(new Number(number, 
+			(xPos + SCREEN_WIDTH - (digits-1) ) % SCREEN_WIDTH, 
+			yPos + HUD_HEIGHT));
 	}
+}
+
+bool TheMathGame::checkFreeSpace(int xPos, int yPos)
+{
+	bool freeSpot = true;
+	Point centerPoint = Point(xPos, yPos + HUD_HEIGHT);
+	Point rightPoint = Point((xPos + 1) % SCREEN_WIDTH, yPos + HUD_HEIGHT);
+	Point leftPoint = Point((xPos + SCREEN_WIDTH - 1) % SCREEN_WIDTH, yPos + HUD_HEIGHT);
+	Point topPoint = Point(xPos, (yPos + 1) % STAGE_HEIGHT + HUD_HEIGHT);
+	Point bottomPoint = Point(xPos, (yPos + (STAGE_HEIGHT)-1) % STAGE_HEIGHT + HUD_HEIGHT);
+
+	if (stage->getChildAt(centerPoint)) freeSpot = false;
+	if (stage->getChildAt(rightPoint)) freeSpot = false;
+	if (stage->getChildAt(leftPoint)) freeSpot = false;
+	if (stage->getChildAt(topPoint)) freeSpot = false;
+	if (stage->getChildAt(bottomPoint)) freeSpot = false;
+	return freeSpot;
 }
 
 

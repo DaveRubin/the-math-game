@@ -42,6 +42,7 @@ class TheMathGame :
 	Hud *hud = NULL;
 	//move and render objects needed to be rendered
 	void renderFrame();
+	bool checkFreeSpace(int x, int y);
 
 public:
 	virtual bool isLevelDone()const{ return finishedLevel; }

@@ -47,6 +47,7 @@ Player::Player(char look, string tldr)
 	}
 }
 
+
 void Player::checkCollision()
 {
 	int step = 1;
@@ -68,8 +69,7 @@ void Player::checkCollision()
 		break;
 	}
 	//get matrix and check if something is there
-	Stage *stagePnt = getStage();
-	DisplayObject *targetObj = stagePnt->getChildAt(tmpPos.getX(), tmpPos.getY());
+	DisplayObject *targetObj = getStage()->getChildAt(tmpPos.getX(), tmpPos.getY());
 	//if clear then return
 	if (targetObj == NULL) return;
 	string targetType = targetObj->getType();
@@ -88,12 +88,15 @@ void Player::checkCollision()
 		{
 			score += NUMBER_SCORE;
 			hudScore->setText(score);
-
+			hudEquation->generateEquation();
 		}
 		else
 		{
 			setLives(getLives() - 1);
 			hudLives->setLives(getLives());
+			if (getLives() == 0){
+				kill();
+			}
 		}
 	}
 }

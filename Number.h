@@ -1,8 +1,8 @@
 #ifndef _NUMBER_H_
 #define _NUMBER_H_
 
-#pragma once
 #include "Actor.h"
+
 class Number :
 	public Actor
 {
@@ -17,7 +17,7 @@ public:
 	virtual void render();
 	virtual void kill();
 	int getNumber(){ return number; }
-	int getNumDigits(){ return length; }
+	int getWidth(){ return length; }
 };
 
 #endif

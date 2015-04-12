@@ -30,8 +30,16 @@ void Actor::stop()
 	direction = Direction::STAY;
 }
 
+void Actor::kill()
+{
+	stop();
+	clear();
+	hide();
+}
+
 void Actor::move( bool reverse )
 {
+	if (lives <= 0) return;
 	checkCollision();
 	if (direction == Direction::STAY){
 		setRedraw(false);

@@ -39,6 +39,7 @@ public:
 	void stop();
 	void clear();
 	virtual void render();
+	virtual void kill();
 };
 
 #endif

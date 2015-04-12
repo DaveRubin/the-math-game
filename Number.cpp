@@ -45,7 +45,12 @@ void Number::kill()
 {
 	if (getStage() != NULL)
 	{
-		getStage()->setChildAt(NULL, position.getX(), position.getY());
+		for (int i = 0; i < length; i++)
+		{
+			int xPos = position.getX() + i;
+			if (xPos >= SCREEN_WIDTH) break;
+			getStage()->setChildAt(NULL, xPos , position.getY());
+		}
 	}
 	gotoxy(position.getX(), position.getY());
 	for (int i = 0; i < length; i++)

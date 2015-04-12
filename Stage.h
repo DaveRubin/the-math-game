@@ -2,7 +2,6 @@
 #ifndef _STAGE_H_
 #define _STAGE_H_
 
-#pragma once
 #include "io_utils.h"
 #include "Actor.h"
 #include <stdlib.h>     

@@ -43,6 +43,7 @@ public:
 	virtual void render(){};
 	virtual void clear(){};
 	virtual void kill(){};
+	virtual int getWidth(){ return 1; };
 };
 
 #endif
