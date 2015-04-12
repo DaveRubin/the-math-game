@@ -21,6 +21,11 @@ DisplayObject * Stage::getChildAt(int x, int y)
 	return matrix[x][y];
 }
 
+DisplayObject * Stage::getChildAt(Point p)
+{
+	return matrix[p.getX()][p.getY()];
+}
+
 void  Stage::setChildAt(DisplayObject *child, int x, int y)
 {
 	matrix[x][y] = child;

@@ -107,26 +107,35 @@ void TheMathGame::addNumber()
 {
 	//find a place
 	bool placeFound = false;
-	int number = rand() % currentLevel;
+	int number = rand() % (currentLevel+10);
 	int tries = 10;
 	int xPos;
 	int yPos;
+	//stage->addChild(new Number(5, 20, 20));
 	while (!placeFound && tries != 0)
 	{
-		yPos = rand() % (SCREEN_HEIGHT - HUD_HEIGHT);
+		yPos = rand() % (STAGE_HEIGHT);
 		xPos = rand() % (SCREEN_WIDTH);
+		//yPos = 17;
+		//xPos = 20;
 		//chek if all neighbors are null
 		placeFound = true;
-		if (stage->getChildAt(yPos + HUD_HEIGHT, xPos)) placeFound = false;
-		if (stage->getChildAt(yPos + HUD_HEIGHT, (xPos + 1) % SCREEN_WIDTH)) placeFound = false;
-		if (stage->getChildAt(yPos + HUD_HEIGHT, (xPos + SCREEN_WIDTH - 1) % SCREEN_WIDTH)) placeFound = false;
-		if (stage->getChildAt((yPos + 1) % HUD_HEIGHT + HUD_HEIGHT, xPos)) placeFound = false;
-		if (stage->getChildAt((yPos + (SCREEN_HEIGHT - HUD_HEIGHT) - 1) % HUD_HEIGHT + HUD_HEIGHT, xPos)) placeFound = false;
+		Point centerPoint = Point(xPos, yPos + HUD_HEIGHT);
+		Point rightPoint = Point((xPos + 1) % SCREEN_WIDTH, yPos + HUD_HEIGHT);
+		Point leftPoint = Point((xPos + SCREEN_WIDTH - 1) % SCREEN_WIDTH, yPos + HUD_HEIGHT);
+		Point topPoint = Point(xPos, (yPos + 1) % STAGE_HEIGHT + HUD_HEIGHT);
+		Point bottomPoint = Point(xPos, (yPos + (STAGE_HEIGHT)-1) % STAGE_HEIGHT + HUD_HEIGHT);
+
+		if (stage->getChildAt(centerPoint)) placeFound = false;
+		if (stage->getChildAt(rightPoint)) placeFound = false;
+		if (stage->getChildAt(leftPoint)) placeFound = false;
+		if (stage->getChildAt(topPoint)) placeFound = false;
+		if (stage->getChildAt(bottomPoint)) placeFound = false;
 		tries--;
 	}
 	//if found add a number there
 	if (placeFound){
-		stage->addChild(new Number(number, xPos, yPos));
+		stage->addChild(new Number(number, xPos, yPos+HUD_HEIGHT));
 	}
 }
 
