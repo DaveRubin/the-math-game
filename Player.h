@@ -46,6 +46,8 @@ public:
 	Equation *getEquation(){ return hudEquation; };
 	TextField *getScore(){ return hudScore; };
 	LivesMeter *getLivesObj(){ return hudLives; };
+
+	void init();
 };
 
 

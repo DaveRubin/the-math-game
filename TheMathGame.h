@@ -31,7 +31,7 @@ class TheMathGame :
 	//private members:
 	const static char ESC = 27; // the ESC key
 	bool menuShown = false;
-	int currentLevel = -1;
+	int currentLevel = 0;
 	int turnsLeft = LEVEL_TURNS;
 	bool finishedLevel = false;
 
@@ -45,6 +45,7 @@ class TheMathGame :
 	bool checkFreeSpace(int x, int y);
 
 public:
+	virtual int getLevel(){ return currentLevel; }
 	virtual bool isLevelDone()const{ return finishedLevel; }
 	virtual bool hasNextLevel()const{ return currentLevel < 20; }
 	virtual void startLevel(int level);

@@ -47,6 +47,13 @@ Player::Player(char look, string tldr)
 	}
 }
 
+void Player::init()
+{
+	setLives(PLAYER_INIT_LIVES);
+	setDirection(Direction::STAY);
+	show();
+}
+
 
 void Player::checkCollision()
 {

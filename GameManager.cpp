@@ -106,7 +106,8 @@ bool GameManager::playGame()
 // return action to take in case of ESC
 char GameManager::playNextLevel()
 {
-	++currentLevel;
+	int gameLevel = actualGame.getLevel();
+	currentLevel = gameLevel + 1;
 	actualGame.startLevel(currentLevel);
 	
 	//------------------------------------------------------------------------------
@@ -178,7 +179,9 @@ char GameManager::doLevelIterations()
 	// check why we are here
 	if(actualGame.isLevelDone()) {
 		clear_screen();
-		cout << endl << "WELL DONE" << endl;
+		gotoxy(30, 15);
+		cout  << "WELL DONE" << endl;
+		getch();
 		action = GameManager::LevelOptions::NEXT_LEVEL;
 	}
 	else if(escapePressed) {

@@ -28,8 +28,12 @@ void TheMathGame::startLevel(int levelInput)
 	{
 		stage = new Stage();
 		player1 = new Player('@', "wasd");
-
 		player2 = new Player('#', "ijkl");
+	}
+	else{
+		stage->init();
+		player1->init();
+		player2->init();
 
 	}
 
@@ -41,7 +45,6 @@ void TheMathGame::startLevel(int levelInput)
 	player2->getEquation()->position.set(SCREEN_WIDTH - 15, 0);
 	player2->getLivesObj()->position.set(SCREEN_WIDTH - 15, 1);
 	player2->getScore()->position.set(SCREEN_WIDTH - 10, 1);
-	stage->init();
 	stage->addChild(player1);
 	stage->addChild(player1->getScore());
 	stage->addChild(player1->getLivesObj());
@@ -53,13 +56,21 @@ void TheMathGame::startLevel(int levelInput)
 
 	clear_screen();
 	turnsLeft = LEVEL_TURNS;
+	gotoxy(15, 0);
+	cout << "current level: " << currentLevel;
 }
 
 
 void TheMathGame::doIteration(const list<char>& keyHits)
 {
 	if (turnsLeft == 0){
-		finishedLevel = true;
+		//finishedLevel = true;
+		clear_screen();
+		gotoxy(30, 15);
+		cout << "BOOOO! ! ! ! YOU GUYS SUCK !";
+		getch();
+		currentLevel++;
+		startLevel(currentLevel);
 		return;
 	}
 	turnsLeft--; 
