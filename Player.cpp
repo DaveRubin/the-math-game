@@ -98,7 +98,6 @@ void Player::checkCollision()
 		{
 			score += NUMBER_SCORE;
 			hudScore->setText(score);
-			hudEquation->generateEquation();
 			answeredRight = true;
 		}
 		else

@@ -101,6 +101,10 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 		cout << "WAY TO GO ! ! ! ";
 		_getch();
 		currentLevel++;
+		player1->getEquation()->setLevel(currentLevel);
+		player2->getEquation()->setLevel(currentLevel);
+		player1->getEquation()->generateEquation();
+		player2->getEquation()->generateEquation();
 		startLevel(currentLevel);
 	}
 	addNumber();
