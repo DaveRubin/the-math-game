@@ -18,12 +18,12 @@ class DisplayObject
 	bool visible;
 	bool redraw;
 	bool staticObj;
-	string objectType = "DisplayObject";
+	string objectType;
 
 public:
 	Point position;
 
-	DisplayObject() :visible(true), redraw(true), staticObj(true){};
+	DisplayObject() :visible(true), redraw(true), staticObj(true),objectType("DisplayObject"){};
 
 	void show(){ visible = true; }
 	void hide(){ visible = false; }

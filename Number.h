@@ -6,8 +6,8 @@
 class Number :
 	public Actor
 {
-	int number = 0;
-	int length = 1;
+	int number;
+	int length;
 	void getLength();
 
 public:

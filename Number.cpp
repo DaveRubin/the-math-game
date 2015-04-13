@@ -4,6 +4,7 @@
 Number::Number()
 {
 	setType("Number");
+	number = 0;
 	getLength();
 	render();
 }

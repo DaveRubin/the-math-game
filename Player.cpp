@@ -16,6 +16,8 @@ void Player::initStats()
 	setType("Player");
 	score = 0;
 	setLives(PLAYER_INIT_LIVES);
+	objectType = "Player";
+	answeredRight = false;
 }
 
 Player::Player()

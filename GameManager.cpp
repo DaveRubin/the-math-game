@@ -69,7 +69,7 @@ void GameManager::run()
 			/*char tmp;
 			cin >> tmp;
 			*/
-			getch();
+			_getch();
 			clear_screen();
 			break;
 		case GameManager::MainMenuOptions::EXIT_APPLICATION:
@@ -181,7 +181,7 @@ char GameManager::doLevelIterations()
 		clear_screen();
 		gotoxy(30, 15);
 		cout  << "WELL DONE" << endl;
-		getch();
+		_getch();
 		action = GameManager::LevelOptions::NEXT_LEVEL;
 	}
 	else if(escapePressed) {

@@ -12,18 +12,13 @@
 
 class Hud
 {
-	Equation *equation1;
-	Equation *equation2;
-	TextField *score1;
-	TextField *score2;
-	LivesMeter *lives1;
-	LivesMeter *lives2;
+	//TODO: get rid f hud, and set the seperator in the main game
 	TextField *seperator;
 
-	bool redraw = true;
+	bool redraw;
 	void createNewObjects();
 public:
-	Hud();
+	Hud() ;
 	void render();
 	void setRedraw(){ redraw = true; }
 	bool getRedraw(){ return redraw; }

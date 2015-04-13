@@ -1,13 +1,15 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
 
+#define LEVEL_TURNS 1500
 #define SCREEN_WIDTH  80
 #define SCREEN_HEIGHT  24
 #define HUD_HEIGHT  3
 #define STAGE_HEIGHT  (SCREEN_HEIGHT-HUD_HEIGHT)
 #define NUMBER_SCORE 1
 #define PLAYER_INIT_LIVES 3
-#define LEVEL_TURNS 50
+#define ESC_KEY 27
+
 
 // When submitting in MAMA, put the line below in remark and make sure your project compiles in Linux!
 // (this is not mandatory, but can add bonus points)

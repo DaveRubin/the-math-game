@@ -2,6 +2,10 @@
 
 Equation::Equation()
 {
+	difficulty = 0;
+	solution = 0;
+	level = 0;
+	type = ADD;
 	generateEquation();
 }
 

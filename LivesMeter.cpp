@@ -9,6 +9,6 @@ void LivesMeter::setLives(int count){
 		s.append(INIT_LIVES - lives, ' ');
 	}
 	//set hearts
-	s.append(lives, HEART);
+	s.append(lives, HEART_CHAR);
 	setText(s);
 }

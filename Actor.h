@@ -2,6 +2,10 @@
 #ifndef _ACTOR_H_
 #define _ACTOR_H_
 
+
+#define DEFAULT_ACTOR_LIVES  1
+#define DEFAULT_ACTOR_LOOK  '\x02'
+
 #pragma once
 #include "DisplayObject.h"
 #include "Direction.h"
@@ -10,16 +14,13 @@
 class Actor:
 	public DisplayObject
 {
-	const int DEFAULT_LIVES = 1;
-	const char DEFAULT_LOOK = '\x02';
-
 	char view;
 	int lives;
-	int direction = Direction::STAY;
+	int direction;
 	
 	void checkBounds();
 public:
-	string objectType = "Actor";
+	string objectType;
 
 	Actor();
 	Actor(char look, int lives);

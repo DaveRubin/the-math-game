@@ -19,10 +19,10 @@ class Equation :
 		ADD,MULTIPLY,SUBTRACT,DIVIDE
 	};
 
-	EQUATION_TYPE type = ADD;
-	int difficulty = 0;
-	int solution = 0;
-	int level = 0;
+	EQUATION_TYPE type;
+	int difficulty;
+	int solution;
+	int level;
 
 	int getRandomElement();
 public:

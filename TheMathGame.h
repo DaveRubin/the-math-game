@@ -29,17 +29,15 @@ class TheMathGame :
 	public ISpecificGame
 {
 	//private members:
-	const static char ESC = 27; // the ESC key
-	bool menuShown = false;
-	int currentLevel = 0;
-	int turnsLeft = LEVEL_TURNS;
-	bool finishedLevel = false;
+	bool menuShown;
+	int currentLevel;
+	int turnsLeft;
+	bool finishedLevel;
 
-	Player *player1 = NULL;
-	Player *player2 = NULL;
-	//Timer *timer
-	Stage *stage  = NULL;
-	Hud *hud = NULL;
+	Player *player1;
+	Player *player2;
+	Stage *stage;
+	Hud *hud;
 	//move and render objects needed to be rendered
 	void renderFrame();
 	bool checkFreeSpace(int x, int y);

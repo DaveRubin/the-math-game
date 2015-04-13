@@ -14,8 +14,8 @@ class Stage
 {
 	DisplayObject **renderList; 
 	DisplayObject *matrix[SCREEN_WIDTH][SCREEN_HEIGHT];
-	int numChildren = 0;
-	int renderListSize = 0;
+	int numChildren;
+	int renderListSize;
 	void resetMatrix();
 
 public:
@@ -29,6 +29,7 @@ public:
 	void setChildAt(DisplayObject *child,int x, int y);
 	void removeChildren(DisplayObject*);
 	void init();
+	void deleteAll();
 };
 
 

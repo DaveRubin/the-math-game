@@ -2,13 +2,14 @@
 
 float Point::distance(Point p)
 {
-	int deltaX = abs(p.getX() - x );
+	//preperation for next ex
+	/*int deltaX = abs(p.getX() - x );
 	int deltaY = abs( p.getY() - y);
-	return sqrtf(deltaX*deltaX + deltaY*deltaY);
+	return sqrt(deltaX*deltaX + deltaY*deltaY);*/
+	return 0;
 }
 
 void Point::print()
 {
 	cout << "Point at : ( " << x << " , " << y << " )" << endl;
 }
-

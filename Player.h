@@ -29,8 +29,8 @@ class Player :
 	void setDefaultKeys();
 	void initStats();
 public:
-	string objectType = "Player";
-	bool answeredRight = false;
+	string objectType;
+	bool answeredRight;
 
 	Player();
 	Player(char look);

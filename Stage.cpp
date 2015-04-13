@@ -3,6 +3,8 @@
 
 Stage::Stage()
 {
+	numChildren = 0;
+	renderListSize = 0;
 	resetMatrix();
 }
 
@@ -100,7 +102,7 @@ void Stage::removeChildren(DisplayObject *child)
 			renderList[i] = renderList[i + 1];
 		}
 		if (renderList[i] == child){
-			renderList[i] = NULL;
+			delete child;
 			numChildren--;
 			removed = true;
 		}
@@ -111,10 +113,15 @@ void Stage::removeChildren(DisplayObject *child)
 
 void Stage::init()
 {
-	for (int i = 0; i < numChildren; i++)
-	{
-		renderList[i] = NULL;
-	}
+	deleteAll();
 	numChildren = 0;
 	resetMatrix();
+}
+
+void Stage::deleteAll()
+{
+	for (int i = 0; i < numChildren; i++)
+	{
+		delete renderList[i];
+	}
 }

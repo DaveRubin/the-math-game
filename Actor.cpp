@@ -4,9 +4,11 @@
 Actor::Actor()
 {
 	setType("Actor");
-	lives = DEFAULT_LIVES;
-	view = DEFAULT_LOOK;
+	lives = DEFAULT_ACTOR_LIVES;
+	view = DEFAULT_ACTOR_LOOK;
 	setStatic(false);
+	objectType = "Actor";
+	direction = Direction::STAY;
 }
 
 
@@ -15,6 +17,8 @@ Actor::Actor(char lookInput, int livesInput )
 	setType("Actor");
 	lives = livesInput;
 	view = lookInput;
+	objectType = "Actor";
+	direction = Direction::STAY;
 }
 
 Actor::Actor(const Actor &actor )
@@ -23,6 +27,8 @@ Actor::Actor(const Actor &actor )
 	lives = actor.lives;
 	view = actor.view;
 	position.set(actor.position);
+	objectType = "Actor";
+	direction = Direction::STAY;
 }
 
 void Actor::stop()

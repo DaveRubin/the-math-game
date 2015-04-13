@@ -6,6 +6,14 @@ TheMathGame::TheMathGame()
 {
 	//when game is constructed, 
 	//initialize players, equations, timer 
+	menuShown = false;
+	currentLevel = 0;
+	turnsLeft = LEVEL_TURNS;
+	finishedLevel = false;
+	player1 = NULL;
+	player2 = NULL;
+	stage = NULL;
+	hud = NULL;
 }
 
 
@@ -13,9 +21,11 @@ TheMathGame::~TheMathGame()
 {
 	// delete all objects
 	delete hud;
+	if (stage) stage->deleteAll();
 	delete stage;
 	delete player1;
 	delete player2;
+	
 }
 
 void TheMathGame::startLevel(int levelInput)
@@ -68,15 +78,15 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 		clear_screen();
 		gotoxy(30, 15);
 		cout << "BOOOO! ! ! ! YOU GUYS SUCK !";
-		getch();
+		_getch();
 		currentLevel++;
 		startLevel(currentLevel);
 		return;
 	}
 	turnsLeft--; 
 	//check if one of the keys matches the key set of one of the players
-	for (list<char>::const_iterator itr = keyHits.cbegin();
-		itr != keyHits.cend(); ++itr)
+	for (list<char>::const_iterator itr = keyHits.begin();
+		itr != keyHits.end(); ++itr)
 	{
 			player1->checkKey(*itr);
 			player2->checkKey(*itr);
@@ -89,7 +99,7 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 		clear_screen();
 		gotoxy(30, 15);
 		cout << "WAY TO GO ! ! ! ";
-		getch();
+		_getch();
 		currentLevel++;
 		startLevel(currentLevel);
 	}
