@@ -1,13 +1,19 @@
 #include "Player.h"
+/**
+set the movement keys (top, left down ,right)
 
-void Player::setDefaultKeys()
+*/
+void Player::setKeys(string tldr = "waxd")
 {
-	keyUp = 'w';
-	keyLeft = 'a';
-	keyDown = 's';
-	keyRight = 'd';
+	keyUp =		tldr[0];
+	keyLeft =	tldr[1];
+	keyDown =	tldr[2];
+	keyRight =	tldr[3];
 }
 
+/*
+initialize player stats
+*/
 void Player::initStats()
 {
 	hudEquation = new Equation();
@@ -20,35 +26,26 @@ void Player::initStats()
 	answeredRight = false;
 }
 
-Player::Player()
-{
-	initStats();
-	setDefaultKeys();
-}
-
-
-Player::Player(char look)
-{
-	initStats();
-	setView(look);
-	setDefaultKeys();
-}
-
-
-Player::Player(char look, string tldr)
+/*
+constructor that defines how the player looks & its keyboard
+look - the char representing the player
+tldr - string of chars representing the keys for :top,left,down,right;
+*/
+Player::Player(char look = DEFAULT_ACTOR_LOOK , string tldr = "waxd")
 {
 	initStats();
 	setView(look);
 	if (tldr.length() != 4)
-		setDefaultKeys();
+		setKeys();
 	else {
-		keyUp = tldr[0];
-		keyLeft = tldr[1];
-		keyDown = tldr[2];
-		keyRight = tldr[3];
+		setKeys(tldr);
 	}
 }
 
+
+/*
+initialize the base parameters
+*/
 void Player::init()
 {
 	setLives(PLAYER_INIT_LIVES);
@@ -57,7 +54,15 @@ void Player::init()
 	show();
 }
 
+/*
+check collision
+check the next position of the player using its current position and direction
+then if there is some actor at this point handle it by its type:
 
+if other player then stop
+if number, then check validity of number and get points\reduce 
+
+*/
 void Player::checkCollision()
 {
 	int step = 1;
@@ -101,7 +106,7 @@ void Player::checkCollision()
 			answeredRight = true;
 		}
 		else
-		{
+		{		
 			setLives(getLives() - 1);
 			hudLives->setLives(getLives());
 			if (getLives() == 0){

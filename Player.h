@@ -11,8 +11,7 @@
 
 
 
-class Player :
-	public Actor
+class Player : public Actor
 {
 	
 
@@ -26,14 +25,12 @@ class Player :
 	TextField *hudScore;
 	LivesMeter *hudLives;
 
-	void setDefaultKeys();
+	void setKeys(string tldr);
 	void initStats();
 public:
 	string objectType;
 	bool answeredRight;
 
-	Player();
-	Player(char look);
 	Player(char look,string keys);
 
 	void checkKey(char option) {
@@ -44,7 +41,7 @@ public:
 		if (option == keyDown) setDirection(Direction::DOWN);
 		if (option == keyRight) setDirection(Direction::RIGHT);
 	}
-	virtual void checkCollision();
+	virtual void checkCollision() override;
 	Equation *getEquation(){ return hudEquation; };
 	TextField *getScore(){ return hudScore; };
 	LivesMeter *getLivesObj(){ return hudLives; };
