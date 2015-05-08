@@ -41,11 +41,14 @@ class TheMathGame :
 	//move and render objects needed to be rendered
 	void renderFrame();
 	bool checkFreeSpace(int x, int y);
+	void positionPlayers();
+	void addPlayersObjectsToStage();
 
 public:
 	virtual int getLevel(){ return currentLevel; }
 	virtual bool isLevelDone()const{ return finishedLevel; }
 	virtual bool hasNextLevel()const{ return currentLevel < 20; }
+
 	virtual void startLevel(int level);
 	virtual void doIteration(const list<char>& keyHits);
 	virtual void doSubIteration();

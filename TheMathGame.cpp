@@ -5,11 +5,12 @@
 TheMathGame::TheMathGame()
 {
 	//when game is constructed, 
-	//initialize players, equations, timer 
+	//initialize players, variables 
 	menuShown = false;
-	currentLevel = 0;
-	turnsLeft = LEVEL_TURNS;
 	finishedLevel = false;
+	currentLevel = 0;
+
+	turnsLeft = LEVEL_TURNS;
 	player1 = NULL;
 	player2 = NULL;
 	stage = NULL;
@@ -19,24 +20,36 @@ TheMathGame::TheMathGame()
 
 TheMathGame::~TheMathGame()
 {
-	// delete all objects
-	delete hud;
-	if (stage) stage->deleteAll();
-	delete stage;
-	delete player1;
-	delete player2;
+	// delete all allocated objects
+	if (stage)
+	{
+		stage->deleteAll();
+		delete stage;
+	}
+
+	if (hud) delete hud;
+	if (player1) delete player1;
+	if (player2) delete player2;
 	
 }
-
+/**
+when starting level , initialize stage and players
+this function is called both from game manger and TheMathGame
+*/
 void TheMathGame::startLevel(int levelInput)
 {
 	finishedLevel = false;
 	currentLevel = levelInput;
+
 	// init hud and stage objects if null
+	//TODO: we should replace all the  (!object) conditions with boolean for first run
 	if (!hud) hud = new Hud();
+
 	if (!stage)
 	{
 		stage = new Stage();
+		//initialize players looks and controls
+		//TODO: fix controls to "waxd" formats
 		player1 = new Player('@', "wasd");
 		player2 = new Player('#', "ijkl");
 	}
@@ -46,30 +59,16 @@ void TheMathGame::startLevel(int levelInput)
 		player2->init();
 
 	}
+	//position player on screen
+	positionPlayers();
 
-	player1->position.set(15, 15);
-	player1->getEquation()->position.set(5, 0);
-	player1->getLivesObj()->position.set(5, 1);
-	player1->getScore()->position.set(10, 1);
-	player2->position.set(30, 15);
-	player2->getEquation()->position.set(SCREEN_WIDTH - 15, 0);
-	player2->getLivesObj()->position.set(SCREEN_WIDTH - 15, 1);
-	player2->getScore()->position.set(SCREEN_WIDTH - 10, 1);
-	stage->addChild(player1);
-	stage->addChild(player1->getScore());
-	stage->addChild(player1->getLivesObj());
-	stage->addChild(player1->getEquation());
-	stage->addChild(player2);
-	stage->addChild(player2->getScore());
-	stage->addChild(player2->getLivesObj());
-	stage->addChild(player2->getEquation());
+	addPlayersObjectsToStage();
 
 	clear_screen();
 	turnsLeft = LEVEL_TURNS;
 	gotoxy(15, 0);
 	cout << "current level: " << currentLevel;
 }
-
 
 void TheMathGame::doIteration(const list<char>& keyHits)
 {
@@ -172,6 +171,41 @@ void TheMathGame::addNumber()
 			(xPos + SCREEN_WIDTH - (digits-1) ) % SCREEN_WIDTH, 
 			yPos + HUD_HEIGHT));
 	}
+}
+
+/*
+position players objects  for each player:
+actual player charecter, score ,lives and equation
+*/
+void TheMathGame::positionPlayers()
+{
+	//Player1 objects
+	player1->position.set(15, 15);
+	player1->getEquation()->position.set(5, 0);
+	player1->getLivesObj()->position.set(5, 1);
+	player1->getScore()->position.set(10, 1);
+
+	//Player2 objects
+	player2->position.set(30, 15);
+	player2->getEquation()->position.set(SCREEN_WIDTH - 15, 0);
+	player2->getLivesObj()->position.set(SCREEN_WIDTH - 15, 1);
+	player2->getScore()->position.set(SCREEN_WIDTH - 10, 1);
+}
+
+//Add players objects (charechter,score,lives and equation) to Stage
+void TheMathGame::addPlayersObjectsToStage()
+{
+	//Player1 objects
+	stage->addChild(player1);
+	stage->addChild(player1->getScore());
+	stage->addChild(player1->getLivesObj());
+	stage->addChild(player1->getEquation());
+
+	//Player2 objects
+	stage->addChild(player2);
+	stage->addChild(player2->getScore());
+	stage->addChild(player2->getLivesObj());
+	stage->addChild(player2->getEquation());
 }
 
 bool TheMathGame::checkFreeSpace(int xPos, int yPos)
