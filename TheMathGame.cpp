@@ -85,8 +85,7 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 	}
 	turnsLeft--; 
 	//check if one of the keys matches the key set of one of the players
-	for (list<char>::const_iterator itr = keyHits.begin();
-		itr != keyHits.end(); ++itr)
+	for (list<char>::const_iterator itr = keyHits.begin(); itr != keyHits.end(); ++itr)
 	{
 			player1->checkKey(*itr);
 			player2->checkKey(*itr);
@@ -103,6 +102,7 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 		currentLevel++;
 		player1->getEquation()->setLevel(currentLevel);
 		player2->getEquation()->setLevel(currentLevel);
+		//TODO: addlevelas parameter togenerate level
 		player1->getEquation()->generateEquation();
 		player2->getEquation()->generateEquation();
 		startLevel(currentLevel);
@@ -146,25 +146,28 @@ void TheMathGame::addNumber()
 	int digits = 1;
 	int xPos;
 	int yPos;
-	//stage->addChild(new Number(5, 20, 20));
+
 	while (!placeFound && tries != 0)
 	{
 		yPos = rand() % (STAGE_HEIGHT);
 		xPos = rand() % (SCREEN_WIDTH);
-		//yPos = 15;
-		//xPos = 0;
-		//number = 99;
+		
 		//chek if all neighbors are null
 		placeFound = true;
+
 		if (!checkFreeSpace(xPos, yPos)) placeFound = false;
-		if (number > 9){
+
+		if (number > 9)
+		{
 			digits = 2;
 			if (!checkFreeSpace((xPos + SCREEN_WIDTH - 1) % SCREEN_WIDTH, yPos)) placeFound = false;
 		}
 		tries--;
 	}
+
 	//if found add a number there
-	if (placeFound){
+	if (placeFound)
+	{
 		stage->addChild(new Number(number, 
 			(xPos + SCREEN_WIDTH - (digits-1) ) % SCREEN_WIDTH, 
 			yPos + HUD_HEIGHT));
@@ -179,12 +182,15 @@ bool TheMathGame::checkFreeSpace(int xPos, int yPos)
 	Point leftPoint = Point((xPos + SCREEN_WIDTH - 1) % SCREEN_WIDTH, yPos + HUD_HEIGHT);
 	Point topPoint = Point(xPos, (yPos + 1) % STAGE_HEIGHT + HUD_HEIGHT);
 	Point bottomPoint = Point(xPos, (yPos + (STAGE_HEIGHT)-1) % STAGE_HEIGHT + HUD_HEIGHT);
-
+	
+	//change freeSpot=false to return false
 	if (stage->getChildAt(centerPoint)) freeSpot = false;
 	if (stage->getChildAt(rightPoint)) freeSpot = false;
 	if (stage->getChildAt(leftPoint)) freeSpot = false;
 	if (stage->getChildAt(topPoint)) freeSpot = false;
 	if (stage->getChildAt(bottomPoint)) freeSpot = false;
+
+	//change to return true 
 	return freeSpot;
 }
 

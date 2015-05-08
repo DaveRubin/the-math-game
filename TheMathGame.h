@@ -29,7 +29,7 @@ class TheMathGame :
 	public ISpecificGame
 {
 	//private members:
-	bool menuShown;
+	bool menuShown;		//pause game to show menu
 	int currentLevel;
 	int turnsLeft;
 	bool finishedLevel;
