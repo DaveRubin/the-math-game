@@ -32,6 +32,7 @@ void  Stage::setChildAt(DisplayObject *child, int x, int y)
 {
 	matrix[x][y] = child;
 }
+
 void Stage::addChild(DisplayObject *child)
 {
 	//if child list is full, multiply size
@@ -52,8 +53,10 @@ void Stage::addChild(DisplayObject *child)
 
 	//then add the child at the end of the list
 	renderList[numChildren] = child;
+
 	//inject the stage to the child
 	child->setStage(this);
+
 	//now add the clid reference to the matrix
 	//if its a number longer then 1 digit, add mutiple 
 	for (int i = 0; i < child->getWidth(); i++)
