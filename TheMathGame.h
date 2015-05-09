@@ -46,6 +46,7 @@ class TheMathGame :
 
 public:
 	virtual int getLevel(){ return currentLevel; }
+	virtual void setLevel(int levelInput){ currentLevel = levelInput; }
 	virtual bool isLevelDone()const{ return finishedLevel; }
 	virtual bool hasNextLevel()const{ return currentLevel < 20; }
 

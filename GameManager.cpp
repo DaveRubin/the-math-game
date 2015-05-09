@@ -30,52 +30,80 @@ using namespace std;
 
 char GameManager::mainMenu()const
 {
-	// TODO: you may want to improve the menu appearance
+	// TODO: we may want to improve the menu appearance
+
 	cout << "1. instructions" << endl;
 	cout << "2. play game" << endl;
 	cout << "3. start from a specific level" << endl;
 	cout << "9. exit" << endl;
+
 	char selection = 0;
+
 	do {
 		selection = _getch();
 	} while(!GameManager::MainMenuOptions::isValidOption(selection));
+
 	return selection;
 }
 
 void GameManager::run()
 {
 	bool userWantsToPlay = true;
-	// we run as long as the user wants
+
+	//run till user decides differant
 	while(userWantsToPlay) {
+
 		char menuSelection = mainMenu();
-		// TODO: handle here all the different menu options
+
 		switch(menuSelection)
 		{
 		case GameManager::MainMenuOptions::PLAY_GAME:
+
+			//set current level to 0  and start playing (will call next to level 1)
 			init();
 			userWantsToPlay = playGame();
+
 			break;
+
 		case GameManager::MainMenuOptions::PLAY_FROM_SELECTED_SCREEN:
+
+			//get wanted level from user
 			cout << "Select a level" << endl;
 			int levelSelected ;
 			cin >> levelSelected;
-			init();
+
+			//set the user input as the level before the "current level" and continue
+			//this way when calling "next level" it will go to the right one
 			currentLevel = levelSelected;
+			actualGame.setLevel(currentLevel -1);
 			userWantsToPlay = playGame();
+
 			break;
+
 		case GameManager::MainMenuOptions::PRESENT_INSTRUCTIONS:
+
+			//remporary instructions
+			//TODO: write normal instructions
+
 			clear_screen();
 			cout << "these are the instructions: \nplease play the game...\n\n\n\npress anything to return"<<endl;
+
 			/*char tmp;
 			cin >> tmp;
 			*/
+
 			_getch();
 			clear_screen();
+
 			break;
+
 		case GameManager::MainMenuOptions::EXIT_APPLICATION:
+
 			userWantsToPlay = false;
 			break;
+
 		default: // normally we shouldn't get to here...
+
 			userWantsToPlay = false;
 		};
 	}
