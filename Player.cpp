@@ -86,16 +86,24 @@ void Player::checkCollision()
 		tmpPos.add(Point(0, step));
 		break;
 	}
+	//check horizontal warp for tempPos
+	if (tmpPos.getX() < 0) tmpPos.add(Point(SCREEN_WIDTH, 0));
+	if (tmpPos.getX() >= SCREEN_WIDTH) tmpPos.add(Point(-SCREEN_WIDTH, 0));
+
 	//get matrix and check if something is there
 	DisplayObject *targetObj = getStage()->getChildAt(tmpPos.getX(), tmpPos.getY());
 	//if clear then return
 	if (targetObj == NULL) return;
+
 	string targetType = targetObj->getType();
+
 	//if other player stop
+	//TODO : move the objectType string into const class
 	if (targetType == "Player")
 	{
 		setDirection(Direction::STAY);
 	}
+
 	//if number then kill the number
 	if (targetType == "Number")
 	{

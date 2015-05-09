@@ -153,12 +153,14 @@ char GameManager::playNextLevel()
 		//=============================================================================================
 		
 		// check action based on game ended (action==BACK_TO_MAIN_MENU) or input from user on ESC menu
-		switch(action) {
+		switch(action) 
+		{
 		case GameManager::LevelOptions::CONTINUE:
 			// keepRunning is true, so we only need to set thing right and then - keepRunning!
 			//--------------------------------------------------------------------------------
 			clear_screen();
 			break;
+
 		case GameManager::LevelOptions::REPLAY_LEVEL:
 			// keepRunning is true, so we only need to set thing right and then - keepRunning!
 			//--------------------------------------------------------------------------------
@@ -166,17 +168,21 @@ char GameManager::playNextLevel()
 			//we should concider adding "replayLevel" function to the interface
 			actualGame.startLevel(actualGame.getLevel());
 			break;
+
 		case GameManager::LevelOptions::BACK_TO_MAIN_MENU:
+			//clear screen and reset level before getting back to main menu
 			clear_screen();
 			actualGame.setLevel(0);
 			keepRunning = false;
 
 			break;
+
 		case GameManager::LevelOptions::EXIT_APPLICATION:
 			// get out from the loop
 			clear_screen();
 			keepRunning = false;
 			break;
+
 		case GameManager::LevelOptions::NEXT_LEVEL:
 			// get out from the loop so we get to the next level
 			keepRunning = false;
@@ -211,16 +217,19 @@ char GameManager::doLevelIterations()
 
 	// check why we are here
 	if(actualGame.isLevelDone()) {
+
 		clear_screen();
 		gotoxy(30, 15);
 		cout  << "WELL DONE" << endl;
 		_getch();
 		action = GameManager::LevelOptions::NEXT_LEVEL;
+
 	}
-	else if(escapePressed) {
+	else if (escapePressed) {
+
 		action = 0;
 		actualGame.showMenu();
-		// TODO: print here the sub menu options to the proper place in screen
+		// TODO: print here the sub menu options to the proper place in screen 
 		do {
 			action = _getch();
 		} while(!GameManager::LevelOptions::isValidOption(action));
