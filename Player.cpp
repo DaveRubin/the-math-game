@@ -44,13 +44,16 @@ Player::Player(char look = DEFAULT_ACTOR_LOOK , string tldr = "waxd")
 
 
 /*
-initialize the base parameters
+initialize the base parameters and update hudLives (to show the current lives)
 */
 void Player::init()
 {
-	setLives(PLAYER_INIT_LIVES);
-	setDirection(Direction::STAY);
 	answeredRight = false;
+
+	setLives(PLAYER_INIT_LIVES);
+	hudLives->setLives(PLAYER_INIT_LIVES);
+	setDirection(Direction::STAY);
+
 	show();
 }
 
