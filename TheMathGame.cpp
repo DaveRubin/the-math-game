@@ -57,8 +57,14 @@ void TheMathGame::startLevel(int levelInput)
 		stage->init();
 		player1->init();
 		player2->init();
-
 	}
+
+	//TODO: delete these comments when done
+	//bullet test 
+	//bullet.position.set(30, 15);
+	//stage->addChild(&bullet);
+	//bullet.setDirection(Direction::UP);
+
 	//position player on screen
 	positionPlayers();
 
@@ -82,6 +88,7 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 		startLevel(currentLevel);
 		return;
 	}
+
 	turnsLeft--; 
 	//check if one of the keys matches the key set of one of the players
 	for (list<char>::const_iterator itr = keyHits.begin(); itr != keyHits.end(); ++itr)
@@ -92,6 +99,8 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 	
 	//move player 1 and 2, if collided, stop
 	stage->moveChildren();
+
+	//should capsulate to "shoe screen" method
 	if (player1->answeredRight || player2->answeredRight)
 	{
 		clear_screen();
@@ -231,5 +240,6 @@ bool TheMathGame::checkFreeSpace(int xPos, int yPos)
 
 void TheMathGame::doSubIteration()
 {
-	//cout << "sub-Itareation " << endl;
+//	bullet.move();
+//	renderFrame();
 }

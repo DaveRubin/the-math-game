@@ -1,7 +1,7 @@
 #include "Player.h"
+
 /**
 set the movement keys (top, left down ,right)
-
 */
 void Player::setKeys(string tldr = "waxd")
 {
@@ -19,10 +19,11 @@ void Player::initStats()
 	hudEquation = new Equation();
 	hudScore = new TextField(0);
 	hudLives = new LivesMeter();
+	//redundent, should reconcider the architecture for  identifieng objects
 	setType("Player");
+	objectType = "Player";
 	score = 0;
 	setLives(PLAYER_INIT_LIVES);
-	objectType = "Player";
 	answeredRight = false;
 }
 
@@ -70,22 +71,27 @@ void Player::checkCollision()
 {
 	int step = 1;
 	Point tmpPos = Point(position);
+
 	//move tmpPoint
 	switch (getDirection())
 	{
 	case Direction::LEFT:
 		tmpPos.add(Point(-step, 0));
 		break;
+
 	case Direction::RIGHT:
 		tmpPos.add(Point(step, 0));
 		break;
+
 	case Direction::UP:
 		tmpPos.add(Point(0, -step));
 		break;
+
 	case Direction::DOWN:
 		tmpPos.add(Point(0, step));
 		break;
 	}
+
 	//check horizontal warp for tempPos
 	if (tmpPos.getX() < 0) tmpPos.add(Point(SCREEN_WIDTH, 0));
 	if (tmpPos.getX() >= SCREEN_WIDTH) tmpPos.add(Point(-SCREEN_WIDTH, 0));
@@ -98,7 +104,7 @@ void Player::checkCollision()
 	string targetType = targetObj->getType();
 
 	//if other player stop
-	//TODO : move the objectType string into const class
+	//TODO: move the objectType string into const class
 	if (targetType == "Player")
 	{
 		setDirection(Direction::STAY);
@@ -109,7 +115,7 @@ void Player::checkCollision()
 	{
 		int hitNumber = static_cast<Number*>(targetObj)->getNumber();
 		targetObj->kill();
-
+		
 		if (hitNumber == hudEquation->getSolution())
 		{
 			score += NUMBER_SCORE;
@@ -120,7 +126,9 @@ void Player::checkCollision()
 		{		
 			setLives(getLives() - 1);
 			hudLives->setLives(getLives());
-			if (getLives() == 0){
+
+			if (getLives() == 0)
+			{
 				kill();
 			}
 		}

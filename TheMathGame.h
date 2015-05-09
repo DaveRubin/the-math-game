@@ -37,6 +37,10 @@ class TheMathGame :
 	Player *player1;
 	Player *player2;
 	Stage *stage;
+
+	//TODO: delete these comments when done
+	//bullet test
+	Bullet bullet;
 	Hud *hud;
 	//move and render objects needed to be rendered
 	void renderFrame();

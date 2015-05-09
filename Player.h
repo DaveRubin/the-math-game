@@ -8,13 +8,12 @@
 #include "Equation.h"
 #include "LivesMeter.h"
 #include "TextField.h"
+#include "Bullet.h"
 
 
 
 class Player : public Actor
 {
-	
-
 	int score;
 	char keyUp;
 	char keyLeft;
@@ -27,10 +26,13 @@ class Player : public Actor
 
 	void setKeys(string tldr);
 	void initStats();
+
 public:
+	//public vars
 	string objectType;
 	bool answeredRight;
 
+	//player must get control keys top , left, down, right
 	Player(char look,string keys);
 
 	void checkKey(char option) {
@@ -41,12 +43,14 @@ public:
 		if (option == keyDown) setDirection(Direction::DOWN);
 		if (option == keyRight) setDirection(Direction::RIGHT);
 	}
-	virtual void checkCollision() override;
+
 	Equation *getEquation(){ return hudEquation; };
 	TextField *getScore(){ return hudScore; };
 	LivesMeter *getLivesObj(){ return hudLives; };
 
 	void init();
+	virtual void checkCollision() override;
+
 };
 
 

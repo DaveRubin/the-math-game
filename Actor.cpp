@@ -46,13 +46,18 @@ void Actor::kill()
 void Actor::move( bool reverse )
 {
 	if (lives <= 0) return;
+
 	checkCollision();
+
 	if (direction == Direction::STAY){
 		setRedraw(false);
 		return;
 	}
+
 	clear();
+
 	int step = (reverse) ? -1 : 1;
+
 	switch (direction)
 	{
 	case Direction::LEFT :
