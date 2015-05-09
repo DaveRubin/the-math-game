@@ -134,6 +134,7 @@ bool GameManager::playGame()
 // return action to take in case of ESC
 char GameManager::playNextLevel()
 {
+	//get game level and play the next one
 	int gameLevel = actualGame.getLevel();
 	currentLevel = gameLevel + 1;
 	actualGame.startLevel(currentLevel);
@@ -161,10 +162,13 @@ char GameManager::playNextLevel()
 		case GameManager::LevelOptions::REPLAY_LEVEL:
 			// keepRunning is true, so we only need to set thing right and then - keepRunning!
 			//--------------------------------------------------------------------------------
+
+			//we should concider adding "replayLevel" function to the interface
 			actualGame.startLevel(actualGame.getLevel());
 			break;
 		case GameManager::LevelOptions::BACK_TO_MAIN_MENU:
 			clear_screen();
+			actualGame.setLevel(0);
 			keepRunning = false;
 
 			break;
