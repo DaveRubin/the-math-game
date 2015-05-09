@@ -143,6 +143,7 @@ char GameManager::playNextLevel()
 	//------------------------------------------------------------------------------
 	bool keepRunning = true;
 	char action = 0;
+
 	while(keepRunning)
 	{
 		//=============================================================================================
@@ -160,7 +161,7 @@ char GameManager::playNextLevel()
 		case GameManager::LevelOptions::REPLAY_LEVEL:
 			// keepRunning is true, so we only need to set thing right and then - keepRunning!
 			//--------------------------------------------------------------------------------
-			actualGame.startLevel(currentLevel);
+			actualGame.startLevel(actualGame.getLevel());
 			break;
 		case GameManager::LevelOptions::BACK_TO_MAIN_MENU:
 			clear_screen();
