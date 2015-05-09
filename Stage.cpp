@@ -96,6 +96,9 @@ void Stage::moveChildren()
 	}
 }
 
+
+// TODO: need to handle child removal properly, the program is crashing because stage deleted child
+//should remove the specific child from the list, not 
 void Stage::removeChildren(DisplayObject *child)
 {
 	bool removed = false;
@@ -105,8 +108,11 @@ void Stage::removeChildren(DisplayObject *child)
 			renderList[i] = renderList[i + 1];
 		}
 		if (renderList[i] == child){
-			delete child;
-			numChildren--;
+			//delete child  --old code, crashed the program
+			renderList[i] = NULL;
+			//TODO:
+			//whenever removing children from the list, we should oreder the rest of the list (make splice)
+			//numChildren--;
 			removed = true;
 		}
 
@@ -125,6 +131,7 @@ void Stage::deleteAll()
 {
 	for (int i = 0; i < numChildren; i++)
 	{
-		delete renderList[i];
+		renderList[i] = NULL;
+		//delete renderList[i];
 	}
 }
