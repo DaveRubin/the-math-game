@@ -23,6 +23,7 @@ public:
 	void addChild(DisplayObject*);
 	void render();
 	void moveChildren();
+	void seconderyMove();
 	void clear();
 	DisplayObject *getChildAt(int x, int y);
 	DisplayObject *getChildAt(Point p);

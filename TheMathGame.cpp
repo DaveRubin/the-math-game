@@ -61,9 +61,9 @@ void TheMathGame::startLevel(int levelInput)
 
 	//TODO: delete these comments when done
 	//bullet test 
-	//bullet.position.set(30, 15);
-	//stage->addChild(&bullet);
-	//bullet.setDirection(Direction::UP);
+	bullet.position.set(30, 15);
+	stage->addChild(&bullet);
+	bullet.setDirection(Direction::UP);
 
 	//position player on screen
 	positionPlayers();
@@ -71,7 +71,9 @@ void TheMathGame::startLevel(int levelInput)
 	addPlayersObjectsToStage();
 
 	clear_screen();
+
 	turnsLeft = LEVEL_TURNS;
+
 	gotoxy(15, 0);
 	cout << "current level: " << currentLevel;
 }
@@ -79,17 +81,21 @@ void TheMathGame::startLevel(int levelInput)
 void TheMathGame::doIteration(const list<char>& keyHits)
 {
 	if (turnsLeft == 0){
+		//TODO: create a function for "you guys suck" screen
 		//finishedLevel = true;
 		clear_screen();
 		gotoxy(30, 15);
 		cout << "BOOOO! ! ! ! YOU GUYS SUCK !";
 		_getch();
+
 		currentLevel++;
 		startLevel(currentLevel);
+
 		return;
 	}
 
 	turnsLeft--; 
+
 	//check if one of the keys matches the key set of one of the players
 	for (list<char>::const_iterator itr = keyHits.begin(); itr != keyHits.end(); ++itr)
 	{
@@ -108,13 +114,17 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 		cout << "WAY TO GO ! ! ! ";
 		_getch();
 		currentLevel++;
+
+		//setup for next level
 		player1->getEquation()->setLevel(currentLevel);
 		player2->getEquation()->setLevel(currentLevel);
-		//TODO: addlevelas parameter togenerate level
+		//TODO: add levelas parameter togenerate level
 		player1->getEquation()->generateEquation();
 		player2->getEquation()->generateEquation();
 		startLevel(currentLevel);
 	}
+
+	//find a place for a new number to be added
 	addNumber();
 	//render all objects needed to be rendered
 	renderFrame();
@@ -140,8 +150,8 @@ void TheMathGame::showMenu()
 void TheMathGame::renderFrame()
 {
 	stage->render();
-	hud->updatePlayerStats(1, player1);
-	hud->updatePlayerStats(2, player2);
+//	hud->updatePlayerStats(1, player1);
+//	hud->updatePlayerStats(2, player2);
 	if (hud->getRedraw()) hud->render();
 }
 
@@ -240,6 +250,8 @@ bool TheMathGame::checkFreeSpace(int xPos, int yPos)
 
 void TheMathGame::doSubIteration()
 {
+	stage->seconderyMove();
+	renderFrame();
 //	bullet.move();
 //	renderFrame();
 }

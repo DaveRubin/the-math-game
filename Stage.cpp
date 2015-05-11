@@ -96,6 +96,16 @@ void Stage::moveChildren()
 	}
 }
 
+void Stage::seconderyMove()
+{
+	for (int i = 0; i < numChildren; i++)
+	{
+		if (!renderList[i]->isStatic() && renderList[i]->isFastObject() )
+		{
+			static_cast<Actor*>(renderList[i])->move();
+		}
+	}
+}
 
 // TODO: need to handle child removal properly, the program is crashing because stage deleted child
 //should remove the specific child from the list, not 

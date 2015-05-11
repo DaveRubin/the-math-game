@@ -3,9 +3,8 @@
 class Bullet :
 	public Actor
 {
-	char defaultBulletStyle = '\u25CF';
+	char defaultBulletStyle = '*';
 public:
-	void setDirection(int dir);
 	Bullet();
 	~Bullet();
 };

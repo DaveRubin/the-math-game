@@ -19,7 +19,7 @@ void Player::initStats()
 	hudEquation = new Equation();
 	hudScore = new TextField(0);
 	hudLives = new LivesMeter();
-	//redundent, should reconcider the architecture for  identifieng objects
+	//redundent, should reconcider the architecture for identifieng objects
 	setType("Player");
 	objectType = "Player";
 	score = 0;
