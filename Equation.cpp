@@ -63,25 +63,33 @@ int Equation::dividerRandomElements(int & numerator, int & denominator, int low,
 //get the two smallest variables' indices
 void Equation::getLowest(int * vars, int len, int & min1, int & min2)
 {
-	min1 = min2 = -1;
+	int tmp1, tmp2;
+	int ind1 = 0, ind2 = 0;
+	tmp1 = tmp2 = INT_MAX;
 	for (int k = 0; k < len; k++)
 	{
-		if (min1 > vars[k])
+		if (tmp1 > vars[k])
 		{
-			min2 = min1;
-			min1 = k;
+			tmp2 = tmp1;
+			tmp1 = vars[k];
+			ind1 = k;
 		}
 		// if vars[k] is in between min1 and min2 then update min2, I am assuming that there is a second smallest var
-		else if (min2 > vars[k] && vars[k] != min1)
-			min2 = k;
+		else if (tmp2 > vars[k] && vars[k] != tmp1)
+		{
+			tmp2 = vars[k];
+			ind2 = k;
+		}
 	}
+	min1 = ind1;
+	min2 = ind2;
 }
 
 //print out the equation ommitting the smallest solutions
 void Equation::printEquation(int * vars, int len, char operand1, char operand2, int min1, int min2)
 {
 	stringstream sstm;
-	string varChars[] = { to_string(vars[0]), to_string(vars[1]), to_string(vars[3]), to_string(vars[4])};
+	string varChars[] = { to_string(vars[0]), to_string(vars[1]), to_string(vars[2]), to_string(vars[3])};
 	varChars[min1] = "__";
 	if (min2 != -1)
 		varChars[min2] = "__";
@@ -91,8 +99,8 @@ void Equation::printEquation(int * vars, int len, char operand1, char operand2, 
 	setText(sstm.str());
 	
 	//save solution
-	solution1 = min1;
-	solution2 = min2;
+	solution1 = vars[min1];
+	solution2 = vars[min2];
 }
 
 /*
@@ -319,7 +327,5 @@ void Equation::generateEquation21(Equation::EQUATION_TYPE op1, Equation::EQUATIO
 	int vars[] = { num1, num2, num3, solution };
 	Equation::getLowest(vars, 4, min1, min2);
 	Equation::printEquation(vars, 4, operand1, operand2, min1, min2);
-	//TODO - build equation
-	
 	//TODO - generate solution for checking if X is a possible solution
 }
