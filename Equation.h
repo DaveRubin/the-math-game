@@ -22,13 +22,23 @@ class Equation :
 	EQUATION_TYPE type;
 	int difficulty;
 	int solution;
+	int solution1;	//for level 21 and up when there are two solutions...
+	int solution2;	//for level 21 and up when there are two solutions...
 	int level;
 
 	int getRandomElement();
+	int getRandomElementInRange(int low = 1, int high = 21);		//get random number in range between (and including) low limit and high
+	void getLowest(int & i, int & j);								//get the two smallest variables' indices
+
+	//randomizer for keeping divided numbers as integers that are in range
+	int dividerRandomElements(int & numerator, int & denominator, int low = 0, int high = 21);
+
 public:
 
 	void generateEquation();
-	void generateEquation(EQUATION_TYPE);
+	void generateEquation(EQUATION_TYPE);						//generates equations for levels 1 - 20
+	void generateEquation21(EQUATION_TYPE, EQUATION_TYPE);		//generates equations for levels 21 - 40
+
 
 	void setLevel(int input){ 
 		level = input;
