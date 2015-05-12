@@ -6,7 +6,7 @@
 #include "Stage.h"
 #include "Number.h"
 #include "Equation.h"
-#include "LivesMeter.h"
+#include "Gauge.h"
 #include "TextField.h"
 #include "Bullet.h"
 
@@ -23,7 +23,7 @@ class Player : public Actor
 
 	Equation *hudEquation;
 	TextField *hudScore;
-	LivesMeter *hudLives;
+	Gauge *hudLives;
 
 	void setKeys(string tldr);
 	void initStats();
@@ -48,7 +48,7 @@ public:
 
 	Equation *getEquation() { return hudEquation; };
 	TextField *getScore() { return hudScore; };
-	LivesMeter *getLivesObj() { return hudLives; };
+	Gauge *getLivesObj() { return hudLives; };
 
 	void init();
 	virtual void onCollision(DisplayObject *) override;

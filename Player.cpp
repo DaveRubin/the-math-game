@@ -19,7 +19,7 @@ void Player::initStats()
 {
 	hudEquation = new Equation();
 	hudScore = new TextField(0);
-	hudLives = new LivesMeter();
+	hudLives = new Gauge();
 	//redundent, should reconcider the architecture for identifieng objects
 	setType("Player");
 	objectType = "Player";
@@ -53,7 +53,7 @@ void Player::init()
 	answeredRight = false;
 
 	setLives(PLAYER_INIT_LIVES);
-	hudLives->setLives(PLAYER_INIT_LIVES);
+	hudLives->setCount(PLAYER_INIT_LIVES);
 	setDirection(Direction::STAY);
 
 	show();
@@ -95,7 +95,7 @@ void Player::hit()
 {
 	//update lives
 	setLives(getLives() - 1);
-	hudLives->setLives(getLives());
+	hudLives->setCount(getLives());
 
 	//if no lives left then kill player
 	if (getLives() == 0)

@@ -4,7 +4,7 @@
 #pragma once
 #include "io_utils.h"
 #include "Equation.h"
-#include "LivesMeter.h"
+#include "Gauge.h"
 #include "TextField.h"
 #include "Player.h"
 #include <stdlib.h>     

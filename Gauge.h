@@ -8,17 +8,26 @@
 
 #pragma once
 #include "TextField.h"
-class LivesMeter :
+class Gauge :
 	public TextField
 {
-	int lives;
+	int count;
+	char singleChar;
 	bool rtl; //define which direction to draw
 public:
-	LivesMeter() : rtl(false){ setLives(INIT_LIVES); };
-	void setLives(int input);
+	Gauge(char view = HEART_CHAR) : singleChar(view), rtl(false){ setCount(INIT_LIVES); };
+
+	void setCount(int input);
+
+	void setview(char view)
+	{
+		singleChar = view;
+		setCount(count);
+	};
+
 	void setRtl(bool val){ 
 		rtl = val; 
-		setLives(lives);
+		setCount(count);
 	}
 };
 
