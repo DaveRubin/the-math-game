@@ -37,10 +37,17 @@ void Player::shoot()
 {
 	int bulletsLeft = hudBullets->getCount();
 
-	if (bulletsLeft > 0)
+	if (bulletsLeft > 0 && getDirection() != Direction::STAY )
 	{
-		//add bullet with the players direction
+		//add bullet with the players location, and direction
+		//then move it (to use move method warp logic)
+		Bullet *newBullet = new Bullet();
+		newBullet->position.set(position);
+		newBullet->setDirection( getDirection() );
+		getStage()->addChild(newBullet);
+		newBullet->move();
 
+		//reduce bullet count
 		hudBullets->setCount(bulletsLeft - 1);
 	}
 }
@@ -56,19 +63,21 @@ void Player::addBullet()
 }
 
 /*
-constructor that defines how the player looks & its keyboard
+constructor 
+defines how the player looks & its control keys
 look - the char representing the player
-tldr - string of chars representing the keys for :top,left,down,right,shoot;
+tldrs - string of chars representing the keys for :top,left,down,right,shoot;
 */
 Player::Player(char look = DEFAULT_ACTOR_LOOK , string tldrs = "waxdz")
 {
 	initStats();
 	setView(look);
+
 	if (tldrs.length() != 5)
 		setKeys();
-	else {
+
+	else 
 		setKeys(tldrs);
-	}
 }
 
 
@@ -93,6 +102,7 @@ the function gets  the display obj
 void Player::onCollision(DisplayObject *targetObj)
 {
 	string targetType = targetObj->getType();
+
 	//if other player stop
 	//TODO: move the objectType string into const class
 	if (targetType == "Player")
