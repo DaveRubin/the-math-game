@@ -5,7 +5,7 @@ void Gauge::setCount(int countInput){
 	clear();
 	//if right to left, then add spaces instead the missing lives
 	string s = "";
-	if (rtl){
+	if (rtl) {
 		s.append(INIT_LIVES - count, ' ');
 	}
 	//set hearts

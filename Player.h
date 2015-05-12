@@ -24,9 +24,12 @@ class Player : public Actor
 	Equation *hudEquation;
 	TextField *hudScore;
 	Gauge *hudLives;
+	Gauge *bulletCount;
 
 	void setKeys(string tldr);
 	void initStats();
+	void shoot();
+	void addBullet();
 
 public:
 	//public vars
@@ -44,6 +47,8 @@ public:
 		if (option == keyLeft) setDirection(Direction::LEFT);
 		if (option == keyDown) setDirection(Direction::DOWN);
 		if (option == keyRight) setDirection(Direction::RIGHT);
+
+		if (option == keyShoot) shoot();
 	}
 
 	Equation *getEquation() { return hudEquation; };

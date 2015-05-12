@@ -26,4 +26,11 @@ void Bullet::onCollision(DisplayObject* targetObj)
 		static_cast<Actor*>(targetObj)->hit();
 		kill();
 	}
+
+	if (targetType == "Number")
+	{
+		targetObj->kill();
+		kill();
+	}
+
 }

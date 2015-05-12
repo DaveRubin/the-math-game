@@ -14,10 +14,13 @@ class Gauge :
 	int count;
 	char singleChar;
 	bool rtl; //define which direction to draw
+
 public:
+
 	Gauge(char view = HEART_CHAR) : singleChar(view), rtl(false){ setCount(INIT_LIVES); };
 
 	void setCount(int input);
+	int getCount() { return count; };
 
 	void setview(char view)
 	{

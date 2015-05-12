@@ -19,13 +19,40 @@ void Player::initStats()
 {
 	hudEquation = new Equation();
 	hudScore = new TextField(0);
-	hudLives = new Gauge();
+	//TODO: add gauges look from config 
+	hudLives = new Gauge(); 
+	bulletCount = new Gauge('*');
+
 	//redundent, should reconcider the architecture for identifieng objects
 	setType("Player");
 	objectType = "Player";
+
 	score = 0;
 	setLives(PLAYER_INIT_LIVES);
+	bulletCount->setCount(5);
 	answeredRight = false;
+}
+
+void Player::shoot()
+{
+	int shotsLeft = bulletCount->getCount();
+
+	if (shotsLeft > 0)
+	{
+		//add bullet with the players direction
+
+		bulletCount->setCount(shotsLeft - 1);
+	}
+}
+
+void Player::addBullet()
+{
+	int shotsLeft = bulletCount->getCount();
+
+	if (shotsLeft < 5)
+	{
+		bulletCount->setCount(shotsLeft + 1);
+	}
 }
 
 /*
