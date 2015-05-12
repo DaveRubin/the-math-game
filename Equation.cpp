@@ -317,7 +317,8 @@ void Equation::generateEquation21(Equation::EQUATION_TYPE op1, Equation::EQUATIO
 	}
 
 	int vars[] = { num1, num2, num3, solution };
-	
+	Equation::getLowest(vars, 4, min1, min2);
+	Equation::printEquation(vars, 4, operand1, operand2, min1, min2);
 	//TODO - build equation
 	
 	//TODO - generate solution for checking if X is a possible solution
