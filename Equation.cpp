@@ -85,6 +85,32 @@ void Equation::getLowest(int * vars, int len, int & min1, int & min2)
 	min2 = ind2;
 }
 
+int Equation::calculateThree(int n1, int n2, int n3, int varIndex, Operand op1, Operand op2)
+{
+	//calcuate equation (n1,n2,n3 ,op1,op2 ,varIndex)
+	//if varIndex = 4 then calculate n1-3 and return the result
+	if (varIndex == 4)
+	{
+		int tempNum;
+		if (!op1.isImprtant() && op2.isImprtant())
+		{
+			tempNum = op2.calulate(n2, n3);
+			return op1.calulate(n1, tempNum);
+		}
+		else
+		{
+			tempNum = op1.calulate(n1, n2);
+			return op2.calulate(tempNum, n3);
+		}
+	}
+	//if its not the solution
+	//check if var index have neighbor multiply/divide if so
+	//ignore the neighbor\s and counter the non neighbor with relevant multiply\divide
+	//check for regular nums and counter them (-+) with the solution
+	//now return the solution
+	return 0;
+}
+
 //print out the equation ommitting the smallest solutions
 void Equation::printEquation(int * vars, int len, char operand1, char operand2, int min1, int min2)
 {

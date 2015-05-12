@@ -9,6 +9,8 @@
 #include <sstream>
 #include <iostream>
 #include <list>
+#include "Operand.h"
+
 
 using namespace std;
 
@@ -30,6 +32,7 @@ class Equation :
 	int getRandomElement();
 	int getRandomElementInRange(int low = 1, int high = 21);		//get random number in range between (and including) low limit and high
 	void getLowest(int * vars, int len, int & i, int & j);			//get the two smallest variables' indices
+	int calculateThree(int n1, int n2, int n3, int varIndex, Operand op1, Operand op2);
 
 	//randomizer for keeping divided numbers as integers that are in range
 	int dividerRandomElements(int & numerator, int & denominator, int low = 0, int high = 21);
