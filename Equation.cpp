@@ -61,15 +61,38 @@ int Equation::dividerRandomElements(int & numerator, int & denominator, int low,
 }
 
 //get the two smallest variables' indices
-void getLowest(int * vars, int len, int & min1, int & min2)
+void Equation::getLowest(int * vars, int len, int & min1, int & min2)
 {
 	min1 = min2 = -1;
 	for (int k = 0; k < len; k++)
 	{
 		if (min1 > vars[k])
+		{
+			min2 = min1;
 			min1 = k;
+		}
+		// if vars[k] is in between min1 and min2 then update min2, I am assuming that there is a second smallest var
+		else if (min2 > vars[k] && vars[k] != min1)
+			min2 = k;
 	}
+}
 
+//print out the equation ommitting the smallest solutions
+void Equation::printEquation(int * vars, int len, char operand1, char operand2, int min1, int min2)
+{
+	stringstream sstm;
+	string varChars[] = { to_string(vars[0]), to_string(vars[1]), to_string(vars[3]), to_string(vars[4])};
+	varChars[min1] = "__";
+	if (min2 != -1)
+		varChars[min2] = "__";
+
+	sstm << varChars[0] << " " << operand1 << " " << varChars[1] << " " << operand2 << " " << varChars[2] << " " << '=' << " " << varChars[3] << endl;
+	
+	setText(sstm.str());
+	
+	//save solution
+	solution1 = min1;
+	solution2 = min2;
 }
 
 /*
@@ -126,7 +149,8 @@ void Equation::generateEquation(Equation::EQUATION_TYPE eqType)
 void Equation::generateEquation21(Equation::EQUATION_TYPE op1, Equation::EQUATION_TYPE op2)
 {
 	int num1, num2, num3, solution = 0;			//initialize the soltuion and variables
-	int high, low, divided;
+	int high, low, divided;						//for calculation and building the equation
+	int min1, min2;								//indices for smallest vars
 	char operand1 = ' ', operand2 = ' ';
 
 	switch (op1)
@@ -293,7 +317,8 @@ void Equation::generateEquation21(Equation::EQUATION_TYPE op1, Equation::EQUATIO
 	}
 
 	int vars[] = { num1, num2, num3, solution };
+	
 	//TODO - build equation
-	//TODO - find two smallest variables
+	
 	//TODO - generate solution for checking if X is a possible solution
 }
