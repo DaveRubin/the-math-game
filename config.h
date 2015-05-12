@@ -1,15 +1,15 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
 
-#define LEVEL_TURNS 1500
-#define SCREEN_WIDTH  80
-#define SCREEN_HEIGHT  24
-#define HUD_HEIGHT  3
-#define STAGE_HEIGHT  (SCREEN_HEIGHT-HUD_HEIGHT)
-#define NUMBER_SCORE 1
-#define PLAYER_INIT_LIVES 3
-#define ESC_KEY 27
-#define BULLET_REFILL_DURATION 200
+const int LEVEL_TURNS = 1500;
+const int SCREEN_WIDTH = 80;
+const int SCREEN_HEIGHT = 24;
+const int HUD_HEIGHT = 3;
+const int STAGE_HEIGHT = 21;
+const int NUMBER_SCORE = 1;
+const int PLAYER_INIT_LIVES = 3;
+const int ESC_KEY = 27;
+const int BULLET_REFILL_DURATION = 200;
 
 // When submitting in MAMA, put the line below in remark and make sure your project compiles in Linux!
 // (this is not mandatory, but can add bonus points)
