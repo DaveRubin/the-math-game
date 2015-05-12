@@ -33,6 +33,7 @@ public:
 
 	int getLives(){ return lives; }
 	void setLives(int count){ lives = count; }
+	bool isDead() { return lives == 0; }
 
 	bool collide(const Actor &actor);
 	void stop();

@@ -79,7 +79,9 @@ void TheMathGame::startLevel(int levelInput)
 
 void TheMathGame::doIteration(const list<char>& keyHits)
 {
-	if (turnsLeft == 0) {
+	if ( turnsLeft == 0 || 
+		(player1->isDead() && player2->isDead()) ) 
+	{
 		//TODO: create a function for "you guys suck" screen
 		//finishedLevel = true;
 		clear_screen();
