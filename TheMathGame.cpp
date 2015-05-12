@@ -58,6 +58,12 @@ void TheMathGame::startLevel(int levelInput)
 		player2->init();
 	}
 
+	//TODO: add levelas parameter togenerate level
+	player1->getEquation()->setLevel(currentLevel);
+	player2->getEquation()->setLevel(currentLevel);
+	player1->getEquation()->generateEquation();
+	player2->getEquation()->generateEquation();
+
 	//TODO: delete these comments when done
 	//bullet test 
 //	bullet.position.set(30, 14);
@@ -117,11 +123,6 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 		currentLevel++;
 
 		//setup for next level
-		player1->getEquation()->setLevel(currentLevel);
-		player2->getEquation()->setLevel(currentLevel);
-		//TODO: add levelas parameter togenerate level
-		player1->getEquation()->generateEquation();
-		player2->getEquation()->generateEquation();
 		startLevel(currentLevel);
 	}
 
