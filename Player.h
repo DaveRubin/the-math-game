@@ -24,7 +24,7 @@ class Player : public Actor
 	Equation *hudEquation;
 	TextField *hudScore;
 	Gauge *hudLives;
-	Gauge *bulletCount;
+	Gauge *hudBullets;
 
 	void setKeys(string tldr);
 	void initStats();
@@ -54,6 +54,7 @@ public:
 	Equation *getEquation() { return hudEquation; };
 	TextField *getScore() { return hudScore; };
 	Gauge *getLivesObj() { return hudLives; };
+	Gauge *getBulletsObj() { return hudBullets; };
 
 	void init();
 	virtual void onCollision(DisplayObject *) override;

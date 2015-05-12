@@ -21,7 +21,7 @@ void Player::initStats()
 	hudScore = new TextField(0);
 	//TODO: add gauges look from config 
 	hudLives = new Gauge(); 
-	bulletCount = new Gauge('*');
+	hudBullets = new Gauge('*');
 
 	//redundent, should reconcider the architecture for identifieng objects
 	setType("Player");
@@ -29,29 +29,29 @@ void Player::initStats()
 
 	score = 0;
 	setLives(PLAYER_INIT_LIVES);
-	bulletCount->setCount(5);
+	hudBullets->setCount(5);
 	answeredRight = false;
 }
 
 void Player::shoot()
 {
-	int shotsLeft = bulletCount->getCount();
+	int bulletsLeft = hudBullets->getCount();
 
-	if (shotsLeft > 0)
+	if (bulletsLeft > 0)
 	{
 		//add bullet with the players direction
 
-		bulletCount->setCount(shotsLeft - 1);
+		hudBullets->setCount(bulletsLeft - 1);
 	}
 }
 
 void Player::addBullet()
 {
-	int shotsLeft = bulletCount->getCount();
+	int bulletsLeft = hudBullets->getCount();
 
-	if (shotsLeft < 5)
+	if (bulletsLeft < 5)
 	{
-		bulletCount->setCount(shotsLeft + 1);
+		hudBullets->setCount(bulletsLeft + 1);
 	}
 }
 
@@ -81,6 +81,7 @@ void Player::init()
 
 	setLives(PLAYER_INIT_LIVES);
 	hudLives->setCount(PLAYER_INIT_LIVES);
+	hudBullets->setCount(5);
 	setDirection(Direction::STAY);
 
 	show();
