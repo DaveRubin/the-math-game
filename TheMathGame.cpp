@@ -79,7 +79,7 @@ void TheMathGame::startLevel(int levelInput)
 
 void TheMathGame::doIteration(const list<char>& keyHits)
 {
-	if (turnsLeft == 0){
+	if (turnsLeft == 0) {
 		//TODO: create a function for "you guys suck" screen
 		//finishedLevel = true;
 		clear_screen();
@@ -105,7 +105,7 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 	//move player 1 and 2, if collided, stop
 	stage->moveChildren();
 
-	//should capsulate to "shoe screen" method
+	//should capsulate to "show screen" method
 	if (player1->answeredRight || player2->answeredRight)
 	{
 		clear_screen();
@@ -122,6 +122,9 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 		player2->getEquation()->generateEquation();
 		startLevel(currentLevel);
 	}
+
+	//additional actions to be taken in players onIteration
+	playersOnIteration();
 
 	//find a place for a new number to be added
 	addNumber();
@@ -228,6 +231,12 @@ void TheMathGame::addPlayersObjectsToStage()
 	stage->addChild(player2->getLivesObj());
 	stage->addChild(player2->getEquation());
 	stage->addChild(player2->getBulletsObj());
+}
+
+void TheMathGame::playersOnIteration()
+{
+	player1->onIteration();
+	player2->onIteration();
 }
 
 bool TheMathGame::checkFreeSpace(int xPos, int yPos)

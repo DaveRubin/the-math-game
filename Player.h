@@ -15,6 +15,7 @@
 class Player : public Actor
 {
 	int score;
+	int bulletRefillCounter;
 	char keyUp;
 	char keyLeft;
 	char keyDown;
@@ -30,6 +31,7 @@ class Player : public Actor
 	void initStats();
 	void shoot();
 	void addBullet();
+	void countTillRefill();
 
 public:
 	//public vars
@@ -50,6 +52,9 @@ public:
 
 		if (option == keyShoot) shoot();
 	}
+
+	//additional actions to be taken each iteration
+	void onIteration();
 
 	Equation *getEquation() { return hudEquation; };
 	TextField *getScore() { return hudScore; };

@@ -28,6 +28,7 @@ void Player::initStats()
 	objectType = "Player";
 
 	score = 0;
+	bulletRefillCounter = BULLET_REFILL_DURATION;
 	setLives(PLAYER_INIT_LIVES);
 	hudBullets->setCount(5);
 	answeredRight = false;
@@ -62,6 +63,27 @@ void Player::addBullet()
 	}
 }
 
+void Player::countTillRefill()
+{
+	int bulletsLeft = hudBullets->getCount();
+
+	if (bulletsLeft < 5)
+	{
+
+		if (bulletRefillCounter == 0)
+		{
+			//reset counter and add bullet
+			bulletRefillCounter = BULLET_REFILL_DURATION;
+			addBullet();
+		}
+
+		else
+		{
+			bulletRefillCounter--;
+		}
+	}
+}
+
 /*
 constructor 
 defines how the player looks & its control keys
@@ -80,6 +102,11 @@ Player::Player(char look = DEFAULT_ACTOR_LOOK , string tldrs = "waxdz")
 		setKeys(tldrs);
 }
 
+void Player::onIteration()
+{
+	//if bullets aren't full, then count tilll next refill
+	countTillRefill();
+}
 
 /*
 initialize the base parameters and update hudLives (to show the current lives)

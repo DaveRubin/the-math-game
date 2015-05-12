@@ -9,7 +9,7 @@
 #define NUMBER_SCORE 1
 #define PLAYER_INIT_LIVES 3
 #define ESC_KEY 27
-
+#define BULLET_REFILL_DURATION 200
 
 // When submitting in MAMA, put the line below in remark and make sure your project compiles in Linux!
 // (this is not mandatory, but can add bonus points)

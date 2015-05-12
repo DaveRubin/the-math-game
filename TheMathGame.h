@@ -47,6 +47,7 @@ class TheMathGame :
 	bool checkFreeSpace(int x, int y);
 	void positionPlayers();
 	void addPlayersObjectsToStage();
+	void playersOnIteration();
 
 public:
 	virtual int getLevel(){ return currentLevel; }
