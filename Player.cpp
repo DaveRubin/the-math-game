@@ -1,14 +1,15 @@
 #include "Player.h"
 
 /**
-set the movement keys (top, left down ,right)
+set the movement keys (top, left down ,right,shoot)
 */
-void Player::setKeys(string tldr = "waxd")
+void Player::setKeys(string tldr = "waxdz")
 {
 	keyUp =		tldr[0];
 	keyLeft =	tldr[1];
 	keyDown =	tldr[2];
 	keyRight =	tldr[3];
+	keyShoot =	tldr[4];
 }
 
 /*
@@ -30,16 +31,16 @@ void Player::initStats()
 /*
 constructor that defines how the player looks & its keyboard
 look - the char representing the player
-tldr - string of chars representing the keys for :top,left,down,right;
+tldr - string of chars representing the keys for :top,left,down,right,shoot;
 */
-Player::Player(char look = DEFAULT_ACTOR_LOOK , string tldr = "waxd")
+Player::Player(char look = DEFAULT_ACTOR_LOOK , string tldrs = "waxdz")
 {
 	initStats();
 	setView(look);
-	if (tldr.length() != 4)
+	if (tldrs.length() != 5)
 		setKeys();
 	else {
-		setKeys(tldr);
+		setKeys(tldrs);
 	}
 }
 
@@ -59,50 +60,11 @@ void Player::init()
 }
 
 /*
-check collision
-check the next position of the player using its current position and direction
-then if there is some actor at this point handle it by its type:
-
-if other player then stop
-if number, then check validity of number and get points\reduce 
-
+the function gets  the display obj
 */
-void Player::checkCollision()
+void Player::onCollision(DisplayObject *targetObj)
 {
-	int step = 1;
-	Point tmpPos = Point(position);
-
-	//move tmpPoint
-	switch (getDirection())
-	{
-	case Direction::LEFT:
-		tmpPos.add(Point(-step, 0));
-		break;
-
-	case Direction::RIGHT:
-		tmpPos.add(Point(step, 0));
-		break;
-
-	case Direction::UP:
-		tmpPos.add(Point(0, -step));
-		break;
-
-	case Direction::DOWN:
-		tmpPos.add(Point(0, step));
-		break;
-	}
-
-	//check horizontal warp for tempPos
-	if (tmpPos.getX() < 0) tmpPos.add(Point(SCREEN_WIDTH, 0));
-	if (tmpPos.getX() >= SCREEN_WIDTH) tmpPos.add(Point(-SCREEN_WIDTH, 0));
-
-	//get matrix and check if something is there
-	DisplayObject *targetObj = getStage()->getChildAt(tmpPos.getX(), tmpPos.getY());
-	//if clear then return
-	if (targetObj == NULL) return;
-
 	string targetType = targetObj->getType();
-
 	//if other player stop
 	//TODO: move the objectType string into const class
 	if (targetType == "Player")
@@ -115,7 +77,7 @@ void Player::checkCollision()
 	{
 		int hitNumber = static_cast<Number*>(targetObj)->getNumber();
 		targetObj->kill();
-		
+
 		if (hitNumber == hudEquation->getSolution())
 		{
 			score += NUMBER_SCORE;
@@ -123,14 +85,21 @@ void Player::checkCollision()
 			answeredRight = true;
 		}
 		else
-		{		
-			setLives(getLives() - 1);
-			hudLives->setLives(getLives());
-
-			if (getLives() == 0)
-			{
-				kill();
-			}
+		{
+			hit();
 		}
+	}
+}
+
+void Player::hit()
+{
+	//update lives
+	setLives(getLives() - 1);
+	hudLives->setLives(getLives());
+
+	//if no lives left then kill player
+	if (getLives() == 0)
+	{
+		kill();
 	}
 }

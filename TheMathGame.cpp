@@ -49,9 +49,8 @@ void TheMathGame::startLevel(int levelInput)
 	{
 		stage = new Stage();
 		//initialize players looks and controls
-		//TODO: fix controls to "waxd" formats
-		player1 = new Player('@', "wasd");
-		player2 = new Player('#', "ijkl");
+		player1 = new Player('@', "waxdz");
+		player2 = new Player('#', "ijmln");
 	}
 	else{
 		stage->init();
@@ -61,9 +60,9 @@ void TheMathGame::startLevel(int levelInput)
 
 	//TODO: delete these comments when done
 	//bullet test 
-	bullet.position.set(30, 15);
-	stage->addChild(&bullet);
-	bullet.setDirection(Direction::UP);
+//	bullet.position.set(30, 14);
+//	stage->addChild(&bullet);
+//	bullet.setDirection(Direction::UP);
 
 	//position player on screen
 	positionPlayers();

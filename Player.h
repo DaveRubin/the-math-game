@@ -19,6 +19,7 @@ class Player : public Actor
 	char keyLeft;
 	char keyDown;
 	char keyRight;
+	char keyShoot;
 
 	Equation *hudEquation;
 	TextField *hudScore;
@@ -36,6 +37,7 @@ public:
 	Player(char look,string keys);
 
 	void checkKey(char option) {
+
 		//if key is valid movement key, then set direction
 		//we use normal char and not const to allow users to define their own keys
 		if (option == keyUp) setDirection(Direction::UP);
@@ -44,12 +46,13 @@ public:
 		if (option == keyRight) setDirection(Direction::RIGHT);
 	}
 
-	Equation *getEquation(){ return hudEquation; };
-	TextField *getScore(){ return hudScore; };
-	LivesMeter *getLivesObj(){ return hudLives; };
+	Equation *getEquation() { return hudEquation; };
+	TextField *getScore() { return hudScore; };
+	LivesMeter *getLivesObj() { return hudLives; };
 
 	void init();
-	virtual void checkCollision() override;
+	virtual void onCollision(DisplayObject *) override;
+	virtual void hit() override;
 
 };
 

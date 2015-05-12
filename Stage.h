@@ -25,8 +25,10 @@ public:
 	void moveChildren();
 	void seconderyMove();
 	void clear();
+
 	DisplayObject *getChildAt(int x, int y);
 	DisplayObject *getChildAt(Point p);
+
 	void setChildAt(DisplayObject *child,int x, int y);
 	void removeChildren(DisplayObject*);
 	void init();

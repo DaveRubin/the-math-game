@@ -49,7 +49,7 @@ void Actor::move( bool reverse )
 
 	checkCollision();
 
-	if (direction == Direction::STAY){
+	if (direction == Direction::STAY) {
 		setRedraw(false);
 		return;
 	}
@@ -79,6 +79,49 @@ void Actor::move( bool reverse )
 	getStage()->setChildAt(this, position.getX(), position.getY());
 }
 
+void Actor::checkCollision()
+{
+	int step = 1;
+	Point tmpPos = Point(position);
+
+	//move tmpPoint
+	switch (getDirection())
+	{
+	case Direction::LEFT:
+		tmpPos.add(Point(-step, 0));
+		break;
+
+	case Direction::RIGHT:
+		tmpPos.add(Point(step, 0));
+		break;
+
+	case Direction::UP:
+		tmpPos.add(Point(0, -step));
+		break;
+
+	case Direction::DOWN:
+		tmpPos.add(Point(0, step));
+		break;
+	}
+
+	//check horizontal warp for tempPos
+	if (tmpPos.getX() < 0) tmpPos.add(Point(SCREEN_WIDTH, 0));
+	if (tmpPos.getX() >= SCREEN_WIDTH) tmpPos.add(Point(-SCREEN_WIDTH, 0));
+
+	//get matrix and check if something is there
+	DisplayObject *targetObj = getStage()->getChildAt(tmpPos.getX(), tmpPos.getY());
+	//if clear then return
+	if (targetObj == NULL) return;
+
+	string targetType = targetObj->getType();
+	onCollision(targetObj);
+}
+
+void Actor::onCollision(DisplayObject * targetObj)
+{
+
+}
+
 void Actor::checkBounds()
 {
 	//check out of bounds
@@ -101,6 +144,12 @@ void Actor::clear()
 	gotoxy( position.getX(), position.getY() );
 	getStage()->setChildAt(NULL, position.getX(), position.getY());
 	cout << ' ';
+}
+
+void Actor::hit()
+{
+	lives--;
+	if (lives == 0) kill();
 }
 
 void Actor::render()

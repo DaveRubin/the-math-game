@@ -39,8 +39,10 @@ public:
 	void clear();
 
 	virtual void move(bool reverse = false);
-	virtual void checkCollision(){};
+	virtual void checkCollision();
+	virtual void onCollision(DisplayObject *);
 	virtual void render();
+	virtual void hit();
 	virtual void kill();
 };
 

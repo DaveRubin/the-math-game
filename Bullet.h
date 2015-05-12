@@ -1,5 +1,6 @@
 #pragma once
-#include "Actor.h"
+#include "Player.h"
+
 class Bullet :
 	public Actor
 {
@@ -7,5 +8,6 @@ class Bullet :
 public:
 	Bullet();
 	~Bullet();
+	virtual void onCollision(DisplayObject *) override;
 };
 
