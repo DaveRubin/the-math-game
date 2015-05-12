@@ -77,12 +77,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Actor.cpp" />
+    <ClCompile Include="..\Bullet.cpp" />
     <ClCompile Include="..\DisplayObject.cpp" />
     <ClCompile Include="..\Equation.cpp" />
     <ClCompile Include="..\GameManager.cpp" />
+    <ClCompile Include="..\Gauge.cpp" />
     <ClCompile Include="..\Hud.cpp" />
     <ClCompile Include="..\io_utils.cpp" />
-    <ClCompile Include="..\LivesMeter.cpp" />
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\Number.cpp" />
     <ClCompile Include="..\Player.cpp" />
@@ -93,16 +94,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Actor.h" />
+    <ClInclude Include="..\Bullet.h" />
     <ClInclude Include="..\Color.h" />
     <ClInclude Include="..\config.h" />
     <ClInclude Include="..\Direction.h" />
     <ClInclude Include="..\DisplayObject.h" />
     <ClInclude Include="..\Equation.h" />
     <ClInclude Include="..\GameManager.h" />
+    <ClInclude Include="..\Gauge.h" />
     <ClInclude Include="..\Hud.h" />
     <ClInclude Include="..\io_utils.h" />
     <ClInclude Include="..\ISpecificGame.h" />
-    <ClInclude Include="..\LivesMeter.h" />
     <ClInclude Include="..\Number.h" />
     <ClInclude Include="..\Player.h" />
     <ClInclude Include="..\Point.h" />

@@ -59,6 +59,19 @@ int Equation::dividerRandomElements(int & numerator, int & denominator, int low,
 
 	return divSolution;
 }
+
+//get the two smallest variables' indices
+void getLowest(int * vars, int len, int & min1, int & min2)
+{
+	min1 = min2 = -1;
+	for (int k = 0; k < len; k++)
+	{
+		if (min1 > vars[k])
+			min1 = k;
+	}
+
+}
+
 /*
 generateEquation gets an equation type
 and generate an equation suiting its current level
@@ -278,6 +291,8 @@ void Equation::generateEquation21(Equation::EQUATION_TYPE op1, Equation::EQUATIO
 		}
 		break;
 	}
+
+	int vars[] = { num1, num2, num3, solution };
 	//TODO - build equation
 	//TODO - find two smallest variables
 	//TODO - generate solution for checking if X is a possible solution
