@@ -1,5 +1,24 @@
 #include "Operand.h"
 
+Operand::Operand(int type)
+{
+	switch (type)
+	{
+	case 0:
+		operandType = '+';
+		break;
+	case 1:
+		operandType = '*';
+		break;
+	case 2:
+		operandType = '-';
+		break;
+	case 3:
+		operandType = '/';
+		break;
+	}
+}
+
 int Operand::calulate(int a, int b)
 {
 	switch (operandType)

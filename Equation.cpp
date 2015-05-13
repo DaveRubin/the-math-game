@@ -25,7 +25,41 @@ bool Equation::trySolution(int input)
 	//if advanced
 	else
 	{
+		//find first min
+		int firstMin;
+		if (minIndex2 == -1) firstMin = minIndex1;
+		else firstMin = (minIndex1 < minIndex2) ? minIndex1 : minIndex2;
 
+		//keep backup for the temp var
+		int tmpElement = vars[firstMin];
+		vars[firstMin] = input;
+
+		//calcuate solution with the input as the first min 
+		int tempSolution = calculateThree(minIndex2);
+		//if possible, then set the the number to the input and return true
+		if (tempSolution < level && tempSolution >= 0)
+		{
+			if (firstMin == minIndex1)
+				minIndex1 = minIndex2;
+
+			minIndex2 = -1;
+			varCount--;
+
+			printEquation();
+
+			if (varCount == 0) solved = true;
+			return true;
+		}
+		//if not, reset
+		else
+		{
+			vars[firstMin] = tmpElement;
+			return false;
+		}
+		
+		//if vars == 1 then calculate solution,
+		//if solution is the input then return true, and set to solved
+		
 	}
 }
 
@@ -52,8 +86,6 @@ void Equation::generateEquation(int equationLevel)
 	{
 		elementsCount = 3;
 		varCount = 1;
-		//EQUATION_TYPE  eqType =
-			//static_cast<EQUATION_TYPE>(rand() % 4);
 		Operand eqType;
 		ops[0] = eqType;
 		generateSingleEquation();
@@ -123,7 +155,7 @@ void Equation::getLowest(int * vars, int len, int & min1, int & min2)
 	min2 = ind2;
 }
 
-int Equation::calculateThree(int n1, int n2, int n3, int varIndex, Operand op1, Operand op2)
+int Equation::calculateThree(int varIndex)
 {
 	//calcuate equation (n1,n2,n3 ,op1,op2 ,varIndex)
 	//if varIndex = 4 then calculate n1-3 and return the result
@@ -131,9 +163,21 @@ int Equation::calculateThree(int n1, int n2, int n3, int varIndex, Operand op1, 
 	//ignore the neighbor\s and counter the non neighbor with relevant multiply\divide
 	//check for regular nums and counter them (-+) with the solution
 	//now return the solution
-	if (varIndex == 4)
+	Operand op1 = ops[0];
+	Operand op2 = ops[1];
+
+	int n1 = vars[0];
+	int n2 = vars[1];
+	int n3 = vars[2];
+	int sol = vars[3];
+
+	if (varIndex == 3)
 	{
+		//if the solution is missing, then just calculate the expression 
+		//and return result
 		int tempNum;
+
+		//check if special order of action is needed
 		if (!op1.isImprtant() && op2.isImprtant())
 		{
 			tempNum = op2.calulate(n2, n3);
@@ -145,48 +189,107 @@ int Equation::calculateThree(int n1, int n2, int n3, int varIndex, Operand op1, 
 			return op2.calulate(tempNum, n3);
 		}
 	}
+
 	else
 	{
 		switch (varIndex)
 		{
 		case 0:
+
+			//case of n1 is the variable
 			if (!op1.isImprtant() && op2.isImprtant())
 			{
-				//counter 2 and result
 				int tempNum = op2.calulate(n2, n3);
-				//counter 1 and result
-				n3 = op1.counterAction(tempNum, n3);
+				sol = op1.counterAction(sol, tempNum);
+				return sol;
 			}
 			else
 			{
 				//counter 2 and result
-				n3 = op2.counterAction(n2, n3);
+				sol = op2.counterAction(sol, n3);
 				//counter 1 and result
-				n3 = op1.counterAction(n1, n3);
+				sol = op1.counterAction(sol, n2);
+				return sol;
 			}
-			return n3;
 			break;
+
 		case 1:
-			//if op 1 isn't important then counter result
-			//counter op2 and result
-			//if op1 is important then counter result
+
+			/*case of n2 is the variable*/
+			//get rid of n3
+			sol = op2.counterAction(sol, n3);
+			if (!op1.isImprtant()) n1 = op2.counterAction(n1, n3);
+
+			//now get rid of n1
+			// * or /
+			if (op1.isImprtant())
+			{
+				//6/x = 5	=> x = 6/5
+				if (op1.getOp() == '/')
+					return op1.calulate(n1, sol);
+				//6x = 5	=> x = 5/6
+				else
+					return op1.counterAction(sol , n1);
+			}
+			// + or -
+			else
+			{
+				//6-x = 5	=> x = 6-5
+				if (op1.getOp() == '-')
+					return op1.calulate(n1, sol);
+				//6+x = 5	=> x = 5-6
+				else
+					return op1.counterAction(sol, n1);
+			}
 			break;
+
 		case 2:
+
+			//case of n3 is the variable
 			if (!op1.isImprtant() && op2.isImprtant())
 			{
 				Operand *minus = new Operand('-');
-				//counter 2 and result
-				int tempNum = minus->calulate(n3, n1);
-				//counter 1 and result
-				n3 = op1.counterAction(tempNum, n2);
+				//reduce n1 from solution
+				sol = minus->calulate(sol, n1);
+				//clean the var from n2
+				sol = op2.counterAction(sol, n2);
 				delete minus;
+				//if op1 is minus, the invert solution before returning
+				if (op1.getOp() == '-') sol *= -1;
+				return sol;
 			}
 			else
 			{
-				//counter 2 and result
-				n3 = op2.counterAction(n2, n3);
-				//counter 1 and result
-				n3 = op1.counterAction(n1, n3);
+				//calculate first two
+				int temp = op1.calulate(n1, n2);
+				
+				//then if op2 its * or / then switch between n3 and sol, and return calculation
+				if (op2.isImprtant())
+				{
+					//if 6/x = 5 then x = 6/5
+					if (op2.getOp() == '/')
+					{
+						return op2.calulate(temp, sol);
+					}
+					//if 6x = 5 then x= 5/6
+					else
+					{
+						return op2.counterAction(sol, temp);
+					}
+				}
+				//if op2 is + or -
+				else
+				{
+					//16 - X = 10
+					//-X = -6
+					//return 6
+					Operand switchSide = Operand('-');
+					temp = switchSide.calulate(temp, sol);
+
+					//then we need to switch the var to the other side of the equation
+					if (op2.getOp() == '-') return temp;
+					else return -temp;
+				}
 			}
 			break;
 		}
@@ -195,21 +298,23 @@ int Equation::calculateThree(int n1, int n2, int n3, int varIndex, Operand op1, 
 }
 
 //print out the equation ommitting the smallest solutions
-void Equation::printEquation(int * vars, int len, char operand1, char operand2, int min1, int min2)
+void Equation::printEquation()
 {
 	stringstream sstm;
 	string varChars[] = { to_string(vars[0]), to_string(vars[1]), to_string(vars[2]), to_string(vars[3])};
-	varChars[min1] = "__";
-	if (min2 != -1)
-		varChars[min2] = "__";
 
-	sstm << varChars[0] << " " << operand1 << " " << varChars[1] << " " << operand2 << " " << varChars[2] << " " << '=' << " " << varChars[3] << endl;
+	if (minIndex1 != -1)
+		varChars[minIndex1] = "__";
+	if (minIndex2 != -1)
+		varChars[minIndex2] = "__";
+
+	sstm << varChars[0] << " " << ops[0].getOp() << " " << varChars[1] << " " << ops[1].getOp() << " " << varChars[2] << " " << '=' << " " << varChars[3] << endl;
 	
 	setText(sstm.str());
 	
 	//save solution
-	solution1 = vars[min1];
-	solution2 = vars[min2];
+//	solution1 = vars[min1];
+//	solution2 = vars[min2];
 }
 
 
@@ -421,11 +526,24 @@ void Equation::generateEquation21(Equation::EQUATION_TYPE op1, Equation::EQUATIO
 		break;
 	}
 
-	int vars[] = { num1, num2, num3, solution };
-	Equation::getLowest(vars, 4, min1, min2);
-	Equation::printEquation(vars, 4, operand1, operand2, min1, min2);
-	//TODO - generate solution for checking if X is a possible solution
+
+	int tmpVars[] = { num1, num2, num3, solution };
 	varCount = 2;
+
+	vars[0] = num1;
+	vars[1] = num2;
+	vars[2] = num3;
+	vars[3] = solution;
+
+	ops[0] = Operand(op1);
+	ops[1] = Operand(op2);
+
+	getLowest(tmpVars, 4, min1, min2);
+
 	minIndex1 = min1;
 	minIndex2 = min2;
+
+	printEquation();
+	//TODO - generate solution for checking if X is a possible solution
+
 }

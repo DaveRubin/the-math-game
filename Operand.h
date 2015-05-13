@@ -6,6 +6,7 @@ class Operand
 	char operandType;
 public:
 	Operand(char type) : operandType(type) {};
+	Operand(int type);
 	Operand() { setRandomOperand(); };
 	int calulate(int a, int b);
 	int counterAction(int a, int b);

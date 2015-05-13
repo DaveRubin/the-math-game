@@ -37,15 +37,29 @@ using namespace std;
 
 
 
+void testEquation();
 //==========================
 //  M  A  I  N
 //==========================
 int main() {
 
 	srand((unsigned int)time(NULL));
+//	testEquation();
+	clear_screen();
+	hideCursor();
+	srand((unsigned int)time(NULL));
+	GameManager(TheMathGame(), 200, 2).run();
+	return 0;
+}
+//==========================
+// E n d   o f   M  A  I  N
+//==========================
 
+
+void testEquation()
+{
 	Equation equation;
-	equation.setLevel(14);
+	equation.setLevel(5);
 	int input;
 	cout << endl;
 
@@ -54,17 +68,11 @@ int main() {
 		cout << "enter solution";
 		cin >> input;
 
-		if ( equation.trySolution(input) )
-			cout << "right!!" ;
+		if (equation.trySolution(input))
+			cout << "right!!";
 	}
 
 	cout << endl;
-//	clear_screen();
-//	hideCursor();
-//	srand((unsigned int)time(NULL));
-//	GameManager(TheMathGame(), 200, 2).run();
-	return 0;
+	cout << "great job!!!";
+	cin >> input;
 }
-//==========================
-// E n d   o f   M  A  I  N
-//==========================

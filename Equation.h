@@ -38,23 +38,23 @@ class Equation :
 	int getRandomElement();
 	int getRandomElementInRange(int low = 1, int high = 21);		//get random number in range between (and including) low limit and high
 	void getLowest(int * vars, int len, int & i, int & j);			//get the two smallest variables' indices
-	int calculateThree(int n1, int n2, int n3, int varIndex, Operand op1, Operand op2);
+	int calculateThree(int varIndex);
 
 	//randomizer for keeping divided numbers as integers that are in range
 	int dividerRandomElements(int & numerator, int & denominator, int low = 0, int high = 21);
 	
-	void printEquation(int * vars, int len, char operand1, char operand2, int min1, int min2 = -1);		//function to print out equation
+	void printEquation();		//function to print out equation
 
 	/*
 	list<int> vars;					//list of the solutions
 	list <EQUATION_TYPE> opers;		//list of the operands
 	*/
 	void generateSingleEquation(); //generates equations for levels 1 - 20
+	void generateEquation21(EQUATION_TYPE, EQUATION_TYPE);		//generates equations for levels 21 - 40
 
 public:
 
 	void generateEquation(int level);
-	void generateEquation21(EQUATION_TYPE, EQUATION_TYPE);		//generates equations for levels 21 - 40
 
 	void setLevel(int input){ 
 		generateEquation(input);
