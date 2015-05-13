@@ -1,6 +1,5 @@
 #include "Operand.h"
 
-
 int Operand::calulate(int a, int b)
 {
 	switch (operandType)
@@ -28,6 +27,27 @@ int Operand::counterAction(int a, int b)
 		return a / b;
 	case '/':
 		return a * b;
+	}
+}
+
+void Operand::setRandomOperand()
+{
+	int type = rand() % 4;
+
+	switch (type)
+	{
+	case 0:
+		operandType = '+';
+		break;
+	case 1:
+		operandType = '-';
+		break;
+	case 2:
+		operandType = '*';
+		break;
+	case 3:
+		operandType = '/';
+		break;
 	}
 }
 

@@ -25,7 +25,7 @@ bool Equation::trySolution(int input)
 	//if advanced
 	else
 	{
-		
+
 	}
 }
 
@@ -50,14 +50,20 @@ void Equation::generateEquation(int equationLevel)
 	//get random equation type (0-3) for levels 1-20
 	if ((level >= 0) && (level < 21))
 	{
-		EQUATION_TYPE  eqType =
-			static_cast<EQUATION_TYPE>(rand() % 4);
-		generateEquation(eqType);
+		elementsCount = 3;
+		varCount = 1;
+		//EQUATION_TYPE  eqType =
+			//static_cast<EQUATION_TYPE>(rand() % 4);
+		Operand eqType;
+		ops[0] = eqType;
+		generateSingleEquation();
 	}
 
 	// build equation for level 21 and up
 	else if (level >= 21)
 	{
+		elementsCount = 4;
+		varCount = 2;
 		EQUATION_TYPE op1 = static_cast<EQUATION_TYPE>(rand() % 4);
 		EQUATION_TYPE op2 = static_cast<EQUATION_TYPE>(rand() % 4);
 		generateEquation21(op1, op2);
@@ -217,40 +223,27 @@ sets
 	text(string) - to hold the euqation for print
 	solution(int) - the solution to the current equation
 */
-void Equation::generateEquation(Equation::EQUATION_TYPE eqType)
+void Equation::generateSingleEquation()
 {
+	Operand operand = ops[0];
 	int num1 = getRandomElement();
 	int num2 = getRandomElement();
 	int num3;
 	char sign = ' ';
 
-	switch (eqType)
+	if (operand.isReducing())
 	{
-	case Equation::ADD:
-		sign = '+';
-		num3 = num1 + num2;
-		break;
-	case Equation::MULTIPLY:
-		sign = '*';
-		num3 = num1 * num2;
-		break;
-	case Equation::SUBTRACT:
-		sign = '-';
 		num3 = num1;
-		num1 = num2 + num3;
-		break;
-	case Equation::DIVIDE:
-		sign = '/';
-		num3 = num1;
-		num1 = num2 * num3;
-		break;
-	default:
-		break;
+		num1 = operand.counterAction(num2, num3);
+	}
+	else
+	{
+		num3 = operand.calulate(num1, num2);
 	}
 
 	//parse the numbers into the output string
 	stringstream sstm;
-	sstm << num1 << sign << "__" << "=" << num3;
+	sstm << num1 << operand.getOp() << "__" << "=" << num3;
 	setText(sstm.str());
 	//save solution
 	solution = num2;
@@ -432,4 +425,7 @@ void Equation::generateEquation21(Equation::EQUATION_TYPE op1, Equation::EQUATIO
 	Equation::getLowest(vars, 4, min1, min2);
 	Equation::printEquation(vars, 4, operand1, operand2, min1, min2);
 	//TODO - generate solution for checking if X is a possible solution
+	varCount = 2;
+	minIndex1 = min1;
+	minIndex2 = min2;
 }

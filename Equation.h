@@ -29,6 +29,11 @@ class Equation :
 	int solution2;	//for level 21 and up when there are two solutions...
 	int level;
 	bool solved;
+	int minIndex1, minIndex2;
+	int varCount;
+	int elementsCount;
+	int vars[4];
+	Operand ops[2];
 
 	int getRandomElement();
 	int getRandomElementInRange(int low = 1, int high = 21);		//get random number in range between (and including) low limit and high
@@ -44,18 +49,17 @@ class Equation :
 	list<int> vars;					//list of the solutions
 	list <EQUATION_TYPE> opers;		//list of the operands
 	*/
-	
+	void generateSingleEquation(); //generates equations for levels 1 - 20
 
 public:
 
 	void generateEquation(int level);
-	void generateEquation(EQUATION_TYPE);						//generates equations for levels 1 - 20
 	void generateEquation21(EQUATION_TYPE, EQUATION_TYPE);		//generates equations for levels 21 - 40
-
 
 	void setLevel(int input){ 
 		generateEquation(input);
 	}
+
 	void levelUp(){ 
 		level++; 
 		generateEquation(level);

@@ -45,7 +45,7 @@ int main() {
 	srand((unsigned int)time(NULL));
 
 	Equation equation;
-	equation.setLevel(15);
+	equation.setLevel(14);
 	int input;
 	cout << endl;
 
