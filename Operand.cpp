@@ -16,6 +16,21 @@ int Operand::calulate(int a, int b)
 	}
 }
 
+int Operand::counterAction(int a, int b)
+{
+	switch (operandType)
+	{
+	case '+':
+		return a - b;
+	case '-':
+		return a + b;
+	case '*':
+		return a / b;
+	case '/':
+		return a * b;
+	}
+}
+
 //int calculateThree(int n1, int n2, int n3, int varIndex, Operand op1, Operand op2);
 
 //bool Equation::possibleSollution(int num)

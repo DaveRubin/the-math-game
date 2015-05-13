@@ -81,6 +81,10 @@ int Equation::calculateThree(int n1, int n2, int n3, int varIndex, Operand op1, 
 {
 	//calcuate equation (n1,n2,n3 ,op1,op2 ,varIndex)
 	//if varIndex = 4 then calculate n1-3 and return the result
+	//check if var index have neighbor multiply/divide if so
+	//ignore the neighbor\s and counter the non neighbor with relevant multiply\divide
+	//check for regular nums and counter them (-+) with the solution
+	//now return the solution
 	if (varIndex == 4)
 	{
 		int tempNum;
@@ -95,11 +99,52 @@ int Equation::calculateThree(int n1, int n2, int n3, int varIndex, Operand op1, 
 			return op2.calulate(tempNum, n3);
 		}
 	}
-	//if its not the solution
-	//check if var index have neighbor multiply/divide if so
-	//ignore the neighbor\s and counter the non neighbor with relevant multiply\divide
-	//check for regular nums and counter them (-+) with the solution
-	//now return the solution
+	else
+	{
+		switch (varIndex)
+		{
+		case 0:
+			if (!op1.isImprtant() && op2.isImprtant())
+			{
+				//counter 2 and result
+				int tempNum = op2.calulate(n2, n3);
+				//counter 1 and result
+				n3 = op1.counterAction(tempNum, n3);
+			}
+			else
+			{
+				//counter 2 and result
+				n3 = op2.counterAction(n2, n3);
+				//counter 1 and result
+				n3 = op1.counterAction(n1, n3);
+			}
+			return n3;
+			break;
+		case 1:
+			//if op 1 isn't important then counter result
+			//counter op2 and result
+			//if op1 is important then counter result
+			break;
+		case 2:
+			if (!op1.isImprtant() && op2.isImprtant())
+			{
+				Operand *minus = new Operand('-');
+				//counter 2 and result
+				int tempNum = minus->calulate(n3, n1);
+				//counter 1 and result
+				n3 = op1.counterAction(tempNum, n2);
+				delete minus;
+			}
+			else
+			{
+				//counter 2 and result
+				n3 = op2.counterAction(n2, n3);
+				//counter 1 and result
+				n3 = op1.counterAction(n1, n3);
+			}
+			break;
+		}
+	}
 	return 0;
 }
 
