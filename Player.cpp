@@ -142,12 +142,15 @@ void Player::onCollision(DisplayObject *targetObj)
 	{
 		int hitNumber = static_cast<Number*>(targetObj)->getNumber();
 		targetObj->kill();
-		int solution = hudEquation->getSolution();
-		if (hitNumber == solution )
+
+		if (hudEquation->trySolution(hitNumber))
 		{
-			score += NUMBER_SCORE;
-			hudScore->setText(score);
-			answeredRight = true;
+			if (hudEquation->isSolved())
+			{
+				score += NUMBER_SCORE;
+				hudScore->setText(score);
+				answeredRight = true;
+			}
 		}
 		else
 		{
