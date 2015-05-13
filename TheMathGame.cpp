@@ -79,7 +79,7 @@ void TheMathGame::startLevel(int levelInput)
 
 	turnsLeft = LEVEL_TURNS;
 
-	gotoxy(15, 0);
+	gotoxy(30, 0);
 	cout << "current level: " << currentLevel;
 }
 
@@ -212,10 +212,10 @@ void TheMathGame::positionPlayers()
 
 	//Player2 objects
 	player2->position.set(30, 15);
-	player2->getEquation()->position.set(SCREEN_WIDTH - 15, 0);
-	player2->getLivesObj()->position.set(SCREEN_WIDTH - 15, 1);
-	player2->getScore()->position.set(SCREEN_WIDTH - 10, 1);
-	player2->getBulletsObj()->position.set(SCREEN_WIDTH - 5, 1);
+	player2->getEquation()->position.set(SCREEN_WIDTH - 25, 0);
+	player2->getLivesObj()->position.set(SCREEN_WIDTH - 25, 1);
+	player2->getScore()->position.set(SCREEN_WIDTH - 20, 1);
+	player2->getBulletsObj()->position.set(SCREEN_WIDTH - 15, 1);
 }
 
 //Add players objects (charechter,score,lives and equation) to Stage
