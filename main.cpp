@@ -41,10 +41,15 @@ using namespace std;
 //  M  A  I  N
 //==========================
 int main(){
-	clear_screen();
-	hideCursor();
-	srand((unsigned int)time(NULL));
-	GameManager(TheMathGame(), 200, 2).run();
+	Equation equation;
+	equation.setLevel(15);
+	int input;
+	
+	cout << endl;
+//	clear_screen();
+//	hideCursor();
+//	srand((unsigned int)time(NULL));
+//	GameManager(TheMathGame(), 200, 2).run();
 	return 0;
 }
 //==========================

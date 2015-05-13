@@ -58,11 +58,8 @@ void TheMathGame::startLevel(int levelInput)
 		player2->init();
 	}
 
-	//TODO: add levelas parameter togenerate level
-	player1->getEquation()->setLevel(currentLevel);
-	player2->getEquation()->setLevel(currentLevel);
-	player1->getEquation()->generateEquation();
-	player2->getEquation()->generateEquation();
+	player1->getEquation()->generateEquation(currentLevel);
+	player2->getEquation()->generateEquation(currentLevel);
 
 	//TODO: delete these comments when done
 	//bullet test 

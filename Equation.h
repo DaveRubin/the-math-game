@@ -47,18 +47,17 @@ class Equation :
 
 public:
 
-	void generateEquation();
+	void generateEquation(int level);
 	void generateEquation(EQUATION_TYPE);						//generates equations for levels 1 - 20
 	void generateEquation21(EQUATION_TYPE, EQUATION_TYPE);		//generates equations for levels 21 - 40
 
 
 	void setLevel(int input){ 
-		level = input;
-		generateEquation();
+		generateEquation(input);
 	}
 	void levelUp(){ 
 		level++; 
-		generateEquation();
+		generateEquation(level);
 	}
 	int getLevel(){ return level; };
 	int getSolution(){ return solution; }
@@ -66,7 +65,6 @@ public:
 	int getSolution2(){ return solution2; }
 
 	Equation();
-	~Equation();
 };
 
 

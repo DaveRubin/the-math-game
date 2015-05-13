@@ -6,15 +6,16 @@ Equation::Equation()
 	solution = 0;
 	level = 0;
 	type = ADD;
-	generateEquation();
+	generateEquation(level);
 }
 
 /*
 empty generateEquation draws a random equation type
 and generate an equation suiting its current level
 */
-void Equation::generateEquation()
+void Equation::generateEquation(int equationLevel)
 {
+	level = equationLevel;
 	//get random equation type (0-3) for levels 1-20
 	if ((level >= 0) && (level < 21))
 	{
@@ -173,6 +174,7 @@ void Equation::printEquation(int * vars, int len, char operand1, char operand2, 
 	solution1 = vars[min1];
 	solution2 = vars[min2];
 }
+
 
 /*
 generateEquation gets an equation type

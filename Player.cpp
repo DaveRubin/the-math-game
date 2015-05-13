@@ -142,8 +142,8 @@ void Player::onCollision(DisplayObject *targetObj)
 	{
 		int hitNumber = static_cast<Number*>(targetObj)->getNumber();
 		targetObj->kill();
-
-		if (hitNumber == hudEquation->getSolution())
+		int solution = hudEquation->getSolution();
+		if (hitNumber == solution )
 		{
 			score += NUMBER_SCORE;
 			hudScore->setText(score);
