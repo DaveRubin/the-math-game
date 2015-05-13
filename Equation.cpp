@@ -1,11 +1,41 @@
 #include "Equation.h"
 
+/*
+try solution gets int 
+if simple equation, then just compare to solution and return true or false
+in simple mode, if true. set solved to true;
+
+if 3 vars then check possible var for the first var,
+if found possible , then add the number to the equation, and return true
+
+set solved to true only if no vars remains
+*/
+bool Equation::trySolution(int input)
+{
+	//if one var, compare to solution
+	if ((level >= 0) && (level < 21))
+	{
+		if (input == solution)
+		{
+			solved = true;
+			return true;
+		}
+		else return false;
+	}
+	//if advanced
+	else
+	{
+		
+	}
+}
+
 Equation::Equation()
 {
 	difficulty = 0;
 	solution = 0;
 	level = 0;
 	type = ADD;
+	solved = false;
 	generateEquation(level);
 }
 
@@ -15,6 +45,7 @@ and generate an equation suiting its current level
 */
 void Equation::generateEquation(int equationLevel)
 {
+	solved = false;
 	level = equationLevel;
 	//get random equation type (0-3) for levels 1-20
 	if ((level >= 0) && (level < 21))

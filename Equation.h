@@ -28,6 +28,7 @@ class Equation :
 	int solution1;	//for level 21 and up when there are two solutions...
 	int solution2;	//for level 21 and up when there are two solutions...
 	int level;
+	bool solved;
 
 	int getRandomElement();
 	int getRandomElementInRange(int low = 1, int high = 21);		//get random number in range between (and including) low limit and high
@@ -59,7 +60,12 @@ public:
 		level++; 
 		generateEquation(level);
 	}
-	int getLevel(){ return level; };
+
+	bool isSolved(){ return solved; }
+
+	int getLevel(){ return level; }
+
+	bool trySolution(int input);
 	int getSolution(){ return solution; }
 	int getSolution1(){ return solution1; }
 	int getSolution2(){ return solution2; }

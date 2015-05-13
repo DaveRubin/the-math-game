@@ -40,11 +40,24 @@ using namespace std;
 //==========================
 //  M  A  I  N
 //==========================
-int main(){
+int main() {
+
+	srand((unsigned int)time(NULL));
+
 	Equation equation;
 	equation.setLevel(15);
 	int input;
-	
+	cout << endl;
+
+	while (!equation.isSolved())
+	{
+		cout << "enter solution";
+		cin >> input;
+
+		if ( equation.trySolution(input) )
+			cout << "right!!" ;
+	}
+
 	cout << endl;
 //	clear_screen();
 //	hideCursor();
