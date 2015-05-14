@@ -172,7 +172,7 @@ void TheMathGame::addNumber()
 {
 	//find a place
 	bool placeFound = false;
-	int number = rand() % (currentLevel+10);
+	int number = rand() % (currentLevel+9) + 1;
 	int tries = 10;
 	int digits = 1;
 	int xPos;
