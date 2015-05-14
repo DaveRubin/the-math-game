@@ -5,6 +5,7 @@
 #pragma once
 #include "io_utils.h"
 #include "Point.h"
+#include "Color.h"
 #include <iostream>
 #include <string>
 
@@ -14,6 +15,7 @@ class Stage;
 
 class DisplayObject
 {
+	Color printColor;
 	Stage *stage;
 	//fast objects will get secondary motion
 	bool isFast;
@@ -29,6 +31,9 @@ public:
 	Point position;
 
 	DisplayObject():isFast(false), visible(true), redraw(true), staticObj(true), objectType("DisplayObject"){};
+
+	void setColor(Color newColor) { printColor = newColor; }
+	Color getColor() { return printColor; }
 
 	//isFast getter setter
 	void setFast(bool val) { isFast = val; }

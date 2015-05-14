@@ -6,6 +6,7 @@ Actor::Actor()
 	setType("Actor");
 	lives = DEFAULT_ACTOR_LIVES;
 	view = DEFAULT_ACTOR_LOOK;
+	setColor(DEFAULT_COLOR);
 	setStatic(false);
 	objectType = "Actor";
 	direction = Direction::STAY;
@@ -14,6 +15,7 @@ Actor::Actor()
 
 Actor::Actor(char lookInput, int livesInput )
 {
+	setColor(DEFAULT_COLOR);
 	setType("Actor");
 	lives = livesInput;
 	view = lookInput;
@@ -23,6 +25,7 @@ Actor::Actor(char lookInput, int livesInput )
 
 Actor::Actor(const Actor &actor )
 {
+	setColor(DEFAULT_COLOR);
 	setType("Actor");
 	lives = actor.lives;
 	view = actor.view;
@@ -154,8 +157,10 @@ void Actor::hit()
 
 void Actor::render()
 {
+	setTextColor(getColor());
 	gotoxy( position.getX(), position.getY() );
 	cout << view;
+	setTextColor(DEFAULT_COLOR);
 }
 
 bool Actor::collide(const Actor &target)

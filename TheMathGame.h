@@ -48,6 +48,7 @@ class TheMathGame :
 	void positionPlayers();
 	void addPlayersObjectsToStage();
 	void playersOnIteration();
+	void setColors();
 
 public:
 	virtual int getLevel(){ return currentLevel; }

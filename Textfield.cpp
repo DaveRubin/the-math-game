@@ -2,12 +2,18 @@
 
 TextField::TextField(int num)
 {
+	setColor(DEFAULT_COLOR);
 	setText(num);
 }
 
-void TextField::render(){
+void TextField::render()
+{
 	gotoxy(position.getX(), position.getY());
+
+	setTextColor(getColor());
 	cout << text;
+	setTextColor(DEFAULT_COLOR);
+
 	setRedraw(false);
 }
 
@@ -29,7 +35,10 @@ void TextField::setText(string s)
 	clear();
 	numeric = false;
 	text = s;
+
+	setTextColor(getColor());
 	cout << text;
+	setTextColor(DEFAULT_COLOR);
 }
 //when changing text, 
 //clear the current text

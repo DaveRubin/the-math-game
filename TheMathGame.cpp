@@ -70,6 +70,8 @@ void TheMathGame::startLevel(int levelInput)
 	//position player on screen
 	positionPlayers();
 
+	setColors();
+
 	addPlayersObjectsToStage();
 
 	clear_screen();
@@ -77,7 +79,10 @@ void TheMathGame::startLevel(int levelInput)
 	turnsLeft = LEVEL_TURNS;
 
 	gotoxy(30, 0);
+
+	setTextColor(Color::LIGHTGREEN);
 	cout << "current level: " << currentLevel;
+	setTextColor(DEFAULT_COLOR);
 }
 
 void TheMathGame::doIteration(const list<char>& keyHits)
@@ -89,7 +94,11 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 		//finishedLevel = true;
 		clear_screen();
 		gotoxy(30, 15);
+
+		setTextColor(Color::LIGHTRED);
 		cout << "BOOOO! ! ! ! YOU GUYS SUCK !";
+		setTextColor(DEFAULT_COLOR);
+
 		_getch();
 
 		currentLevel++;
@@ -115,7 +124,9 @@ void TheMathGame::doIteration(const list<char>& keyHits)
 	{
 		clear_screen();
 		gotoxy(30, 15);
+		setTextColor(Color::LIGHTGREEN);
 		cout << "WAY TO GO ! ! ! ";
+		setTextColor(DEFAULT_COLOR);
 		_getch();
 		currentLevel++;
 
@@ -213,6 +224,7 @@ void TheMathGame::positionPlayers()
 	player2->getLivesObj()->position.set(SCREEN_WIDTH - 25, 1);
 	player2->getScore()->position.set(SCREEN_WIDTH - 20, 1);
 	player2->getBulletsObj()->position.set(SCREEN_WIDTH - 15, 1);
+
 }
 
 //Add players objects (charechter,score,lives and equation) to Stage
@@ -237,6 +249,24 @@ void TheMathGame::playersOnIteration()
 {
 	player1->onIteration();
 	player2->onIteration();
+}
+
+void TheMathGame::setColors()
+{
+	player1->getLivesObj()->setColor(Color::LIGHTRED);
+	player2->getLivesObj()->setColor(Color::LIGHTRED);
+
+	player1->getBulletsObj()->setColor(Color::LIGHTCYAN);
+	player2->getBulletsObj()->setColor(Color::LIGHTCYAN);
+
+	player1->getEquation()->setColor(Color::WHITE);
+	player2->getEquation()->setColor(Color::WHITE);
+
+	player1->getScore()->setColor(Color::WHITE);
+	player2->getScore()->setColor(Color::WHITE);
+
+	player1->setColor(Color::YELLOW);
+	player2->setColor(Color::LIGHTMAGENTA);
 }
 
 bool TheMathGame::checkFreeSpace(int xPos, int yPos)

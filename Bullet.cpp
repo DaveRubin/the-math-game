@@ -3,6 +3,7 @@
 //set look to '*' according to instructions
 Bullet::Bullet()
 {
+	setColor(Color::LIGHTCYAN);
 	setView(defaultBulletStyle);
 	setType("Bullet");
 	objectType = "Bullet";

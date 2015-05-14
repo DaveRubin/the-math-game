@@ -3,10 +3,11 @@
 #define _ACTOR_H_
 
 
-#define DEFAULT_ACTOR_LIVES  1
-#define DEFAULT_ACTOR_LOOK  '\x02'
-
 #pragma once
+
+const int DEFAULT_ACTOR_LIVES = 1;
+const char DEFAULT_ACTOR_LOOK = '\x02';
+
 #include "DisplayObject.h"
 #include "Direction.h"
 #include "Stage.h"

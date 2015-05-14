@@ -1,5 +1,6 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
+#include "Color.h"
 
 const int LEVEL_TURNS = 1500;
 const int SCREEN_WIDTH = 80;
@@ -10,6 +11,7 @@ const int NUMBER_SCORE = 1;
 const int PLAYER_INIT_LIVES = 3;
 const int ESC_KEY = 27;
 const int BULLET_REFILL_DURATION = 200;
+const Color DEFAULT_COLOR = Color::LIGHTGREY;
 
 // When submitting in MAMA, put the line below in remark and make sure your project compiles in Linux!
 // (this is not mandatory, but can add bonus points)
