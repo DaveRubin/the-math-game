@@ -187,12 +187,12 @@ void TheMathGame::addNumber()
 		//chek if all neighbors are null
 		placeFound = true;
 
-		if (!checkFreeSpace(xPos, yPos)) placeFound = false;
+		if (!checkFreeSpace(xPos, yPos + HUD_HEIGHT)) placeFound = false;
 
 		if (number > 9)
 		{
 			digits = 2;
-			if (!checkFreeSpace((xPos + SCREEN_WIDTH - 1) % SCREEN_WIDTH, yPos)) placeFound = false;
+			if (!checkFreeSpace((xPos + SCREEN_WIDTH - 1) % SCREEN_WIDTH, yPos + HUD_HEIGHT)) placeFound = false;
 		}
 		tries--;
 	}
@@ -273,11 +273,18 @@ void TheMathGame::setColors()
 bool TheMathGame::checkFreeSpace(int xPos, int yPos)
 {
 	bool freeSpot = true;
-	Point centerPoint = Point(xPos, yPos + HUD_HEIGHT);
-	Point rightPoint = Point((xPos + 1) % SCREEN_WIDTH, yPos + HUD_HEIGHT);
-	Point leftPoint = Point((xPos + SCREEN_WIDTH - 1) % SCREEN_WIDTH, yPos + HUD_HEIGHT);
-	Point topPoint = Point(xPos, (yPos + 1) % STAGE_HEIGHT + HUD_HEIGHT);
-	Point bottomPoint = Point(xPos, (yPos + (STAGE_HEIGHT)-1) % STAGE_HEIGHT + HUD_HEIGHT);
+	Point centerPoint = Point(xPos, yPos );
+	Point rightPoint = Point((xPos + 1), yPos );
+	Point leftPoint = Point((xPos - 1), yPos );
+	Point topPoint = Point(xPos, (yPos + 1) );
+	Point bottomPoint = Point(xPos, (yPos-1 )  );
+
+	//warp all points
+	centerPoint.warp();
+	rightPoint.warp();
+	leftPoint.warp();
+	topPoint.warp();
+	bottomPoint.warp();
 	
 	//change freeSpot=false to return false
 	if (stage->getChildAt(centerPoint)) freeSpot = false;
