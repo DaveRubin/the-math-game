@@ -31,9 +31,42 @@ DisplayObject * Stage::getChildAt(Point p)
 /*
 this function probes the matrix for the nearest Number object to the given Point
 */
-Point Stage::getNearestNumberPosition(const Point &position)
+Point *Stage::getNearestNumberTo(Point position)
 {
-	return Point();
+	bool showProbes = true;
+	Point left, right;
+	Point *nearestNumber = NULL;
+	int maxLevel= STAGE_HEIGHT/2;
+	int positionX = position.getX();
+	int positionY = position.getY();
+	//we wil go level by level, from "y-level --> y+level" and the X will go from 0 to level and back
+	int xSpread = 0;
+
+	for (int level = 1; level < maxLevel; level++)
+	{
+		for (int i = -level; i <= level; i++)
+		{
+			xSpread = level - abs(i);
+			left.set(positionX - xSpread, positionY + i);
+			right.set(positionX + xSpread, positionY + i);
+			left.warp();
+			right.warp();
+
+			if (showProbes)
+			{
+				gotoxy(left.getX(), left.getY());
+				cout << "X";
+				gotoxy(right.getX(), right.getY());
+				cout << "X";
+			}
+
+			if (nearestNumber != NULL) break;
+		}
+
+		if (nearestNumber != NULL) break;
+	}
+	
+	return nearestNumber;
 }
 
 void  Stage::setChildAt(DisplayObject *child, int x, int y)

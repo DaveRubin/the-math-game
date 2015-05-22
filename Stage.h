@@ -29,7 +29,7 @@ public:
 	DisplayObject *getChildAt(int x, int y);
 	DisplayObject *getChildAt(Point p);
 
-	Point getNearestNumberPosition(const Point &position);
+	Point *getNearestNumberTo(Point position);
 
 	void setChildAt(DisplayObject *child,int x, int y);
 	void removeChildren(DisplayObject*);
