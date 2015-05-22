@@ -12,7 +12,7 @@
 using namespace std;
 class Stage;
 
-
+//TODO: create virtual destructor!
 class DisplayObject
 {
 	Color printColor;

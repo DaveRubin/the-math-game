@@ -28,6 +28,14 @@ DisplayObject * Stage::getChildAt(Point p)
 	return matrix[p.getX()][p.getY()];
 }
 
+/*
+this function probes the matrix for the nearest Number object to the given Point
+*/
+Point Stage::getNearestNumberPosition(const Point &position)
+{
+
+}
+
 void  Stage::setChildAt(DisplayObject *child, int x, int y)
 {
 	matrix[x][y] = child;
