@@ -23,7 +23,11 @@ void Point::warp()
 	}
 
 	if (y >= SCREEN_HEIGHT)
-		y = y % SCREEN_HEIGHT + HUD_HEIGHT;
+	{
+		y = (y % SCREEN_HEIGHT) + HUD_HEIGHT;
+		//path for buggy cases: 45,46,47
+		if (y >= 24) y = (y % SCREEN_HEIGHT) + HUD_HEIGHT;
+	}
 
 	else if (y < HUD_HEIGHT)
 	{

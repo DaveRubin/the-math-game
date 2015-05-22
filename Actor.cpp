@@ -119,11 +119,13 @@ void Actor::checkCollision()
 	onCollision(targetObj);
 }
 
+//TODO: make this function =0 so that Actor would become abstract class
 void Actor::onCollision(DisplayObject * targetObj)
 {
 
 }
 
+//TODO: remove this function and its references
 void Actor::checkBounds()
 {
 	//check out of bounds

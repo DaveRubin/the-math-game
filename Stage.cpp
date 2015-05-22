@@ -31,16 +31,21 @@ DisplayObject * Stage::getChildAt(Point p)
 /*
 this function probes the matrix for the nearest Number object to the given Point
 */
-Point *Stage::getNearestNumberTo(Point position)
+DisplayObject *Stage::getNearestNumberTo(Point position)
 {
-	bool showProbes = true;
+	bool showProbes = false;
+
 	Point left, right;
 	Point *nearestNumber = NULL;
-	int maxLevel= STAGE_HEIGHT/2;
+	DisplayObject *tmpObject = NULL;
+
+	int maxLevel = SCREEN_WIDTH;
 	int positionX = position.getX();
 	int positionY = position.getY();
+
 	//we wil go level by level, from "y-level --> y+level" and the X will go from 0 to level and back
 	int xSpread = 0;
+	Point tmpPoint;
 
 	for (int level = 1; level < maxLevel; level++)
 	{
@@ -49,8 +54,11 @@ Point *Stage::getNearestNumberTo(Point position)
 			xSpread = level - abs(i);
 			left.set(positionX - xSpread, positionY + i);
 			right.set(positionX + xSpread, positionY + i);
+			tmpPoint = left;
 			left.warp();
 			right.warp();
+
+			int tmp = left.getY();
 
 			if (showProbes)
 			{
@@ -60,13 +68,31 @@ Point *Stage::getNearestNumberTo(Point position)
 				cout << "X";
 			}
 
-			if (nearestNumber != NULL) break;
+			tmpObject = NULL;
+			tmpObject = getChildAt(left);
+
+			if (tmpObject != NULL  && tmpObject->getType() == "Number" )
+			{
+				nearestNumber = &(tmpObject->position);
+				break;
+			}
+
+			if (nearestNumber == NULL && !left.equels(right))
+			{
+				tmpObject = NULL;
+				tmpObject = getChildAt(left);
+				if (tmpObject != NULL  && tmpObject->getType() == "Number")
+				{
+					nearestNumber = &(tmpObject->position);
+					break;
+				}
+			}
 		}
 
 		if (nearestNumber != NULL) break;
 	}
 	
-	return nearestNumber;
+	return tmpObject;
 }
 
 void  Stage::setChildAt(DisplayObject *child, int x, int y)

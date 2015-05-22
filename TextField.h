@@ -15,9 +15,9 @@ class TextField :
 	bool numeric;
 public:
 	//c'tors
-	TextField() :text(""), numeric(false){ setColor(DEFAULT_COLOR); };
-	TextField(string s) :text(s), numeric(false){ setColor(DEFAULT_COLOR); };
-	TextField(TextField &tf) :text(tf.text), numeric(tf.numeric){ setColor(tf.getColor()); }
+	TextField() :text(""), numeric(false){ setType("TextField"); setColor(DEFAULT_COLOR); };
+	TextField(string s) :text(s), numeric(false){ setType("TextField");  setColor(DEFAULT_COLOR); };
+	TextField(TextField &tf) :text(tf.text), numeric(tf.numeric){ setType("TextField"); setColor(tf.getColor()); }
 	TextField(int num);
 	//simple getters
 	bool isNumeric(){ return numeric; }

@@ -2,6 +2,7 @@
 
 TextField::TextField(int num)
 {
+	setType("TextField");
 	setColor(DEFAULT_COLOR);
 	setText(num);
 }

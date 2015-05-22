@@ -9,6 +9,7 @@
 #include "DisplayObject.h"
 #include "Hud.h"
 #include "Player.h"
+#include "NumbersEater.h"
 
 using namespace std;
 
@@ -36,6 +37,9 @@ class TheMathGame :
 
 	Player *player1;
 	Player *player2;
+
+	NumbersEater *yumYums[2];
+
 	Stage *stage;
 
 	//TODO: delete these comments when done

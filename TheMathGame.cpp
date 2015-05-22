@@ -57,22 +57,20 @@ void TheMathGame::startLevel(int levelInput)
 		//initialize players looks and controls
 		player1 = new Player('@', "waxdz");
 		player2 = new Player('#', "ijmln");
+		yumYums[0] = new NumbersEater(10, 19);
+		yumYums[1] = new NumbersEater(70, 19);
 	}
 
-	else{
+	else {
 		stage->init();
 		player1->init();
 		player2->init();
+		yumYums[0]->init();
+		yumYums[1]->init();
 	}
 
 	player1->getEquation()->generateEquation(currentLevel);
 	player2->getEquation()->generateEquation(currentLevel);
-
-	//TODO: delete these comments when done
-	//bullet test 
-//	bullet.position.set(30, 14);
-//	stage->addChild(&bullet);
-//	bullet.setDirection(Direction::UP);
 
 	//position player on screen
 	positionPlayers();
@@ -250,6 +248,10 @@ void TheMathGame::addPlayersObjectsToStage()
 	stage->addChild(player2->getLivesObj());
 	stage->addChild(player2->getEquation());
 	stage->addChild(player2->getBulletsObj());
+
+	//Add monsters
+	stage->addChild(yumYums[0]);
+	stage->addChild(yumYums[1]);
 }
 
 void TheMathGame::playersOnIteration()
