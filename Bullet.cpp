@@ -4,7 +4,7 @@
 Bullet::Bullet()
 {
 	setColor(Color::LIGHTCYAN);
-	setView(defaultBulletStyle);
+	setView(BULLET_LOOK);
 	setType("Bullet");
 	objectType = "Bullet";
 	setFast(true);

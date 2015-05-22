@@ -4,7 +4,6 @@
 class Bullet :
 	public Actor
 {
-	char defaultBulletStyle = '*';
 public:
 	Bullet();
 	~Bullet();

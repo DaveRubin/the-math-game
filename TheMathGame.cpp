@@ -49,11 +49,6 @@ void TheMathGame::startLevel(int levelInput)
 	{
 		stage = new Stage();
 
-		//TODO: delete when done
-		//test near number
-		//stage->getNearestNumberTo(Point(28, 14));
-		//_getch();
-
 		//initialize players looks and controls
 		player1 = new Player('@', "waxdz");
 		player2 = new Player('#', "ijmln");

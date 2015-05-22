@@ -79,7 +79,6 @@ void Actor::move( bool reverse )
 
 	setRedraw(true);
 	position.warp();
-	checkBounds();
 	getStage()->setChildAt(this, position.getX(), position.getY());
 }
 
@@ -123,28 +122,6 @@ void Actor::checkCollision()
 void Actor::onCollision(DisplayObject * targetObj)
 {
 
-}
-
-//TODO: remove this function and its references
-void Actor::checkBounds()
-{
-	//check out of bounds
-//	int currentX = position.getX();
-//	int currentY = position.getY();
-
-//	if (currentX >= SCREEN_WIDTH) 
-//		position.set(Point( 0, currentY));
-//	else if (currentX < 0) 
-//		position.set(Point(SCREEN_WIDTH -1 , currentY));
-
-//	if (currentY < HUD_HEIGHT)
-//	{
-//		if (direction == Direction::DOWN)
-//			position.set(Point(currentX, HUD_HEIGHT));
-
-//		if (direction == Direction::UP)
-//			position.set(Point(currentX, SCREEN_HEIGHT));
-//	}
 }
 
 void Actor::clear()

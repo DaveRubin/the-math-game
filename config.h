@@ -13,6 +13,8 @@ const int ESC_KEY = 27;
 const int BULLET_REFILL_DURATION = 200;
 const Color DEFAULT_COLOR = Color::LIGHTGREY;
 
+const char BULLET_LOOK = '*';
+
 // When submitting in MAMA, put the line below in remark and make sure your project compiles in Linux!
 // (this is not mandatory, but can add bonus points)
 

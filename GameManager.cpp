@@ -235,7 +235,6 @@ char GameManager::doLevelIterations()
 		} while(!GameManager::LevelOptions::isValidOption(action));
 	}
 	// end of esc pressed
-	// TODO: clear the sub menu options from screen
 	return action;
 }
 

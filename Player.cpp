@@ -19,9 +19,8 @@ void Player::initStats()
 {
 	hudEquation = new Equation();
 	hudScore = new TextField(0);
-	//TODO: add gauges look from config 
 	hudLives = new Gauge(); 
-	hudBullets = new Gauge('*');
+	hudBullets = new Gauge(BULLET_LOOK);
 
 	//redundent, should reconcider the architecture for identifieng objects
 	setType("Player");

@@ -18,8 +18,6 @@ class Actor:
 	char view;
 	int lives;
 	int direction;
-	
-	void checkBounds();
 public:
 	string objectType;
 
