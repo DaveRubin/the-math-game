@@ -48,6 +48,7 @@ void TheMathGame::startLevel(int levelInput)
 	if (!stage)
 	{
 		stage = new Stage();
+		stage->getNearestNumberPosition(Point(0, 0));
 		//initialize players looks and controls
 		player1 = new Player('@', "waxdz");
 		player2 = new Player('#', "ijmln");

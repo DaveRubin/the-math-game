@@ -3,6 +3,7 @@
 
 #include <stdlib.h>  
 #include <iostream>
+#include "config.h"
 
 using namespace std;
 
@@ -10,12 +11,17 @@ class Point
 {
 	int x;
 	int y;
+
 public:
+
+
 	Point() :x(0), y(0){};
-	Point(int inX, int inY){
-		x = inX;
-		y = inY;
+	Point(int inX, int inY):x(inX),y(inY) {
+
 	}
+
+	void warp();
+	bool isOutOfBounds();
 
 	int getX() { return x; }
 	int getY() { return y; }

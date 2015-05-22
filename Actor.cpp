@@ -78,6 +78,7 @@ void Actor::move( bool reverse )
 	}
 
 	setRedraw(true);
+	position.warp();
 	checkBounds();
 	getStage()->setChildAt(this, position.getX(), position.getY());
 }
@@ -107,9 +108,7 @@ void Actor::checkCollision()
 		break;
 	}
 
-	//check horizontal warp for tempPos
-	if (tmpPos.getX() < 0) tmpPos.add(Point(SCREEN_WIDTH, 0));
-	if (tmpPos.getX() >= SCREEN_WIDTH) tmpPos.add(Point(-SCREEN_WIDTH, 0));
+	tmpPos.warp();
 
 	//get matrix and check if something is there
 	DisplayObject *targetObj = getStage()->getChildAt(tmpPos.getX(), tmpPos.getY());
@@ -128,18 +127,22 @@ void Actor::onCollision(DisplayObject * targetObj)
 void Actor::checkBounds()
 {
 	//check out of bounds
-	int currentX = position.getX();
-	int currentY = position.getY();
+//	int currentX = position.getX();
+//	int currentY = position.getY();
 
-	if (currentX >= SCREEN_WIDTH) 
-		position.set(Point( 0, currentY));
-	else if (currentX < 0) 
-		position.set(Point(SCREEN_WIDTH -1 , currentY));
+//	if (currentX >= SCREEN_WIDTH) 
+//		position.set(Point( 0, currentY));
+//	else if (currentX < 0) 
+//		position.set(Point(SCREEN_WIDTH -1 , currentY));
 
-	if (currentY > SCREEN_HEIGHT )
-		position.set(Point(currentX, HUD_HEIGHT));
-	else if (currentY < HUD_HEIGHT)
-		position.set(Point(currentX, SCREEN_HEIGHT));
+//	if (currentY < HUD_HEIGHT)
+//	{
+//		if (direction == Direction::DOWN)
+//			position.set(Point(currentX, HUD_HEIGHT));
+
+//		if (direction == Direction::UP)
+//			position.set(Point(currentX, SCREEN_HEIGHT));
+//	}
 }
 
 void Actor::clear()

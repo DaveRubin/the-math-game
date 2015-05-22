@@ -49,6 +49,9 @@
     <ClCompile Include="Operand.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="NumbersEater.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -106,6 +109,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Operand.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NumbersEater.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

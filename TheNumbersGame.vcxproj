@@ -93,6 +93,7 @@
     <ClInclude Include="io_utils.h" />
     <ClInclude Include="ISpecificGame.h" />
     <ClInclude Include="Gauge.h" />
+    <ClInclude Include="NumbersEater.h" />
     <ClInclude Include="Operand.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />
@@ -111,6 +112,7 @@
     <ClCompile Include="io_utils.cpp" />
     <ClCompile Include="Gauge.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NumbersEater.cpp" />
     <ClCompile Include="Operand.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Point.cpp" />

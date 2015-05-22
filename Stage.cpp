@@ -33,7 +33,7 @@ this function probes the matrix for the nearest Number object to the given Point
 */
 Point Stage::getNearestNumberPosition(const Point &position)
 {
-
+	return Point();
 }
 
 void  Stage::setChildAt(DisplayObject *child, int x, int y)
