@@ -8,9 +8,11 @@
 const int DEFAULT_ACTOR_LIVES = 1;
 const char DEFAULT_ACTOR_LOOK = '\x02';
 
+class CollisionManager;
 #include "DisplayObject.h"
 #include "Direction.h"
 #include "Stage.h"
+#include "CollisionManager.h"
 
 class Actor:
 	public DisplayObject

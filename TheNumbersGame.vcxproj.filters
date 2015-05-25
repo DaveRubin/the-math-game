@@ -52,6 +52,7 @@
     <ClCompile Include="NumbersEater.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -114,6 +115,7 @@
     <ClInclude Include="NumbersEater.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />

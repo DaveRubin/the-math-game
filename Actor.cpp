@@ -116,6 +116,7 @@ void Actor::checkCollision()
 
 	string targetType = targetObj->getType();
 	onCollision(targetObj);
+	CollisionManager::collide(this, targetObj);
 }
 
 //TODO: make this function =0 so that Actor would become abstract class

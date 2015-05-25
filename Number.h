@@ -1,7 +1,9 @@
 #ifndef _NUMBER_H_
 #define _NUMBER_H_
-
+class Actor;
 #include "Actor.h"
+
+//#include "Actor.h"
 
 class Number :
 	public Actor
