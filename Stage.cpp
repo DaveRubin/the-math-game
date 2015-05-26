@@ -3,8 +3,6 @@
 
 Stage::Stage()
 {
-	numChildren = 0;
-	renderListSize = 0;
 	resetMatrix();
 }
 
@@ -102,25 +100,7 @@ void  Stage::setChildAt(DisplayObject *child, int x, int y)
 
 void Stage::addChild(DisplayObject *child)
 {
-	//if child list is full, multiply size
-	if (numChildren == renderListSize){
-		if (renderListSize == 0) 
-			renderListSize = 1;
-		renderListSize *= 2;
-
-		//craete a temp array and move all children to the new one
-		DisplayObject **newArr = new DisplayObject*[renderListSize];
-		for (int i = 0; i < numChildren; i++)
-		{
-			newArr[i] = renderList[i];
-		}
-		if (renderListSize > 2) delete renderList;
-		renderList = newArr;
-	}
-	//then add the child at the end of the list
-	renderList[numChildren] = child;
-
-	render_list.push_front(child);
+	renderList.push_front(child);
 
 	//inject the stage to the child
 	child->setStage(this);
@@ -133,123 +113,66 @@ void Stage::addChild(DisplayObject *child)
 		if (xPos >= SCREEN_WIDTH) break;
 		matrix[xPos][child->position.getY()] = child;
 	}
-
-	numChildren++;
 }
 
 void Stage::render()
 {
-	//new iteration
 	DisplayObject *tmpObj;
-	for (list<DisplayObject*>::iterator it = render_list.begin(); it != render_list.end(); it++)
+
+	for (list<DisplayObject*>::iterator it = renderList.begin(); it != renderList.end(); it++)
 	{
 		tmpObj = (*it);
-		if (tmpObj->isVisible())
-		{
-			tmpObj->render();
-		}
-	}
 
-	for (int i = 0; i < numChildren; i++)
-	{
-//		if (renderList[i]->isVisible())
-//			renderList[i]->render();
+		if (tmpObj->isVisible())
+			tmpObj->render();
 	}
 }
 
 void Stage::clear()
 {
-	DisplayObject *tmpObj;
-	for (list<DisplayObject*>::iterator it = render_list.begin(); it != render_list.end(); it++)
-	{
+	for (list<DisplayObject*>::iterator it = renderList.begin(); it != renderList.end(); it++)
 		(*it)->clear();
-	}
-
-	for (int i = 0; i < numChildren; i++)
-	{
-		 renderList[i]->clear();
-	}
 }
 
 void Stage::moveChildren()
 {
 	DisplayObject *tmpObj;
-	for (list<DisplayObject*>::iterator it = render_list.begin(); it != render_list.end(); it++)
+
+	for (list<DisplayObject*>::iterator it = renderList.begin(); it != renderList.end(); it++)
 	{
 		tmpObj = (*it);
-		if (! tmpObj->isStatic())
-		{
-			static_cast<Actor*>(tmpObj)->move();
-		}
-	}
 
-	for (int i = 0; i < numChildren; i++)
-	{
-		if (!renderList[i]->isStatic())
-		{
-//			static_cast<Actor*>(renderList[i])->move();
-		}
+		if (! tmpObj->isStatic())
+			static_cast<Actor*>(tmpObj)->move();
 	}
 }
 
 void Stage::seconderyMove()
 {
 	DisplayObject *tmpObj;
-	for (list<DisplayObject*>::iterator it = render_list.begin(); it != render_list.end(); it++)
-	{
-		tmpObj = (*it);
-		if (!tmpObj->isStatic() && tmpObj->isFastObject())
-		{
-			static_cast<Actor*>(tmpObj)->move();
-		}
-	}
 
-	for (int i = 0; i < numChildren; i++)
+	for (list<DisplayObject*>::iterator it = renderList.begin(); it != renderList.end(); it++)
 	{
-		if (!renderList[i]->isStatic() && renderList[i]->isFastObject() )
-		{
-//			static_cast<Actor*>(renderList[i])->move();
-		}
+
+		tmpObj = (*it);
+
+		if (!tmpObj->isStatic() && tmpObj->isFastObject())
+			static_cast<Actor*>(tmpObj)->move();
 	}
 }
 
-// TODO: need to handle child removal properly, the program is crashing because stage deleted child
-//should remove the specific child from the list, not 
 void Stage::removeChildren(DisplayObject *child)
 {
-	render_list.remove(child);
-
-	bool removed = false;
-	for (int i = 0; i < numChildren; i++)
-	{
-		if (removed){
-			renderList[i] = renderList[i + 1];
-		}
-		if (renderList[i] == child){
-			//delete child  --old code, crashed the program
-//			renderList[i] = NULL;
-			//TODO:
-			//whenever removing children from the list, we should oreder the rest of the list (make splice)
-			//numChildren--;
-			removed = true;
-		}
-
-	}
-
+	renderList.remove(child);
 }
 
 void Stage::init()
 {
 	deleteAll();
-	numChildren = 0;
 	resetMatrix();
 }
 
 void Stage::deleteAll()
 {
-	for (int i = 0; i < numChildren; i++)
-	{
-		renderList[i] = NULL;
-		//delete renderList[i];
-	}
+	renderList.clear();
 }

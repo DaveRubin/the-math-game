@@ -13,9 +13,8 @@ using namespace std;
 
 class Stage
 {
-	DisplayObject **renderList; 
 	DisplayObject *matrix[SCREEN_WIDTH][SCREEN_HEIGHT];
-	list<DisplayObject*> render_list;
+	list<DisplayObject*> renderList;
 	int numChildren;
 	int renderListSize;
 	void resetMatrix();
