@@ -117,9 +117,10 @@ void Stage::addChild(DisplayObject *child)
 		if (renderListSize > 2) delete renderList;
 		renderList = newArr;
 	}
-
 	//then add the child at the end of the list
 	renderList[numChildren] = child;
+
+	render_list.push_front(child);
 
 	//inject the stage to the child
 	child->setStage(this);
@@ -132,44 +133,82 @@ void Stage::addChild(DisplayObject *child)
 		if (xPos >= SCREEN_WIDTH) break;
 		matrix[xPos][child->position.getY()] = child;
 	}
+
 	numChildren++;
 }
 
 void Stage::render()
 {
+	//new iteration
+	DisplayObject *tmpObj;
+	for (list<DisplayObject*>::iterator it = render_list.begin(); it != render_list.end(); it++)
+	{
+		tmpObj = (*it);
+		if (tmpObj->isVisible())
+		{
+			tmpObj->render();
+		}
+	}
+
 	for (int i = 0; i < numChildren; i++)
 	{
-		if (renderList[i]->isVisible())
-			renderList[i]->render();
+//		if (renderList[i]->isVisible())
+//			renderList[i]->render();
 	}
 }
 
 void Stage::clear()
 {
+	DisplayObject *tmpObj;
+	for (list<DisplayObject*>::iterator it = render_list.begin(); it != render_list.end(); it++)
+	{
+		(*it)->clear();
+	}
+
 	for (int i = 0; i < numChildren; i++)
 	{
-		renderList[i]->clear();
+		 renderList[i]->clear();
 	}
 }
 
 void Stage::moveChildren()
 {
+	DisplayObject *tmpObj;
+	for (list<DisplayObject*>::iterator it = render_list.begin(); it != render_list.end(); it++)
+	{
+		tmpObj = (*it);
+		if (! tmpObj->isStatic())
+		{
+			static_cast<Actor*>(tmpObj)->move();
+		}
+	}
+
 	for (int i = 0; i < numChildren; i++)
 	{
 		if (!renderList[i]->isStatic())
 		{
-			static_cast<Actor*>(renderList[i])->move();
+//			static_cast<Actor*>(renderList[i])->move();
 		}
 	}
 }
 
 void Stage::seconderyMove()
 {
+	DisplayObject *tmpObj;
+	for (list<DisplayObject*>::iterator it = render_list.begin(); it != render_list.end(); it++)
+	{
+		tmpObj = (*it);
+		if (!tmpObj->isStatic() && tmpObj->isFastObject())
+		{
+			static_cast<Actor*>(tmpObj)->move();
+		}
+	}
+
 	for (int i = 0; i < numChildren; i++)
 	{
 		if (!renderList[i]->isStatic() && renderList[i]->isFastObject() )
 		{
-			static_cast<Actor*>(renderList[i])->move();
+//			static_cast<Actor*>(renderList[i])->move();
 		}
 	}
 }
@@ -178,6 +217,8 @@ void Stage::seconderyMove()
 //should remove the specific child from the list, not 
 void Stage::removeChildren(DisplayObject *child)
 {
+	render_list.remove(child);
+
 	bool removed = false;
 	for (int i = 0; i < numChildren; i++)
 	{
@@ -186,7 +227,7 @@ void Stage::removeChildren(DisplayObject *child)
 		}
 		if (renderList[i] == child){
 			//delete child  --old code, crashed the program
-			renderList[i] = NULL;
+//			renderList[i] = NULL;
 			//TODO:
 			//whenever removing children from the list, we should oreder the rest of the list (make splice)
 			//numChildren--;

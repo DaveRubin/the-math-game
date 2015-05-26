@@ -6,6 +6,7 @@
 #include "Actor.h"
 #include <stdlib.h>     
 #include <iostream>
+#include <list>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ class Stage
 {
 	DisplayObject **renderList; 
 	DisplayObject *matrix[SCREEN_WIDTH][SCREEN_HEIGHT];
+	list<DisplayObject*> render_list;
 	int numChildren;
 	int renderListSize;
 	void resetMatrix();
