@@ -25,9 +25,7 @@ void Flyer::move(bool reverse)
 //Flyers kill anything in their path
 void Flyer::onCollision(DisplayObject* otherObject)
 {
-	if (otherObject->getType().compare("Flyer") == 0)
-	{ }
-	else
+	if (!otherObject->getType().compare("Flyer") == 0)
 		otherObject->kill();
 }
 
