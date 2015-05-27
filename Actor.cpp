@@ -44,6 +44,8 @@ void Actor::kill()
 	stop();
 	clear();
 	hide();
+
+	getStage()->removeChildren(this);
 }
 
 void Actor::move( bool reverse )

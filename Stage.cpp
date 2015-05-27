@@ -128,6 +128,18 @@ void Stage::render()
 	}
 }
 
+void Stage::clearDeadChildren()
+{
+	DisplayObject *killTarget;
+
+	for (list<DisplayObject*>::iterator it = killList.begin(); it != killList.end(); it++)
+	{
+		killTarget = (*it);
+		renderList.remove(killTarget);
+	}
+	killList.clear();
+}
+
 void Stage::clear()
 {
 	for (list<DisplayObject*>::iterator it = renderList.begin(); it != renderList.end(); it++)
@@ -145,6 +157,8 @@ void Stage::moveChildren()
 		if (! tmpObj->isStatic())
 			static_cast<Actor*>(tmpObj)->move();
 	}
+
+	clearDeadChildren();
 }
 
 void Stage::seconderyMove()
@@ -159,11 +173,13 @@ void Stage::seconderyMove()
 		if (!tmpObj->isStatic() && tmpObj->isFastObject())
 			static_cast<Actor*>(tmpObj)->move();
 	}
+
+	clearDeadChildren();
 }
 
 void Stage::removeChildren(DisplayObject *child)
 {
-	renderList.remove(child);
+	killList.push_front(child);
 }
 
 void Stage::init()

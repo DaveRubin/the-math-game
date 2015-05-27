@@ -44,6 +44,7 @@ void Number::render()
 
 void Number::kill()
 {
+	//remove from stage
 	if (getStage() != NULL)
 	{
 		for (int i = 0; i < length; i++)
@@ -52,7 +53,11 @@ void Number::kill()
 			if (xPos >= SCREEN_WIDTH) break;
 			getStage()->setChildAt(NULL, xPos , position.getY());
 		}
+
+		getStage()->removeChildren(this);
 	}
+
+	//remove from screen
 	gotoxy(position.getX(), position.getY());
 	for (int i = 0; i < length; i++)
 	{

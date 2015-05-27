@@ -15,6 +15,7 @@ class Stage
 {
 	DisplayObject *matrix[SCREEN_WIDTH][SCREEN_HEIGHT];
 	list<DisplayObject*> renderList;
+	list<DisplayObject*> killList;
 	int numChildren;
 	int renderListSize;
 	void resetMatrix();
@@ -23,6 +24,7 @@ public:
 	Stage();
 	void addChild(DisplayObject*);
 	void render();
+	void clearDeadChildren();
 	void moveChildren();
 	void seconderyMove();
 	void clear();
