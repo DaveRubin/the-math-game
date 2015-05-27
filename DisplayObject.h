@@ -28,6 +28,10 @@ class DisplayObject
 	string objectType;
 
 public:
+	virtual ~DisplayObject()
+	{
+	}
+
 	Point position;
 
 	DisplayObject():isFast(false), visible(true), redraw(true), staticObj(true), objectType("DisplayObject"){};
