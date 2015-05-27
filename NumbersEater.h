@@ -1,6 +1,5 @@
 #pragma once
 #include "Actor.h"
-#include "Number.h"
 
 class NumbersEater :
 	public Actor

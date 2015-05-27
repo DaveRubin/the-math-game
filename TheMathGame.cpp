@@ -54,6 +54,10 @@ void TheMathGame::startLevel(int levelInput)
 		player2 = new Player('#', "ijmln");
 		yumYums[0] = new NumbersEater(10, 19);
 		yumYums[1] = new NumbersEater(70, 19);
+		flyers[0] = new Flyer("up", 45, 23);
+		flyers[1] = new Flyer("down", 55, 15);
+		flyers[2] = new Flyer("left", 50, 15);
+		flyers[3] = new Flyer("right", 30, 23);
 	}
 
 	else {
@@ -62,6 +66,10 @@ void TheMathGame::startLevel(int levelInput)
 		player2->init();
 		yumYums[0]->init();
 		yumYums[1]->init();
+		flyers[0]->init();
+		flyers[1]->init();
+		flyers[2]->init();
+		flyers[3]->init();
 	}
 
 	player1->getEquation()->generateEquation(currentLevel);
@@ -247,6 +255,10 @@ void TheMathGame::addPlayersObjectsToStage()
 	//Add monsters
 	stage->addChild(yumYums[0]);
 	stage->addChild(yumYums[1]);
+	stage->addChild(flyers[0]);
+	stage->addChild(flyers[1]);
+	stage->addChild(flyers[2]);
+	stage->addChild(flyers[3]);
 }
 
 void TheMathGame::playersOnIteration()

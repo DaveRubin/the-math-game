@@ -82,6 +82,7 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Flyer.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="config.h" />
@@ -104,6 +105,7 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Flyer.cpp" />
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="DisplayObject.cpp" />
     <ClCompile Include="Equation.cpp" />

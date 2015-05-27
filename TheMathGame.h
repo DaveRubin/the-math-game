@@ -10,6 +10,7 @@
 #include "Hud.h"
 #include "Player.h"
 #include "NumbersEater.h"
+#include "Flyer.h"
 
 using namespace std;
 
@@ -39,6 +40,7 @@ class TheMathGame :
 	Player *player2;
 
 	NumbersEater *yumYums[2];
+	Flyer * flyers[4];
 
 	Stage *stage;
 
