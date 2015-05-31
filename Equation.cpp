@@ -109,7 +109,7 @@ get random element for the equation according to its level
 int Equation::getRandomElement()
 {
 	int randomSeed = rand();
-	return (randomSeed % 10 + 1 + level);
+	return (randomSeed % (10 + level) + 1);
 }
 
 
@@ -346,12 +346,25 @@ void Equation::generateSingleEquation()
 		num3 = operand.calulate(num1, num2);
 	}
 
+	//select random item to be invisible
+	int leftInvisible = rand() % 2;
 	//parse the numbers into the output string
 	stringstream sstm;
-	sstm << num1 << operand.getOp() << "__" << "=" << num3;
+
+	if (leftInvisible)
+	{
+		sstm << "__" << operand.getOp() << num2 << "=" << num3;
+		//save solution
+		solution = num1;
+	}
+	else
+	{
+		sstm << num1 << operand.getOp() << "__" << "=" << num3;
+		//save solution
+		solution = num2;
+	}
+
 	setText(sstm.str());
-	//save solution
-	solution = num2;
 }
 
 
