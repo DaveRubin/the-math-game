@@ -26,6 +26,7 @@ class Player : public Actor
 	TextField *hudScore;
 	Gauge *hudLives;
 	Gauge *hudBullets;
+	Point initPoint;
 
 	void setKeys(string tldr);
 	void initStats();
@@ -60,10 +61,13 @@ public:
 	TextField *getScore() { return hudScore; };
 	Gauge *getLivesObj() { return hudLives; };
 	Gauge *getBulletsObj() { return hudBullets; };
+	void setInitPoint(Point init) { initPoint = init; };
+	Point getInitPoint() { return initPoint; };
 
 	void init();
 	virtual void onCollision(DisplayObject *) override;
 	virtual void hit() override;
+	virtual void kill() override;
 
 };
 

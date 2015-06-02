@@ -49,9 +49,14 @@ void TheMathGame::startLevel(int levelInput)
 	{
 		stage = new Stage();
 
-		//initialize players looks and controls
+		//initialize players looks position and controls
+		Point p1init = Point (15, 15);
+		Point p2init = Point (30, 15);
 		player1 = new Player('@', "waxdz");
 		player2 = new Player('#', "ijmln");
+		player1->setInitPoint(p1init);
+		player2->setInitPoint(p2init);
+
 		yumYums[0] = new NumbersEater(10, 19);
 		yumYums[1] = new NumbersEater(70, 19);
 		flyers[0] = new Flyer("up", 45, 23);
@@ -220,14 +225,14 @@ actual player charecter, score ,lives and equation
 void TheMathGame::positionPlayers()
 {
 	//Player1 objects
-	player1->position.set(15, 15);
+	player1->position.set(player1->getInitPoint());
 	player1->getEquation()->position.set(5, 0);
 	player1->getLivesObj()->position.set(5, 1);
 	player1->getScore()->position.set(10, 1);
 	player1->getBulletsObj()->position.set(15, 1);
 
 	//Player2 objects
-	player2->position.set(30, 15);
+	player2->position.set(player2->getInitPoint());
 	player2->getEquation()->position.set(SCREEN_WIDTH - 25, 0);
 	player2->getLivesObj()->position.set(SCREEN_WIDTH - 25, 1);
 	player2->getScore()->position.set(SCREEN_WIDTH - 20, 1);
