@@ -4,6 +4,7 @@
 void NumbersEater::commonInits()
 {
 	setView(monsterStyle);
+	setColor(CYAN);
 	setType("NumbersEater");
 	setStatic(false);
 	setDirection(Direction::RIGHT);
