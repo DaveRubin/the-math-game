@@ -164,13 +164,6 @@ void Player::hit()
 	setLives(getLives() - 1);
 	hudLives->setCount(getLives());
 
-	//erase from previous location
-	clear();
-
-	//move player to initial location
-	position.set(getInitPoint());
-
-
 	//if no lives left then kill player
 	if (getLives() == 0)
 	{
