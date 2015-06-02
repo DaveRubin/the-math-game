@@ -26,9 +26,12 @@ void Bullet::onCollision(DisplayObject* targetObj)
 		//add collision logic
 		static_cast<Actor*>(targetObj)->hit();
 		
+		
 		Player * player = static_cast<Player*>(targetObj);
+
 		//erase from previous location
 		player->clear();
+		player->setDirection(Direction::STAY);
 
 		//move player to initial location
 		player->position.set(player->getInitPoint());
