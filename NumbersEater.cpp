@@ -89,7 +89,6 @@ void NumbersEater::onCollision(DisplayObject *hitObject )
 	if (hitObject->getType() == "Number")
 	{
 		hitObject->kill();
-		this->kill();
 	}
 	else if (hitObject->getType() == "Bullet")
 		hitObject->kill();
